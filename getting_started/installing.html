@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Installing PyCSEP &mdash; PyCSEP v0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Core Concepts for Beginners" href="core_concepts.html" />
+    <link rel="prev" title="pyCSEP: Tools for Earthquake Forecast Developers" href="../index.html" />
+    <!-- Google Analytics -->
+    <!-- added options to anonymize ip and disable cookies using {'storage': 'none'} 
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-495056-15', 'auto', {'storage': 'none'});
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+    </script> -->
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PyCSEP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installing PyCSEP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-conda">Using Conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-pip">Using Pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-from-source">Installing from Source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Using Conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-pip-virtualenv">Using Pip / Virtualenv</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#developers-installation">Developers Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core_concepts.html">Core Concepts for Beginners</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials and Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/catalog_filtering.html">Catalogs operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/plot_gridded_forecast.html">Plotting gridded forecast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gridded_forecast_evaluation.html">Grid-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/working_with_catalog_forecasts.html">Working with catalog-based forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/catalog_forecast_evaluation.html">Catalog-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/plot_customizations.html">Plot customizations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/catalogs.html">Catalogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/forecasts.html">Forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/regions.html">Regions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Help &amp; Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/glossary.html">Terms and Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/publications.html">Referenced Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/roadmap.html">Development Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/developer_notes.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/api_reference.html">API Reference</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">Source code and contributing</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CONTRIBUTING.md">Contributing</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/LICENSE">License</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/issues">Getting help</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2">Source Code</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyCSEP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Installing PyCSEP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/getting_started/installing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installing-pycsep">
+<h1>Installing PyCSEP<a class="headerlink" href="#installing-pycsep" title="Permalink to this headline">¶</a></h1>
+<p>We are working on a <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> recipe and PyPI distribution.
+If you plan on contributing to this package, visit the
+<a class="reference external" href="https://github.com/SCECcode/pycsep/blob/master/CONTRIBUTING.md">contribution guidelines</a> for installation instructions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This package requires &gt;=Python 3.7.</p>
+</div>
+<p>The easiest way to install PyCSEP is using <code class="docutils literal notranslate"><span class="pre">conda</span></code>. It can also be installed using <code class="docutils literal notranslate"><span class="pre">pip</span></code> or built from source.</p>
+<div class="section" id="using-conda">
+<h2>Using Conda<a class="headerlink" href="#using-conda" title="Permalink to this headline">¶</a></h2>
+<p>For most users, you can use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">--</span><span class="n">channel</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">pycsep</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-pip">
+<h2>Using Pip<a class="headerlink" href="#using-pip" title="Permalink to this headline">¶</a></h2>
+<p>Before this installation will work, you must <strong>first</strong> install the following system dependencies. The remaining dependencies
+should be installed by the installation script. To help manage dependency issues, we recommend using virtual environments
+like <cite>virtualenv</cite>.</p>
+<div class="line-block">
+<div class="line">Python 3.7 or later (<a class="reference external" href="https://python.org">https://python.org</a>)</div>
+<div class="line"><br /></div>
+<div class="line">NumPy 1.10 or later (<a class="reference external" href="https://numpy.org">https://numpy.org</a>)</div>
+<div class="line-block">
+<div class="line">Python package for scientific computing and numerical calculations.</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">GEOS 3.3.3 or later (<a class="reference external" href="https://trac.osgeo.org/geos/">https://trac.osgeo.org/geos/</a>)</div>
+<div class="line-block">
+<div class="line">C++ library for processing geometry.</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">PROJ 4.9.0 or later (<a class="reference external" href="https://proj4.org/">https://proj4.org/</a>)</div>
+<div class="line-block">
+<div class="line">Library for cartographic projections.</div>
+</div>
+</div>
+<p>Example for Ubuntu:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libproj</span><span class="o">-</span><span class="n">dev</span> <span class="n">proj</span><span class="o">-</span><span class="n">data</span> <span class="n">proj</span><span class="o">-</span><span class="nb">bin</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libgeos</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
+</pre></div>
+</div>
+<p>Example for MacOS:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">proj</span> <span class="n">geos</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-from-source">
+<h2>Installing from Source<a class="headerlink" href="#installing-from-source" title="Permalink to this headline">¶</a></h2>
+<p>Use this approach if you want the most up-to-date code. This creates an editable installation that can be synced with
+the latest GitHub commit.</p>
+<p>We recommend using virtual environments when installing python packages from source to avoid any dependency conflicts. We prefer
+<code class="docutils literal notranslate"><span class="pre">conda</span></code> as the package manager over <code class="docutils literal notranslate"><span class="pre">pip</span></code>, because <code class="docutils literal notranslate"><span class="pre">conda</span></code> does a good job of handling binary distributions of packages
+across multiple platforms. Also, we recommend using the <code class="docutils literal notranslate"><span class="pre">miniconda</span></code> installer, because it is lightweight and only includes
+necessary pacakages like <code class="docutils literal notranslate"><span class="pre">pip</span></code> and <code class="docutils literal notranslate"><span class="pre">zlib</span></code>.</p>
+<div class="section" id="id1">
+<h3>Using Conda<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>If you don’t have <code class="docutils literal notranslate"><span class="pre">conda</span></code> on your machine, download and install <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">SCECcode</span><span class="o">/</span><span class="n">pycsep</span>
+<span class="n">cd</span> <span class="n">pycsep</span>
+<span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">requirements</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">csep</span><span class="o">-</span><span class="n">dev</span>
+<span class="c1"># Installs in editor mode with all dependencies</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>Note: If you want to go back to your default environment use the command <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code>.</p>
+</div>
+<div class="section" id="using-pip-virtualenv">
+<h3>Using Pip / Virtualenv<a class="headerlink" href="#using-pip-virtualenv" title="Permalink to this headline">¶</a></h3>
+<p>We highly recommend using Conda, because this tools helps to manage binary dependencies on Python packages. If you
+must use <a class="reference external" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/">Virtualenv</a>
+follow these instructions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">SCECcode</span><span class="o">/</span><span class="n">pycsep</span>
+<span class="n">cd</span> <span class="n">pycsep</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">virtualenv</span> <span class="n">venv</span>
+<span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+<span class="c1"># Installs in editor mode dependencies are installed by conda</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span><span class="p">[</span><span class="nb">all</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Note: If you want to go back to your default environment use the command <code class="docutils literal notranslate"><span class="pre">deactivate</span></code>.</p>
+</div>
+</div>
+<div class="section" id="developers-installation">
+<h2>Developers Installation<a class="headerlink" href="#developers-installation" title="Permalink to this headline">¶</a></h2>
+<p>This shows you how to install a copy of the repository that you can use to create Pull Requests and sync with the upstream
+repository. First, fork the repo on GitHub. It will now live at <code class="docutils literal notranslate"><span class="pre">https://github.com/&lt;YOUR_GITHUB_USERNAME&gt;/pycsep</span></code>.
+We recommend using <code class="docutils literal notranslate"><span class="pre">conda</span></code> to install the development environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/&lt;</span><span class="n">YOUR_GITHUB_USERNAME</span><span class="o">&gt;/</span><span class="n">pycsep</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">pycsep</span>
+<span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">requirements</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">csep</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+<span class="c1"># Allow sync with default repository</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">upstream</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">SCECCode</span><span class="o">/</span><span class="n">pycsep</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Now you can pull from upstream using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">upstream</span> <span class="pre">master</span></code> to keep your copy of the repository in sync with the
+latest commits.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="core_concepts.html" class="btn btn-neutral float-right" title="Core Concepts for Beginners" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="pyCSEP: Tools for Earthquake Forecast Developers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+ 
+&#169; 2020, University of Southern California.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

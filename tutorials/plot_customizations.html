@@ -1,0 +1,461 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Plot customizations &mdash; PyCSEP v0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Catalogs" href="../concepts/catalogs.html" />
+    <link rel="prev" title="Catalog-based Forecast Evaluation" href="catalog_forecast_evaluation.html" />
+    <!-- Google Analytics -->
+    <!-- added options to anonymize ip and disable cookies using {'storage': 'none'} 
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-495056-15', 'auto', {'storage': 'none'});
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+    </script> -->
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PyCSEP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installing.html">Installing PyCSEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/core_concepts.html">Core Concepts for Beginners</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials and Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="catalog_filtering.html">Catalogs operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_gridded_forecast.html">Plotting gridded forecast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gridded_forecast_evaluation.html">Grid-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_catalog_forecasts.html">Working with catalog-based forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="catalog_forecast_evaluation.html">Catalog-based Forecast Evaluation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Plot customizations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example-1-spatial-dataset-plot-arguments">Example 1: Spatial dataset plot arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-2-plot-a-global-forecast-and-a-selected-magnitude-bin-range">Example 2: Plot a global forecast and a selected magnitude bin range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-3-plot-a-catalog">Example 3: Plot a catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-4-plot-multiple-evaluation-results">Example 4: Plot multiple evaluation results</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/catalogs.html">Catalogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/forecasts.html">Forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/regions.html">Regions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Help &amp; Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/glossary.html">Terms and Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/publications.html">Referenced Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/roadmap.html">Development Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/developer_notes.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/api_reference.html">API Reference</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">Source code and contributing</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CONTRIBUTING.md">Contributing</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/LICENSE">License</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/issues">Getting help</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2">Source Code</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyCSEP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Plot customizations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/plot_customizations.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-tutorials-plot-customizations-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="plot-customizations">
+<span id="sphx-glr-tutorials-plot-customizations-py"></span><h1>Plot customizations<a class="headerlink" href="#plot-customizations" title="Permalink to this headline">¶</a></h1>
+<p>This example shows how to include some advanced options in the spatial visualization
+of Gridded Forecasts and Evaluation Results</p>
+<dl class="simple">
+<dt>Overview:</dt><dd><ol class="arabic simple">
+<li><p>Define optional plotting arguments</p></li>
+<li><p>Set extent of maps</p></li>
+<li><p>Visualizing selected magnitude bins</p></li>
+<li><p>Plot global maps</p></li>
+<li><p>Plot multiple Evaluation Results</p></li>
+</ol>
+</dd>
+</dl>
+<div class="section" id="example-1-spatial-dataset-plot-arguments">
+<h2>Example 1: Spatial dataset plot arguments<a class="headerlink" href="#example-1-spatial-dataset-plot-arguments" title="Permalink to this headline">¶</a></h2>
+<p><strong>Load required libraries</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csep</span>
+<span class="kn">import</span> <span class="nn">cartopy</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">csep.utils</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">plots</span>
+</pre></div>
+</div>
+<p><strong>Load a Grid Forecast from the datasets</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="../reference/generated/csep.core.forecasts.GriddedForecast.html#csep.core.forecasts.GriddedForecast" title="csep.core.forecasts.GriddedForecast" class="sphx-glr-backref-module-csep-core-forecasts sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">forecast</span></a> <span class="o">=</span> <a href="../reference/generated/csep.load_gridded_forecast.html#csep.load_gridded_forecast" title="csep.load_gridded_forecast" class="sphx-glr-backref-module-csep sphx-glr-backref-type-py-function"><span class="n">csep</span><span class="o">.</span><span class="n">load_gridded_forecast</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">datasets</span><span class="o">.</span><span class="n">hires_ssm_italy_fname</span></a><span class="p">,</span>
+                                      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Werner, et al (2010) Italy&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Selecting plotting arguments</strong></p>
+<p>Create a dictionary containing the plot arguments</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">args_dict</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Italy 10 year forecast&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;grid_labels&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+             <span class="s1">&#39;borders&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+             <span class="s1">&#39;feature_lw&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+             <span class="s1">&#39;basemap&#39;</span><span class="p">:</span> <span class="s1">&#39;ESRI_imagery&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;rainbow&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;alpha_exp&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span>
+             <span class="s1">&#39;projection&#39;</span><span class="p">:</span> <span class="n">cartopy</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">Mercator</span><span class="p">()}</span>
+</pre></div>
+</div>
+<p>These arguments are, in order:</p>
+<ul class="simple">
+<li><p>Assign a title</p></li>
+<li><p>Set labels to the geographic axes</p></li>
+<li><p>Draw country borders</p></li>
+<li><p>Set a linewidth of 0.5 to country borders</p></li>
+<li><p>Select ESRI Imagery as a basemap.</p></li>
+<li><p>Assign <code class="docutils literal notranslate"><span class="pre">'rainbow'</span></code> as colormap. Possible values from from <code class="docutils literal notranslate"><span class="pre">matplotlib.cm</span></code> library</p></li>
+<li><p>Defines 0.8 for an exponential transparency function (default is 0 for constant alpha, whereas 1 for linear).</p></li>
+<li><p>An object cartopy.crs.Projection() is passed as Projection to the map</p></li>
+</ul>
+<p>The complete description of plot arguments can be found in <a class="reference internal" href="../reference/generated/csep.utils.plots.plot_spatial_dataset.html#csep.utils.plots.plot_spatial_dataset" title="csep.utils.plots.plot_spatial_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">csep.utils.plots.plot_spatial_dataset()</span></code></a></p>
+<p><strong>Plotting the dataset</strong></p>
+<p>The map <cite>extent</cite> can be defined. Otherwise, the extent of the data would be used. The dictionary defined must be passed as argument</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <a href="../reference/generated/csep.core.forecasts.GriddedForecast.plot.html#csep.core.forecasts.GriddedForecast.plot" title="csep.core.forecasts.GriddedForecast.plot" class="sphx-glr-backref-module-csep-core-forecasts sphx-glr-backref-type-py-method"><span class="n">forecast</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">],</span>
+                   <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plot_args</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">args_dict</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="Italy 10 year forecast" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_customizations_001.png" />
+</div>
+<div class="section" id="example-2-plot-a-global-forecast-and-a-selected-magnitude-bin-range">
+<h2>Example 2: Plot a global forecast and a selected magnitude bin range<a class="headerlink" href="#example-2-plot-a-global-forecast-and-a-selected-magnitude-bin-range" title="Permalink to this headline">¶</a></h2>
+<p><strong>Load a Global Forecast from the datasets</strong></p>
+<p>A downsampled version of the <a class="reference external" href="http://peterbird.name/publications/2015_GEAR1/2015_GEAR1.htm">GEAR1</a> forecast can be found in datasets.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="../reference/generated/csep.core.forecasts.GriddedForecast.html#csep.core.forecasts.GriddedForecast" title="csep.core.forecasts.GriddedForecast" class="sphx-glr-backref-module-csep-core-forecasts sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">forecast</span></a> <span class="o">=</span> <a href="../reference/generated/csep.load_gridded_forecast.html#csep.load_gridded_forecast" title="csep.load_gridded_forecast" class="sphx-glr-backref-module-csep sphx-glr-backref-type-py-function"><span class="n">csep</span><span class="o">.</span><span class="n">load_gridded_forecast</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">datasets</span><span class="o">.</span><span class="n">gear1_downsampled_fname</span></a><span class="p">,</span>
+                                      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;GEAR1 Forecast (downsampled)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Filter by magnitudes</strong></p>
+<p>We get the rate of events of 5.95&lt;=M_w&lt;=7.5</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">low_bound</span></a> <span class="o">=</span> <span class="mf">6.15</span>
+<a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">upper_bound</span></a> <span class="o">=</span> <span class="mf">7.55</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mw_bins</span></a> <span class="o">=</span> <a href="../reference/generated/csep.core.forecasts.GriddedForecast.get_magnitudes.html#csep.core.forecasts.GriddedForecast.get_magnitudes" title="csep.core.forecasts.GriddedForecast.get_magnitudes" class="sphx-glr-backref-module-csep-core-forecasts sphx-glr-backref-type-py-method"><span class="n">forecast</span><span class="o">.</span><span class="n">get_magnitudes</span></a><span class="p">()</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mw_ind</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.where.html#numpy.where" title="numpy.where" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">numpy</span><span class="o">.</span><span class="n">where</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">numpy</span><span class="o">.</span><span class="n">logical_and</span></a><span class="p">(</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mw_bins</span></a> <span class="o">&gt;=</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">low_bound</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mw_bins</span></a> <span class="o">&lt;=</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">upper_bound</span></a><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rates_mw</span></a> <span class="o">=</span> <a href="../reference/generated/csep.core.forecasts.GriddedForecast.data.html#csep.core.forecasts.GriddedForecast.data" title="csep.core.forecasts.GriddedForecast.data" class="sphx-glr-backref-module-csep-core-forecasts sphx-glr-backref-type-py-method"><span class="n">forecast</span><span class="o">.</span><span class="n">data</span></a><span class="p">[:,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mw_ind</span></a><span class="p">]</span>
+</pre></div>
+</div>
+<p>We get the total rate between these magnitudes</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rate_sum</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rates_mw</span></a><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The data is stored in a 1D array, so it should be projected into <cite>region</cite> 2D cartesian grid.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rate_sum</span></a> <span class="o">=</span> <a href="../reference/generated/csep.core.regions.CartesianGrid2D.html#csep.core.regions.CartesianGrid2D" title="csep.core.regions.CartesianGrid2D" class="sphx-glr-backref-module-csep-core-regions sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">forecast</span><span class="o">.</span><span class="n">region</span></a><span class="o">.</span><span class="n">get_cartesian</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rate_sum</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Define plot arguments</strong></p>
+<p>We define the arguments and a global projection, centered at $lon=-180$</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plot_args</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="s1">&#39;coastline&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;feature_color&#39;</span><span class="p">:</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;projection&#39;</span><span class="p">:</span> <span class="n">cartopy</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">Robinson</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mf">180.0</span><span class="p">),</span>
+             <span class="s1">&#39;title&#39;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">forecast</span><span class="o">.</span><span class="n">name</span></a><span class="p">,</span> <span class="s1">&#39;grid_labels&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+             <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;magma&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;clabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">\lambda\left(M_w \in [{</span><span class="si">%.2f</span><span class="s1">},\,{</span><span class="si">%.2f</span><span class="s1">}]\right)$ per &#39;</span>
+                       <span class="sa">r</span><span class="s1">&#39;${</span><span class="si">%.1f</span><span class="s1">}^\circ\times {</span><span class="si">%.1f</span><span class="s1">}^\circ $ per forecast period&#39;</span> <span class="o">%</span>
+                       <span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">low_bound</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">upper_bound</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">forecast</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">dh</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">forecast</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">dh</span></a><span class="p">)}</span>
+</pre></div>
+</div>
+<p><strong>Plotting the dataset</strong>
+To plot a global forecast, we must assign the option <code class="docutils literal notranslate"><span class="pre">set_global=True</span></code>, which is required by :ref:cartopy to handle
+internally the extent of the plot</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <a href="../reference/generated/csep.utils.plots.plot_spatial_dataset.html#csep.utils.plots.plot_spatial_dataset" title="csep.utils.plots.plot_spatial_dataset" class="sphx-glr-backref-module-csep-utils-plots sphx-glr-backref-type-py-function"><span class="n">plots</span><span class="o">.</span><span class="n">plot_spatial_dataset</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">numpy</span><span class="o">.</span><span class="n">log10</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rate_sum</span></a><span class="p">),</span> <a href="../reference/generated/csep.core.regions.CartesianGrid2D.html#csep.core.regions.CartesianGrid2D" title="csep.core.regions.CartesianGrid2D" class="sphx-glr-backref-module-csep-core-regions sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">forecast</span><span class="o">.</span><span class="n">region</span></a><span class="p">,</span>
+                                <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">set_global</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plot_args</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plot_args</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="GEAR1 Forecast (downsampled)" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_customizations_002.png" />
+</div>
+<div class="section" id="example-3-plot-a-catalog">
+<h2>Example 3: Plot a catalog<a class="headerlink" href="#example-3-plot-a-catalog" title="Permalink to this headline">¶</a></h2>
+<p><strong>Load a Catalog from ComCat</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">start_time</span></a> <span class="o">=</span> <a href="../reference/generated/csep.utils.time_utils.strptime_to_utc_datetime.html#csep.utils.time_utils.strptime_to_utc_datetime" title="csep.utils.time_utils.strptime_to_utc_datetime" class="sphx-glr-backref-module-csep-utils-time_utils sphx-glr-backref-type-py-function"><span class="n">csep</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">time_utils</span><span class="o">.</span><span class="n">strptime_to_utc_datetime</span></a><span class="p">(</span><span class="s1">&#39;1995-01-01 00:00:00.0&#39;</span><span class="p">)</span>
+<a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">end_time</span></a> <span class="o">=</span> <a href="../reference/generated/csep.utils.time_utils.strptime_to_utc_datetime.html#csep.utils.time_utils.strptime_to_utc_datetime" title="csep.utils.time_utils.strptime_to_utc_datetime" class="sphx-glr-backref-module-csep-utils-time_utils sphx-glr-backref-type-py-function"><span class="n">csep</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">time_utils</span><span class="o">.</span><span class="n">strptime_to_utc_datetime</span></a><span class="p">(</span><span class="s1">&#39;2015-01-01 00:00:00.0&#39;</span><span class="p">)</span>
+<a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">min_mag</span></a> <span class="o">=</span> <span class="mf">3.95</span>
+<a href="../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog" class="sphx-glr-backref-module-csep-core-catalogs sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catalog</span></a> <span class="o">=</span> <a href="../reference/generated/csep.query_comcat.html#csep.query_comcat" title="csep.query_comcat" class="sphx-glr-backref-module-csep sphx-glr-backref-type-py-function"><span class="n">csep</span><span class="o">.</span><span class="n">query_comcat</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">start_time</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">end_time</span></a><span class="p">,</span> <span class="n">min_magnitude</span><span class="o">=</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">min_mag</span></a><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># **Define plotting arguments**</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plot_args</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;basemap&#39;</span><span class="p">:</span> <span class="s1">&#39;ESRI_terrain&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;markersize&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+             <span class="s1">&#39;markercolor&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+             <span class="s1">&#39;mag_scale&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+             <span class="s1">&#39;legend&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+             <span class="s1">&#39;legend_loc&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+             <span class="s1">&#39;mag_ticks&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]}</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Fetched ComCat catalog in 29.254701852798462 seconds.
+</pre></div>
+</div>
+<p>These arguments are, in order:</p>
+<ul class="simple">
+<li><p>Assign as basemap the ESRI_terrain webservice</p></li>
+<li><p>Set minimum markersize of 2 with red color</p></li>
+<li><p>Set a 0.3 transparency</p></li>
+<li><p>mag_scale is used to exponentially scale the size with respect to magnitude. Recommended 1-8</p></li>
+<li><p>Set legend True and location in 3 (lower-left corner)</p></li>
+<li><p>Set a list of Magnitude ticks to display in the legend</p></li>
+</ul>
+<p>The complete description of plot arguments can be found in <a class="reference internal" href="../reference/generated/csep.utils.plots.plot_catalog.html#csep.utils.plots.plot_catalog" title="csep.utils.plots.plot_catalog"><code class="xref py py-func docutils literal notranslate"><span class="pre">csep.utils.plots.plot_catalog()</span></code></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># **Plot the catalog**</span>
+<span class="n">ax</span> <span class="o">=</span> <a href="../reference/generated/csep.core.catalogs.CSEPCatalog.plot.html#csep.core.catalogs.CSEPCatalog.plot" title="csep.core.catalogs.CSEPCatalog.plot" class="sphx-glr-backref-module-csep-core-catalogs sphx-glr-backref-type-py-method"><span class="n">catalog</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plot_args</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plot_args</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="plot customizations" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_customizations_003.png" />
+</div>
+<div class="section" id="example-4-plot-multiple-evaluation-results">
+<h2>Example 4: Plot multiple evaluation results<a class="headerlink" href="#example-4-plot-multiple-evaluation-results" title="Permalink to this headline">¶</a></h2>
+<p>Load L-test results from example .json files (See
+<a class="reference internal" href="gridded_forecast_evaluation.html"><span class="doc">Grid-based Forecast Evaluation</span></a> for information on calculating and storing evaluation results)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">L_results</span></a> <span class="o">=</span> <span class="p">[</span><span class="n">csep</span><span class="o">.</span><span class="n">load_evaluation_result</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">datasets</span><span class="o">.</span><span class="n">l_test_examples</span></a><span class="p">]</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">args</span></a> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
+        <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\mathcal</span><span class="si">{L}</span><span class="s1">-\mathrm</span><span class="si">{test}</span><span class="s1">$&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;title_fontsize&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
+        <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Log-likelihood&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;xticks_fontsize&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+        <span class="s1">&#39;ylabel_fontsize&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+        <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">,</span>
+        <span class="s1">&#39;capsize&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;hbars&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;tight_layout&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Description of plot arguments can be found in <code class="xref py py-func docutils literal notranslate"><span class="pre">plot_poisson_consistency_test()</span></code>.
+We set <code class="docutils literal notranslate"><span class="pre">one_sided_lower=True</span></code> as usual for an L-test, where the model is rejected if the observed
+is located within the lower tail of the simulated distribution.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <a href="../reference/generated/csep.utils.plots.plot_poisson_consistency_test.html#csep.utils.plots.plot_poisson_consistency_test" title="csep.utils.plots.plot_poisson_consistency_test" class="sphx-glr-backref-module-csep-utils-plots sphx-glr-backref-type-py-function"><span class="n">plots</span><span class="o">.</span><span class="n">plot_poisson_consistency_test</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">L_results</span></a><span class="p">,</span> <span class="n">one_sided_lower</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">plot_args</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">args</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="$\mathcal{L}-\mathrm{test}$" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_customizations_004.png" />
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 1 minutes  19.944 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-tutorials-plot-customizations-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/0eb6ac76c59fc7312b00d5ba3019490d/plot_customizations.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_customizations.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/3f98bf5f06991e5f8a8631aac7b760d6/plot_customizations.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_customizations.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../concepts/catalogs.html" class="btn btn-neutral float-right" title="Catalogs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="catalog_forecast_evaluation.html" class="btn btn-neutral float-left" title="Catalog-based Forecast Evaluation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+ 
+&#169; 2020, University of Southern California.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

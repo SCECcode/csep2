@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>csep.load_catalog_forecast &mdash; PyCSEP v0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="csep.core.catalogs.AbstractBaseCatalog" href="csep.core.catalogs.AbstractBaseCatalog.html" />
+    <link rel="prev" title="csep.load_gridded_forecast" href="csep.load_gridded_forecast.html" />
+    <!-- Google Analytics -->
+    <!-- added options to anonymize ip and disable cookies using {'storage': 'none'} 
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-495056-15', 'auto', {'storage': 'none'});
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+    </script> -->
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> PyCSEP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/installing.html">Installing PyCSEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/core_concepts.html">Core Concepts for Beginners</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials and Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/catalog_filtering.html">Catalogs operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/plot_gridded_forecast.html">Plotting gridded forecast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/gridded_forecast_evaluation.html">Grid-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/working_with_catalog_forecasts.html">Working with catalog-based forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/catalog_forecast_evaluation.html">Catalog-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/plot_customizations.html">Plot customizations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/catalogs.html">Catalogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/forecasts.html">Forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/regions.html">Regions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Help &amp; Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Terms and Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publications.html">Referenced Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Development Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer_notes.html">Developer Notes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../api_reference.html#loading-catalogs-and-forecasts">Loading catalogs and forecasts</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="csep.load_stochastic_event_sets.html">csep.load_stochastic_event_sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csep.load_catalog.html">csep.load_catalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csep.query_comcat.html">csep.query_comcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csep.load_gridded_forecast.html">csep.load_gridded_forecast</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">csep.load_catalog_forecast</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#catalogs">Catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#catalog-operations">Catalog operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#forecasts">Forecasts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#evaluations">Evaluations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#regions">Regions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#module-csep.utils.plots">Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#time-utilities">Time Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#comcat-access">Comcat Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#calculation-utilities">Calculation Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#statistics-utilities">Statistics Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#basic-types">Basic types</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">Source code and contributing</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CONTRIBUTING.md">Contributing</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/LICENSE">License</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/issues">Getting help</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2">Source Code</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyCSEP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../api_reference.html">API Reference</a> &raquo;</li>
+        
+      <li>csep.load_catalog_forecast</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/reference/generated/csep.load_catalog_forecast.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="csep-load-catalog-forecast">
+<h1>csep.load_catalog_forecast<a class="headerlink" href="#csep-load-catalog-forecast" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="csep.load_catalog_forecast">
+<code class="sig-prename descclassname"><span class="pre">csep.</span></code><code class="sig-name descname"><span class="pre">load_catalog_forecast</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">catalog_loader</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'native'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ascii'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csep.html#load_catalog_forecast"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#csep.load_catalog_forecast" title="Permalink to this definition">¶</a></dt>
+<dd><p>General function to handle loading catalog forecasts.</p>
+<p>Currently, just a simple wrapper, but can contain more complex logic in the future.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – pathname to the forecast file or directory containing the forecast files</p></li>
+<li><p><strong>catalog_loader</strong> (<em>func</em>) – callable that can load catalogs, see load_stochastic_event_sets above.</p></li>
+<li><p><strong>format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – either ‘native’ or ‘csep’. if ‘csep’, will attempt to be returned into csep catalog format. used to convert between
+observed_catalog type.</p></li>
+<li><p><strong>type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – either ‘ucerf3’ or ‘csep’, determines the catalog format of the forecast. if loader is provided, then
+this parameter is ignored.</p></li>
+<li><p><strong>**kwargs</strong> – other keyword arguments passed to the <a class="reference internal" href="csep.core.forecasts.CatalogForecast.html#csep.core.forecasts.CatalogForecast" title="csep.core.forecasts.CatalogForecast"><code class="xref py py-class docutils literal notranslate"><span class="pre">csep.core.forecasts.CatalogForecast</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference internal" href="csep.core.forecasts.CatalogForecast.html#csep.core.forecasts.CatalogForecast" title="csep.core.forecasts.CatalogForecast"><code class="xref py py-class docutils literal notranslate"><span class="pre">csep.core.forecasts.CatalogForecast</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="csep.core.catalogs.AbstractBaseCatalog.html" class="btn btn-neutral float-right" title="csep.core.catalogs.AbstractBaseCatalog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="csep.load_gridded_forecast.html" class="btn btn-neutral float-left" title="csep.load_gridded_forecast" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+ 
+&#169; 2020, University of Southern California.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

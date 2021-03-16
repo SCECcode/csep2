@@ -1,0 +1,452 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Regions &mdash; PyCSEP v0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Terms and Definitions" href="../reference/glossary.html" />
+    <link rel="prev" title="Evaluations" href="evaluations.html" />
+    <!-- Google Analytics -->
+    <!-- added options to anonymize ip and disable cookies using {'storage': 'none'} 
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-495056-15', 'auto', {'storage': 'none'});
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+    </script> -->
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PyCSEP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installing.html">Installing PyCSEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/core_concepts.html">Core Concepts for Beginners</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials and Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/catalog_filtering.html">Catalogs operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/plot_gridded_forecast.html">Plotting gridded forecast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gridded_forecast_evaluation.html">Grid-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/working_with_catalog_forecasts.html">Working with catalog-based forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/catalog_forecast_evaluation.html">Catalog-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/plot_customizations.html">Plot customizations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="catalogs.html">Catalogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forecasts.html">Forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluations.html">Evaluations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Regions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#region-objects">Region objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#d-cartesian-grids">2D Cartesian grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-spatial-regions">Creating spatial regions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-regions">Testing Regions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#region-utilities">Region Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Help &amp; Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/glossary.html">Terms and Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/publications.html">Referenced Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/roadmap.html">Development Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/developer_notes.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/api_reference.html">API Reference</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">Source code and contributing</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CONTRIBUTING.md">Contributing</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/LICENSE">License</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/issues">Getting help</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2">Source Code</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyCSEP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Regions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/concepts/regions.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-csep.utils.basic_types">
+<span id="regions"></span><h1>Regions<a class="headerlink" href="#module-csep.utils.basic_types" title="Permalink to this headline">¶</a></h1>
+<p>PyCSEP includes commonly used CSEP testing regions and classes that facilitate working with gridded data sets. This
+module is early in development and will be a focus of future development.</p>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#region-objects" id="id1">Region objects</a></p>
+<ul>
+<li><p><a class="reference internal" href="#d-cartesian-grids" id="id2">2D Cartesian grids</a></p></li>
+<li><p><a class="reference internal" href="#creating-spatial-regions" id="id3">Creating spatial regions</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#testing-regions" id="id4">Testing Regions</a></p></li>
+<li><p><a class="reference internal" href="#region-utilities" id="id5">Region Utilities</a></p></li>
+</ul>
+</div>
+<span class="target" id="module-csep.core.regions"></span><p>Practically speaking, earthquake forecasts, especially time-dependent forecasts, treat time differently than space and
+magnitude. If we consider a family of monthly forecasts for the state of California for earthquakes with <strong>M</strong> 3.95+,
+each of these forecasts would use the same space-magnitude region, even though the time periods are
+different. Because the time horizon is an implicit property of the forecast, we do not explicitly consider time in the region
+objects provided by PyCSEP. This module contains tools for working with gridded regions in both space and magnitude.</p>
+<p>First, we will describe how the spatial regions are handled. Followed by magnitude regions, and how these two aspects
+interact with one another.</p>
+<div class="section" id="region-objects">
+<h2><a class="toc-backref" href="#id1">Region objects</a><a class="headerlink" href="#region-objects" title="Permalink to this headline">¶</a></h2>
+<p>Currently, PyCSEP provides the <a class="reference internal" href="../reference/generated/csep.core.regions.CartesianGrid2D.html#csep.core.regions.CartesianGrid2D" title="csep.core.regions.CartesianGrid2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">CartesianGrid2D</span></code></a> to handle binning catalogs
+and defining regions for earthquake forecasting evaluations. We plan to expand this module in the future to include
+more complex spatial regions.</p>
+<div class="section" id="d-cartesian-grids">
+<h3><a class="toc-backref" href="#id2">2D Cartesian grids</a><a class="headerlink" href="#d-cartesian-grids" title="Permalink to this headline">¶</a></h3>
+<p>This section contains information about using 2D cartesian grids.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.regions.CartesianGrid2D.html#csep.core.regions.CartesianGrid2D" title="csep.core.regions.CartesianGrid2D"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CartesianGrid2D</span></code></a>(polygons, dh[, name, mask])</p></td>
+<td><p>Represents a 2D cartesian gridded region.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We are planning to do some improvements to this module and to expand its capabilities. For example, we would like to
+handle non-regular grids such as a quad-tree. Also, a single Polygon should be able to act as the spatial component
+of the region. These additions will make this toolkit more useful for crafting bespoke experiments and for general
+catalog analysis. Feature requests are always welcome!</p>
+</div>
+<p>The <a class="reference internal" href="../reference/generated/csep.core.regions.CartesianGrid2D.html#csep.core.regions.CartesianGrid2D" title="csep.core.regions.CartesianGrid2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">CartesianGrid2D</span></code></a> acts as a data structure that can associate a spatial
+location (eg., lon and lat) with its corresponding spatial bin. This class is optimized to work with regular grids,
+although they do not have to be complete (they can have holes) and they do not have to be rectangular (each row / column
+can have a different starting coordinate).</p>
+<p>The <a class="reference internal" href="../reference/generated/csep.core.regions.CartesianGrid2D.html#csep.core.regions.CartesianGrid2D" title="csep.core.regions.CartesianGrid2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">CartesianGrid2D</span></code></a> maintains a list of
+<a class="reference internal" href="../reference/generated/csep.core.regions.Polygon.html#csep.core.regions.Polygon" title="csep.core.regions.Polygon"><code class="xref py py-class docutils literal notranslate"><span class="pre">Polygon</span></code></a> objects that represent the individual spatial bins from the overall
+region. The origin of each polygon is considered to be the lower-left corner (the minimum latitude and minimum longitude).</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CartesianGrid2D.num_nodes</span></code></p></td>
+<td><p>Number of polygons in region</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CartesianGrid2D.get_index_of</span></code>(lons, lats)</p></td>
+<td><p>Returns the index of lons, lats in self.polygons</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CartesianGrid2D.get_location_of</span></code>(indices)</p></td>
+<td><p>Returns the polygon associated with the index idx.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CartesianGrid2D.get_masked</span></code>(lons, lats)</p></td>
+<td><p>Returns bool array lons and lats are not included in the spatial region.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CartesianGrid2D.get_cartesian</span></code>(data)</p></td>
+<td><p>Returns 2d ndrray representation of the data set, corresponding to the bounding box.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CartesianGrid2D.get_bbox</span></code>()</p></td>
+<td><p>Returns rectangular bounding box around region.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CartesianGrid2D.midpoints</span></code>()</p></td>
+<td><p>Returns midpoints of rectangular polygons in region</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CartesianGrid2D.origins</span></code>()</p></td>
+<td><p>Returns origins of rectangular polygons in region</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CartesianGrid2D.from_origins</span></code>(origins[, dh, …])</p></td>
+<td><p>Creates instance of class from 2d numpy.array of lon/lat origins.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="creating-spatial-regions">
+<h3><a class="toc-backref" href="#id3">Creating spatial regions</a><a class="headerlink" href="#creating-spatial-regions" title="Permalink to this headline">¶</a></h3>
+<p>Here, we describe how the class works starting with the class constructors.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">from_origins</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">origins</span><span class="p">,</span> <span class="n">dh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">magnitudes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Convenience function to create CartesianGrid2D from list of polygon origins &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>For most applications, using the <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_origins</span></code> function will be
+the easiest way to create a new spatial region. The method accepts a 2D <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> containing the x (lon) and y (lat)
+origins of the spatial bin polygons. These should be the complete set of origins. The function will attempt to compute the
+grid spacing by comparing the x and y values between adjacent origins. If this does not seem like a reliable approach
+for your region, you can explicitly provide the grid spacing (dh) to this method.</p>
+<p>When a <a class="reference internal" href="../reference/generated/csep.core.regions.CartesianGrid2D.html#csep.core.regions.CartesianGrid2D" title="csep.core.regions.CartesianGrid2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">CartesianGrid2D</span></code></a> is created the following steps occur:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Compute the bounding box containing all polygons (2D array)</p></li>
+<li><p>Create a map between the index of the 2D bounding box and the list of polygons of the region.</p></li>
+<li><p>Store a boolean flag indicating whether a given cell in the 2D array is valid or not</p></li>
+</ol>
+</div></blockquote>
+<p>Once these mapping have been created, we can now associate an arbitrary (lon, lat) point with a spatial cell using the
+mapping defined in (2). The <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_index_of</span></code> accepts a list
+of longitudes and latitudes and returns the index of the polygon they are associated with. For instance, this index can
+now be used to access a data value stored in another data structure.</p>
+</div>
+</div>
+<div class="section" id="testing-regions">
+<h2><a class="toc-backref" href="#id4">Testing Regions</a><a class="headerlink" href="#testing-regions" title="Permalink to this headline">¶</a></h2>
+<p>CSEP has defined testing regions that can be used for earthquake forecasting experiments. The following functions in the
+<a class="reference internal" href="../reference/api_reference.html#module-csep.core.regions" title="csep.core.regions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">csep.core.regions</span></code></a> module returns a <a class="reference internal" href="../reference/generated/csep.core.regions.CartesianGrid2D.html#csep.core.regions.CartesianGrid2D" title="csep.core.regions.CartesianGrid2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">CartesianGrid2D</span></code></a> consistent with
+these regions.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.regions.california_relm_region.html#csep.core.regions.california_relm_region" title="csep.core.regions.california_relm_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">california_relm_region</span></code></a>([dh_scale, …])</p></td>
+<td><p>Returns class representing California testing region.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.regions.italy_csep_region.html#csep.core.regions.italy_csep_region" title="csep.core.regions.italy_csep_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">italy_csep_region</span></code></a>([dh_scale, magnitudes, name])</p></td>
+<td><p>Returns class representing Italian testing region.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.regions.global_region.html#csep.core.regions.global_region" title="csep.core.regions.global_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global_region</span></code></a>([dh, name, magnitudes])</p></td>
+<td><p>Creates a global region used for evaluating gridded forecasts on the global scale.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="region-utilities">
+<h2><a class="toc-backref" href="#id5">Region Utilities</a><a class="headerlink" href="#region-utilities" title="Permalink to this headline">¶</a></h2>
+<p>PyCSEP also provides some utilities that can facilitate working with regions. As we expand this module, we will include
+functions to accommodate different use-cases.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.regions.magnitude_bins.html#csep.core.regions.magnitude_bins" title="csep.core.regions.magnitude_bins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">magnitude_bins</span></code></a>(start_magnitude, …)</p></td>
+<td><p>Returns array holding magnitude bin edges.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.regions.create_space_magnitude_region.html#csep.core.regions.create_space_magnitude_region" title="csep.core.regions.create_space_magnitude_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_space_magnitude_region</span></code></a>(region, magnitudes)</p></td>
+<td><p>Simple wrapper to create space-magnitude region</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.regions.parse_csep_template.html#csep.core.regions.parse_csep_template" title="csep.core.regions.parse_csep_template"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_csep_template</span></code></a>(xml_filename)</p></td>
+<td><p>Reads CSEP XML template file and returns the lat/lon values for the forecast.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.regions.increase_grid_resolution.html#csep.core.regions.increase_grid_resolution" title="csep.core.regions.increase_grid_resolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">increase_grid_resolution</span></code></a>(points, dh, factor)</p></td>
+<td><p>Takes a set of origin points and returns a new set with higher grid resolution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.regions.masked_region.html#csep.core.regions.masked_region" title="csep.core.regions.masked_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">masked_region</span></code></a>(region, polygon)</p></td>
+<td><p>Build a new region based off the coordinates in the polygon.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.regions.generate_aftershock_region.html#csep.core.regions.generate_aftershock_region" title="csep.core.regions.generate_aftershock_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_aftershock_region</span></code></a>(mainshock_mw, …)</p></td>
+<td><p>Creates a spatial region around a given epicenter</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../reference/glossary.html" class="btn btn-neutral float-right" title="Terms and Definitions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="evaluations.html" class="btn btn-neutral float-left" title="Evaluations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+ 
+&#169; 2020, University of Southern California.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

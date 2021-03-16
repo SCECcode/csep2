@@ -1,0 +1,590 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Evaluations &mdash; PyCSEP v0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Regions" href="regions.html" />
+    <link rel="prev" title="Forecasts" href="forecasts.html" />
+    <!-- Google Analytics -->
+    <!-- added options to anonymize ip and disable cookies using {'storage': 'none'} 
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-495056-15', 'auto', {'storage': 'none'});
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+    </script> -->
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PyCSEP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installing.html">Installing PyCSEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/core_concepts.html">Core Concepts for Beginners</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials and Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/catalog_filtering.html">Catalogs operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/plot_gridded_forecast.html">Plotting gridded forecast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gridded_forecast_evaluation.html">Grid-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/working_with_catalog_forecasts.html">Working with catalog-based forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/catalog_forecast_evaluation.html">Catalog-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/plot_customizations.html">Plot customizations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="catalogs.html">Catalogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forecasts.html">Forecasts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Evaluations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#gridded-forecast-evaluations">Gridded-forecast evaluations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#consistency-tests">Consistency tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comparative-tests">Comparative tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#publication-references">Publication references</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#catalog-based-forecast-evaluations">Catalog-based forecast evaluations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Consistency tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#publication-reference">Publication reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#preparing-evaluation-catalog">Preparing evaluation catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-mock-classes">Building mock classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="regions.html">Regions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Help &amp; Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/glossary.html">Terms and Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/publications.html">Referenced Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/roadmap.html">Development Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/developer_notes.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/api_reference.html">API Reference</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">Source code and contributing</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CONTRIBUTING.md">Contributing</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/LICENSE">License</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/issues">Getting help</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2">Source Code</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyCSEP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Evaluations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/concepts/evaluations.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-csep.core.poisson_evaluations"><span id="evaluation-reference"></span></span><div class="section" id="evaluations">
+<h1>Evaluations<a class="headerlink" href="#evaluations" title="Permalink to this headline">¶</a></h1>
+<p>PyCSEP provides routines to evaluate both gridded and catalog-based earthquake forecasts. This page explains how to use
+the forecast evaluation routines and also how to build “mock” forecast and catalog classes to accommodate different
+custom forecasts and catalogs.</p>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#gridded-forecast-evaluations" id="id2">Gridded-forecast evaluations</a></p>
+<ul>
+<li><p><a class="reference internal" href="#consistency-tests" id="id3">Consistency tests</a></p></li>
+<li><p><a class="reference internal" href="#comparative-tests" id="id4">Comparative tests</a></p></li>
+<li><p><a class="reference internal" href="#publication-references" id="id5">Publication references</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#catalog-based-forecast-evaluations" id="id6">Catalog-based forecast evaluations</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id7">Consistency tests</a></p></li>
+<li><p><a class="reference internal" href="#publication-reference" id="id8">Publication reference</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#preparing-evaluation-catalog" id="id9">Preparing evaluation catalog</a></p></li>
+<li><p><a class="reference internal" href="#building-mock-classes" id="id10">Building mock classes</a></p></li>
+</ul>
+</div>
+<div class="section" id="gridded-forecast-evaluations">
+<h2><a class="toc-backref" href="#id2">Gridded-forecast evaluations</a><a class="headerlink" href="#gridded-forecast-evaluations" title="Permalink to this headline">¶</a></h2>
+<p>Grid-based earthquake forecasts assume earthquakes occur in discrete space-time-magnitude bins and their rate-of-
+occurrence can be defined using a single number in each magnitude bin. Each space-time-magnitude bin is assumed to be
+an independent Poisson random variable. Therefore, we use likelihood-based evaluation metrics to compare these
+forecasts against observations.</p>
+<p>PyCSEP provides two groups of evaluation metrics for grid-based earthquake forecasts. The first are known as
+consistency tests and they verify whether a forecast in consistent with an observation. The second are comparative tests
+that can be used to compare the performance of two (or more) competing forecasts.
+PyCSEP implements the following evaluation routines for grid-based forecasts. These functions are intended to work with
+<a class="reference internal" href="../reference/generated/csep.core.forecasts.GriddedForecast.html#csep.core.forecasts.GriddedForecast" title="csep.core.forecasts.GriddedForecast"><code class="xref py py-class docutils literal notranslate"><span class="pre">GriddedForecasts</span></code></a> and <a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">CSEPCatalogs`</span></code></a>.
+Visit the <a class="reference internal" href="catalogs.html#catalogs-reference"><span class="std std-ref">catalogs reference</span></a> and the <span class="xref std std-ref">forecasts reference</span> to learn
+more about to import your forecasts and catalogs into PyCSEP.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Grid-based forecast evaluations act directly on the forecasts and catalogs as they are supplied to the function.
+Any filtering of catalogs and/or scaling of forecasts must be done before calling the function.
+This must be done before evaluating the forecast and should be done consistently between all forecasts that are being
+compared.</p>
+</div>
+<p>See the <a class="reference internal" href="../tutorials/gridded_forecast_evaluation.html#grid-forecast-evaluation"><span class="std std-ref">example</span></a> for gridded forecast evaluation for an end-to-end walkthrough on how
+to evaluate a gridded earthquake forecast.</p>
+<div class="section" id="consistency-tests">
+<h3><a class="toc-backref" href="#id3">Consistency tests</a><a class="headerlink" href="#consistency-tests" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.poisson_evaluations.number_test.html#csep.core.poisson_evaluations.number_test" title="csep.core.poisson_evaluations.number_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_test</span></code></a>(gridded_forecast, observed_catalog)</p></td>
+<td><p>Computes “N-Test” on a gridded forecast.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.poisson_evaluations.magnitude_test.html#csep.core.poisson_evaluations.magnitude_test" title="csep.core.poisson_evaluations.magnitude_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">magnitude_test</span></code></a>(gridded_forecast, …[, …])</p></td>
+<td><p>Performs the Magnitude Test on a Gridded Forecast using an observed catalog.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.poisson_evaluations.spatial_test.html#csep.core.poisson_evaluations.spatial_test" title="csep.core.poisson_evaluations.spatial_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spatial_test</span></code></a>(gridded_forecast, observed_catalog)</p></td>
+<td><p>Performs the Spatial Test on the Forecast using the Observed Catalogs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.poisson_evaluations.likelihood_test.html#csep.core.poisson_evaluations.likelihood_test" title="csep.core.poisson_evaluations.likelihood_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">likelihood_test</span></code></a>(gridded_forecast, …[, …])</p></td>
+<td><p>Performs the likelihood test on Gridded Forecast using an Observed Catalog.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.poisson_evaluations.conditional_likelihood_test.html#csep.core.poisson_evaluations.conditional_likelihood_test" title="csep.core.poisson_evaluations.conditional_likelihood_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conditional_likelihood_test</span></code></a>(…[, …])</p></td>
+<td><p>Performs the conditional likelihood test on Gridded Forecast using an Observed Catalog.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="comparative-tests">
+<h3><a class="toc-backref" href="#id4">Comparative tests</a><a class="headerlink" href="#comparative-tests" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.poisson_evaluations.paired_t_test.html#csep.core.poisson_evaluations.paired_t_test" title="csep.core.poisson_evaluations.paired_t_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">paired_t_test</span></code></a>(forecast, benchmark_forecast, …)</p></td>
+<td><p>Computes the t-test for gridded earthquake forecasts.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.poisson_evaluations.w_test.html#csep.core.poisson_evaluations.w_test" title="csep.core.poisson_evaluations.w_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">w_test</span></code></a>(gridded_forecast1, gridded_forecast2, …)</p></td>
+<td><p>Calculate the Single Sample Wilcoxon signed-rank test between two gridded forecasts.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="publication-references">
+<h3><a class="toc-backref" href="#id5">Publication references</a><a class="headerlink" href="#publication-references" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Number test (<a class="reference internal" href="../reference/publications.html#schorlemmer-2007"><span class="std std-ref">Schorlemmer et al., 2007</span></a>; <a class="reference internal" href="../reference/publications.html#zechar-2010"><span class="std std-ref">Zechar et al., 2010</span></a>)</p></li>
+<li><p>Magnitude test (<a class="reference internal" href="../reference/publications.html#zechar-2010"><span class="std std-ref">Zechar et al., 2010</span></a>)</p></li>
+<li><p>Spatial test (<a class="reference internal" href="../reference/publications.html#zechar-2010"><span class="std std-ref">Zechar et al., 2010</span></a>)</p></li>
+<li><p>Likelihood test (<a class="reference internal" href="../reference/publications.html#schorlemmer-2007"><span class="std std-ref">Schorlemmer et al., 2007</span></a>; <a class="reference internal" href="../reference/publications.html#zechar-2010"><span class="std std-ref">Zechar et al., 2010</span></a>)</p></li>
+<li><p>Conditional likelihood test (<a class="reference internal" href="../reference/publications.html#werner-2011"><span class="std std-ref">Werner et al., 2011</span></a>)</p></li>
+<li><p>Paired t test (<a class="reference internal" href="../reference/publications.html#rhoades-2011"><span class="std std-ref">Rhoades et al., 2011</span></a>)</p></li>
+<li><p>Wilcoxon signed-rank test (<a class="reference internal" href="../reference/publications.html#rhoades-2011"><span class="std std-ref">Rhoades et al., 2011</span></a>)</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="catalog-based-forecast-evaluations">
+<h2><a class="toc-backref" href="#id6">Catalog-based forecast evaluations</a><a class="headerlink" href="#catalog-based-forecast-evaluations" title="Permalink to this headline">¶</a></h2>
+<p>Catalog-based forecasts are issued as a family of stochastic event sets (synthetic earthquake catalogs) and can express
+the full uncertainty of the forecasting model. Additionally, these forecasts retain the inter-event dependencies that
+are lost when using discrete space-time-magnitude grids. This problem can impact the evaluation performance of
+time-dependent forecasts like the epidemic type aftershock sequence model (ETAS).</p>
+<p>In order to support generative or simulator-based models, we define a suite of consistency tests that compare forecasted
+distributions against observations without the use of a parametric likelihood function. These evaluations take advantage
+of the fact that the forecast and the observations are both earthquake catalogs. Therefore, we can compute identical
+statistics from these catalogs and compare them against one another.</p>
+<p>We provide four statistics that probe fundamental aspects of the earthquake forecasts. Please see
+<a class="reference internal" href="../reference/publications.html#savran-2020"><span class="std std-ref">Savran et al., 2020</span></a> for a complete description of the individual tests. For the implementation
+details please follow the links below and see the <a class="reference internal" href="../tutorials/catalog_forecast_evaluation.html#catalog-forecast-evaluation"><span class="std std-ref">example</span></a> for catalog-based
+forecast evaluation for an end-to-end walk through.</p>
+<span class="target" id="module-csep.core.catalog_evaluations"></span><div class="section" id="id1">
+<h3><a class="toc-backref" href="#id7">Consistency tests</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalog_evaluations.number_test.html#csep.core.catalog_evaluations.number_test" title="csep.core.catalog_evaluations.number_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_test</span></code></a>(forecast, observed_catalog)</p></td>
+<td><p>Performs the number test on a catalog-based forecast.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalog_evaluations.spatial_test.html#csep.core.catalog_evaluations.spatial_test" title="csep.core.catalog_evaluations.spatial_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spatial_test</span></code></a>(forecast, observed_catalog)</p></td>
+<td><p>Performs spatial test for catalog-based forecasts.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalog_evaluations.magnitude_test.html#csep.core.catalog_evaluations.magnitude_test" title="csep.core.catalog_evaluations.magnitude_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">magnitude_test</span></code></a>(forecast, observed_catalog)</p></td>
+<td><p>Performs magnitude test for catalog-based forecasts</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalog_evaluations.pseudolikelihood_test.html#csep.core.catalog_evaluations.pseudolikelihood_test" title="csep.core.catalog_evaluations.pseudolikelihood_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pseudolikelihood_test</span></code></a>(forecast, observed_catalog)</p></td>
+<td><p>Performs the spatial pseudolikelihood test for catalog forecasts.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalog_evaluations.calibration_test.html#csep.core.catalog_evaluations.calibration_test" title="csep.core.catalog_evaluations.calibration_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibration_test</span></code></a>(evaluation_results[, delta_1])</p></td>
+<td><p>Perform the calibration test by computing a Kilmogorov-Smirnov test of the observed quantiles against a uniform distribution.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="publication-reference">
+<h3><a class="toc-backref" href="#id8">Publication reference</a><a class="headerlink" href="#publication-reference" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Number test (<a class="reference internal" href="../reference/publications.html#savran-2020"><span class="std std-ref">Savran et al., 2020`</span></a>)</p></li>
+<li><p>Spatial test (<a class="reference internal" href="../reference/publications.html#savran-2020"><span class="std std-ref">Savran et al., 2020`</span></a>)</p></li>
+<li><p>Magnitude test (<a class="reference internal" href="../reference/publications.html#savran-2020"><span class="std std-ref">Savran et al., 2020`</span></a>)</p></li>
+<li><p>Pseudolikelihood test (<a class="reference internal" href="../reference/publications.html#savran-2020"><span class="std std-ref">Savran et al., 2020`</span></a>)</p></li>
+<li><p>Calibration test (<a class="reference internal" href="../reference/publications.html#savran-2020"><span class="std std-ref">Savran et al., 2020`</span></a>)</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="preparing-evaluation-catalog">
+<h2><a class="toc-backref" href="#id9">Preparing evaluation catalog</a><a class="headerlink" href="#preparing-evaluation-catalog" title="Permalink to this headline">¶</a></h2>
+<p>The evaluations in PyCSEP do not implicitly filter the observed catalogs or modify the forecast data when called. For most
+cases, the observation catalog should be filtered according to:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Magnitude range of the forecast</p></li>
+<li><p>Spatial region of the forecast</p></li>
+<li><p>Start and end-time of the forecast</p></li>
+</ol>
+</div></blockquote>
+<p>Once the observed catalog is filtered so it is consistent in space, time, and magnitude as the forecast, it can be used
+to evaluate a forecast. A single evaluation catalog can be used to evaluate multiple forecasts so long as they all cover
+the same space, time, and magnitude region.</p>
+</div>
+<div class="section" id="building-mock-classes">
+<h2><a class="toc-backref" href="#id10">Building mock classes</a><a class="headerlink" href="#building-mock-classes" title="Permalink to this headline">¶</a></h2>
+<p>Python is a duck-typed language which means that it doesn’t care what the object type is only that it has the methods or
+functions that are expected when that object is used. This can come in handy if you want to use the evaluation methods, but
+do not have a forecast that completely fits with the forecast classes (or catalog classes) provided by PyCSEP.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Something about great power and great responsibility… For the most reliable results, write a loader function that
+can ingest your forecast into the model provided by PyCSEP. Mock-classes can work, but should only be used in certain
+circumstances. In particular, they are very useful for writing software tests or to prototype features that can
+be added into the package.</p>
+</div>
+<p>This section will walk you through how to compare two forecasts using the <a class="reference internal" href="../reference/api_reference.html#module-csep.core.poisson_evaluations" title="csep.core.poisson_evaluations"><code class="xref py py-func docutils literal notranslate"><span class="pre">paired_t_test</span></code></a>
+with mock forecast and catalog classes. This sounds much more complex than it really is, and it gives you the flexibility
+to use your own formats and interact with the tools provided by PyCSEP.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The simulation-based Poisson tests (magnitude_test, likelihood_test, conditional_likelihood_test, and spatial_test)
+are optimized to work with forecasts that contain equal-sized spatial bins. If your forecast uses variable sized spatial
+bins you will get incorrect results. If you are working with forecasts that have variable spatial bins, create an
+issue on GitHub because we’d like to implement this feature into the toolkit and we’d love your help.</p>
+</div>
+<p>If we look at the <a class="reference internal" href="../reference/api_reference.html#module-csep.core.poisson_evaluations" title="csep.core.poisson_evaluations"><code class="xref py py-func docutils literal notranslate"><span class="pre">paired_t_test</span></code></a> we see that it has the following code</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">paired_t_test</span><span class="p">(</span><span class="n">gridded_forecast1</span><span class="p">,</span> <span class="n">gridded_forecast2</span><span class="p">,</span> <span class="n">observed_catalog</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Computes the t-test for gridded earthquake forecasts.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        gridded_forecast_1 (csep.core.forecasts.GriddedForecast): nd-array storing gridded rates, axis=-1 should be the magnitude column</span>
+<span class="sd">        gridded_forecast_2 (csep.core.forecasts.GriddedForecast): nd-array storing gridded rates, axis=-1 should be the magnitude column</span>
+<span class="sd">        observed_catalog (csep.core.catalogs.AbstractBaseCatalog): number of observed earthquakes, should be whole number and &gt;= zero.</span>
+<span class="sd">        alpha (float): tolerance level for the type-i error rate of the statistical test</span>
+<span class="sd">        scale (bool): if true, scale forecasted rates down to a single day</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        evaluation_result: csep.core.evaluations.EvaluationResult</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># needs some pre-processing to put the forecasts in the context that is required for the t-test. this is different</span>
+    <span class="c1"># for cumulative forecasts (eg, multiple time-horizons) and static file-based forecasts.</span>
+    <span class="n">target_event_rate_forecast1</span><span class="p">,</span> <span class="n">n_fore1</span> <span class="o">=</span> <span class="n">gridded_forecast1</span><span class="o">.</span><span class="n">target_event_rates</span><span class="p">(</span><span class="n">observed_catalog</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+    <span class="n">target_event_rate_forecast2</span><span class="p">,</span> <span class="n">n_fore2</span> <span class="o">=</span> <span class="n">gridded_forecast2</span><span class="o">.</span><span class="n">target_event_rates</span><span class="p">(</span><span class="n">observed_catalog</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+
+    <span class="c1"># call the primative version operating on ndarray</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">_t_test_ndarray</span><span class="p">(</span><span class="n">target_event_rate_forecast1</span><span class="p">,</span> <span class="n">target_event_rate_forecast2</span><span class="p">,</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">event_count</span><span class="p">,</span> <span class="n">n_fore1</span><span class="p">,</span> <span class="n">n_fore2</span><span class="p">,</span>
+                          <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+    <span class="c1"># prepare evaluation result object</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="p">()</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Paired T-Test&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">test_distribution</span> <span class="o">=</span> <span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;ig_lower&#39;</span><span class="p">],</span> <span class="n">out</span><span class="p">[</span><span class="s1">&#39;ig_upper&#39;</span><span class="p">])</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">observed_statistic</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="s1">&#39;information_gain&#39;</span><span class="p">]</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">quantile</span> <span class="o">=</span> <span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;t_statistic&#39;</span><span class="p">],</span> <span class="n">out</span><span class="p">[</span><span class="s1">&#39;t_critical&#39;</span><span class="p">])</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">=</span> <span class="p">(</span><span class="n">gridded_forecast1</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">gridded_forecast2</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">obs_name</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">min_mw</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">gridded_forecast1</span><span class="o">.</span><span class="n">magnitudes</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Notice that the function expects two forecast objects and one catalog object. The <code class="docutils literal notranslate"><span class="pre">paired_t_test</span></code> function calls a
+method on the forecast objects named <a class="reference internal" href="../reference/generated/csep.core.forecasts.GriddedForecast.target_event_rates.html#csep.core.forecasts.GriddedForecast.target_event_rates" title="csep.core.forecasts.GriddedForecast.target_event_rates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">target_event_rates</span></code></a>
+that returns a tuple (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>, float) consisting of the target event rates and the expected number of events
+from the forecast.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The target event rate is the expected rate for an observed event in the observed catalog assuming that
+the forecast is true. For a simple example, if we forecast a rate of 0.3 events per year in some bin of a forecast,
+each event that occurs within that bin has a target event rate of 0.3 events per year. The expected number of events
+in the forecast can be determined by summing over all bins in the gridded forecast.</p>
+</div>
+<p>We can also see that the <code class="docutils literal notranslate"><span class="pre">paired_t_test</span></code> function uses the <code class="docutils literal notranslate"><span class="pre">gridded_forecast1.name</span></code> and calls the <code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.min()</span></code>
+on the <code class="docutils literal notranslate"><span class="pre">gridded_forecast1.magnitudes</span></code>. Using this information, we can create a mock-class that implements these methods
+that can be used by this function.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are creating mock-classes to use with evaluation functions, make sure that you visit the corresponding
+documentation and source-code to make sure that your methods return values that are expected by the function. In
+this case, it expects the tuple (target_event_rates, expected_forecast_count). This will not always be the case.
+If you need help, please create an issue on the GitHub page.</p>
+</div>
+<p>Here we show an implementation of a mock forecast class that can work with the
+<a class="reference internal" href="../reference/generated/csep.core.poisson_evaluations.paired_t_test.html#csep.core.poisson_evaluations.paired_t_test" title="csep.core.poisson_evaluations.paired_t_test"><code class="xref py py-func docutils literal notranslate"><span class="pre">paired_t_test</span></code></a> function.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MockForecast</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my-mock-forecast&#39;</span><span class="p">,</span> <span class="n">magnitudes</span><span class="o">=</span><span class="p">(</span><span class="mf">4.95</span><span class="p">)):</span>
+
+        <span class="c1"># data is not necessary, but might be helpful for implementing target_event_rates(...)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="c1"># this should be an array or list. it can be as simple as the default argument.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">magnitudes</span> <span class="o">=</span> <span class="n">magnitudes</span>
+
+    <span class="k">def</span> <span class="nf">target_event_rates</span><span class="p">(</span><span class="n">catalog</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Notice we added the dummy argument scale. This function stub should match what is called paired_t_test &quot;&quot;&quot;</span>
+
+        <span class="c1"># whatever custom logic you need to return these target event rates given your catalog can go here</span>
+        <span class="c1"># of course, this should work with whatever catalog you decide to pass into this function</span>
+
+        <span class="c1"># this returns the tuple that paired_t_test expects</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">ndarray_of_target_event_rates</span><span class="p">,</span> <span class="n">expected_number_of_events</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You’ll notice that <a class="reference internal" href="../reference/generated/csep.core.poisson_evaluations.paired_t_test.html#csep.core.poisson_evaluations.paired_t_test" title="csep.core.poisson_evaluations.paired_t_test"><code class="xref py py-func docutils literal notranslate"><span class="pre">paired_t_test</span></code></a> expects a catalog class. Looking back
+at the function definition we can see that it needs <code class="docutils literal notranslate"><span class="pre">observed_catalog.event_count</span></code> and <code class="docutils literal notranslate"><span class="pre">observed_catalog.name</span></code>. Therefore
+the mock class for the catalog would look something like this</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MockCatalog</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_count</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my-mock-catalog&#39;</span><span class="p">):</span>
+
+        <span class="c1"># this is not necessary, but adding data might be helpful for implementing the</span>
+        <span class="c1"># logic needed for the target_event_rates(...) function in the MockForecast class.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">event_count</span> <span class="o">=</span> <span class="n">event_count</span>
+</pre></div>
+</div>
+<p>Now using these two objects you can call the <a class="reference internal" href="../reference/generated/csep.core.poisson_evaluations.paired_t_test.html#csep.core.poisson_evaluations.paired_t_test" title="csep.core.poisson_evaluations.paired_t_test"><code class="xref py py-func docutils literal notranslate"><span class="pre">paired_t_test</span></code></a> directly
+without having to modify any of the source code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create your forecasts</span>
+<span class="n">mock_forecast_1</span> <span class="o">=</span> <span class="n">MockForecast</span><span class="p">(</span><span class="n">some_forecast_data1</span><span class="p">)</span>
+<span class="n">mock_forecast_2</span> <span class="o">=</span> <span class="n">MockForecast</span><span class="p">(</span><span class="n">some_forecast_data2</span><span class="p">)</span>
+
+<span class="c1"># lets assume that catalog_data is an array that contains the catalog data</span>
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">MockCatalog</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">catalog_data</span><span class="p">))</span>
+
+<span class="c1"># call the function using your classes</span>
+<span class="n">eval_result</span> <span class="o">=</span> <span class="n">paired_t_test</span><span class="p">(</span><span class="n">mock_forecast_1</span><span class="p">,</span> <span class="n">mock_forecast_2</span><span class="p">,</span> <span class="n">catalog</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The only requirement for this approach is that you implement the methods on the class that the calling function expects.
+You can add anything else that you need in order to make those functions work properly. This example is about
+as simple as it gets.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want to use mock-forecasts and mock-catalogs for other evaluations. You can just add the additional methods
+that are needed onto the mock classes you have already built.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="regions.html" class="btn btn-neutral float-right" title="Regions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="forecasts.html" class="btn btn-neutral float-left" title="Forecasts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+ 
+&#169; 2020, University of Southern California.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

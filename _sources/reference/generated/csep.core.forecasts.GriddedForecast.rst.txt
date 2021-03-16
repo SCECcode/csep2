@@ -1,0 +1,52 @@
+﻿csep.core.forecasts.GriddedForecast
+===================================
+
+.. currentmodule:: csep.core.forecasts
+
+.. autoclass:: GriddedForecast
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~GriddedForecast.__init__
+      ~GriddedForecast.from_custom
+      ~GriddedForecast.from_dict
+      ~GriddedForecast.get_index_of
+      ~GriddedForecast.get_latitudes
+      ~GriddedForecast.get_longitudes
+      ~GriddedForecast.get_magnitude_index
+      ~GriddedForecast.get_magnitudes
+      ~GriddedForecast.get_rates
+      ~GriddedForecast.load_ascii
+      ~GriddedForecast.magnitude_counts
+      ~GriddedForecast.plot
+      ~GriddedForecast.scale
+      ~GriddedForecast.scale_to_test_date
+      ~GriddedForecast.spatial_counts
+      ~GriddedForecast.sum
+      ~GriddedForecast.target_event_rates
+      ~GriddedForecast.to_dict
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~GriddedForecast.data
+      ~GriddedForecast.event_count
+      ~GriddedForecast.log
+      ~GriddedForecast.magnitudes
+      ~GriddedForecast.min_magnitude
+      ~GriddedForecast.num_mag_bins
+      ~GriddedForecast.num_nodes
+      ~GriddedForecast.polygons
+   
+   

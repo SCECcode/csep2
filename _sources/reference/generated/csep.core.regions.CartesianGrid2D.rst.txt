@@ -1,0 +1,38 @@
+﻿csep.core.regions.CartesianGrid2D
+=================================
+
+.. currentmodule:: csep.core.regions
+
+.. autoclass:: CartesianGrid2D
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~CartesianGrid2D.__init__
+      ~CartesianGrid2D.from_dict
+      ~CartesianGrid2D.from_origins
+      ~CartesianGrid2D.get_bbox
+      ~CartesianGrid2D.get_cartesian
+      ~CartesianGrid2D.get_index_of
+      ~CartesianGrid2D.get_location_of
+      ~CartesianGrid2D.get_masked
+      ~CartesianGrid2D.midpoints
+      ~CartesianGrid2D.origins
+      ~CartesianGrid2D.to_dict
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CartesianGrid2D.num_nodes
+   
+   

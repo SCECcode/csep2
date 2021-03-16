@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Grid-based Forecast Evaluation &mdash; PyCSEP v0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Working with catalog-based forecasts" href="working_with_catalog_forecasts.html" />
+    <link rel="prev" title="Plotting gridded forecast" href="plot_gridded_forecast.html" />
+    <!-- Google Analytics -->
+    <!-- added options to anonymize ip and disable cookies using {'storage': 'none'} 
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-495056-15', 'auto', {'storage': 'none'});
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+    </script> -->
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PyCSEP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installing.html">Installing PyCSEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/core_concepts.html">Core Concepts for Beginners</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials and Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="catalog_filtering.html">Catalogs operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_gridded_forecast.html">Plotting gridded forecast</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Grid-based Forecast Evaluation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#load-required-libraries">Load required libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-forecast-properties">Define forecast properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#load-forecast">Load forecast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#load-evaluation-catalog">Load evaluation catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filter-evaluation-catalog-in-space">Filter evaluation catalog in space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compute-poisson-spatial-test">Compute Poisson spatial test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#store-evaluation-results">Store evaluation results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plot-spatial-test-results">Plot spatial test results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_catalog_forecasts.html">Working with catalog-based forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="catalog_forecast_evaluation.html">Catalog-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_customizations.html">Plot customizations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/catalogs.html">Catalogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/forecasts.html">Forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/regions.html">Regions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Help &amp; Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/glossary.html">Terms and Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/publications.html">Referenced Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/roadmap.html">Development Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/developer_notes.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/api_reference.html">API Reference</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">Source code and contributing</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CONTRIBUTING.md">Contributing</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/LICENSE">License</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/issues">Getting help</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2">Source Code</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyCSEP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Grid-based Forecast Evaluation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/gridded_forecast_evaluation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-tutorials-gridded-forecast-evaluation-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="grid-based-forecast-evaluation">
+<span id="grid-forecast-evaluation"></span><span id="sphx-glr-tutorials-gridded-forecast-evaluation-py"></span><h1>Grid-based Forecast Evaluation<a class="headerlink" href="#grid-based-forecast-evaluation" title="Permalink to this headline">¶</a></h1>
+<p>This example demonstrates how to evaluate a grid-based and time-independent forecast. Grid-based
+forecasts assume the variability of the forecasts is Poissonian. Therefore, Poisson-based evaluations
+should be used to evaluate grid-based forecasts.</p>
+<dl class="simple">
+<dt>Overview:</dt><dd><ol class="arabic simple">
+<li><p>Define forecast properties (time horizon, spatial region, etc).</p></li>
+<li><p>Obtain evaluation catalog</p></li>
+<li><p>Apply Poissonian evaluations for grid-based forecasts</p></li>
+<li><p>Store evaluation results using JSON format</p></li>
+<li><p>Visualize evaluation results</p></li>
+</ol>
+</dd>
+</dl>
+<div class="section" id="load-required-libraries">
+<h2>Load required libraries<a class="headerlink" href="#load-required-libraries" title="Permalink to this headline">¶</a></h2>
+<p>Most of the core functionality can be imported from the top-level <a class="reference internal" href="../reference/api_reference.html#module-csep" title="csep"><code class="xref py py-mod docutils literal notranslate"><span class="pre">csep</span></code></a> package. Utilities are available from the
+<code class="xref py py-mod docutils literal notranslate"><span class="pre">csep.utils</span></code> subpackage.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csep</span>
+<span class="kn">from</span> <span class="nn">csep.core</span> <span class="kn">import</span> <span class="n">poisson_evaluations</span> <span class="k">as</span> <span class="n">poisson</span>
+<span class="kn">from</span> <span class="nn">csep.utils</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">time_utils</span><span class="p">,</span> <span class="n">plots</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="define-forecast-properties">
+<h2>Define forecast properties<a class="headerlink" href="#define-forecast-properties" title="Permalink to this headline">¶</a></h2>
+<p>We choose a <a class="reference internal" href="../reference/glossary.html#time-independent-forecast"><span class="std std-ref">Time-independent Forecast</span></a> to show how to evaluate a grid-based earthquake forecast using PyCSEP. Note,
+the start and end date should be chosen based on the creation of the forecast. This is important for time-independent forecasts
+because they can be rescale to any arbitrary time period.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">start_date</span></a> <span class="o">=</span> <a href="../reference/generated/csep.utils.time_utils.strptime_to_utc_datetime.html#csep.utils.time_utils.strptime_to_utc_datetime" title="csep.utils.time_utils.strptime_to_utc_datetime" class="sphx-glr-backref-module-csep-utils-time_utils sphx-glr-backref-type-py-function"><span class="n">time_utils</span><span class="o">.</span><span class="n">strptime_to_utc_datetime</span></a><span class="p">(</span><span class="s1">&#39;2006-11-12 00:00:00.0&#39;</span><span class="p">)</span>
+<a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">end_date</span></a> <span class="o">=</span> <a href="../reference/generated/csep.utils.time_utils.strptime_to_utc_datetime.html#csep.utils.time_utils.strptime_to_utc_datetime" title="csep.utils.time_utils.strptime_to_utc_datetime" class="sphx-glr-backref-module-csep-utils-time_utils sphx-glr-backref-type-py-function"><span class="n">time_utils</span><span class="o">.</span><span class="n">strptime_to_utc_datetime</span></a><span class="p">(</span><span class="s1">&#39;2011-11-12 00:00:00.0&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-forecast">
+<h2>Load forecast<a class="headerlink" href="#load-forecast" title="Permalink to this headline">¶</a></h2>
+<p>For this example, we provide the example forecast data set along with the main repository. The filepath is relative
+to the root directory of the package. You can specify any file location for your forecasts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="../reference/generated/csep.core.forecasts.GriddedForecast.html#csep.core.forecasts.GriddedForecast" title="csep.core.forecasts.GriddedForecast" class="sphx-glr-backref-module-csep-core-forecasts sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">forecast</span></a> <span class="o">=</span> <a href="../reference/generated/csep.load_gridded_forecast.html#csep.load_gridded_forecast" title="csep.load_gridded_forecast" class="sphx-glr-backref-module-csep sphx-glr-backref-type-py-function"><span class="n">csep</span><span class="o">.</span><span class="n">load_gridded_forecast</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">datasets</span><span class="o">.</span><span class="n">helmstetter_aftershock_fname</span></a><span class="p">,</span>
+                                      <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">start_date</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">start_date</span></a><span class="p">,</span>
+                                      <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">end_date</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">end_date</span></a><span class="p">,</span>
+                                      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;helmstetter_aftershock&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-evaluation-catalog">
+<h2>Load evaluation catalog<a class="headerlink" href="#load-evaluation-catalog" title="Permalink to this headline">¶</a></h2>
+<p>We will download the evaluation catalog from ComCat (this step requires an internet connection). We can use the ComCat API
+to filter the catalog in both time and magnitude. See the catalog filtering example, for more information on how to
+filter the catalog in space and time manually.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog" class="sphx-glr-backref-module-csep-core-catalogs sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catalog</span></a> <span class="o">=</span> <a href="../reference/generated/csep.query_comcat.html#csep.query_comcat" title="csep.query_comcat" class="sphx-glr-backref-module-csep sphx-glr-backref-type-py-function"><span class="n">csep</span><span class="o">.</span><span class="n">query_comcat</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">forecast</span><span class="o">.</span><span class="n">start_time</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">forecast</span><span class="o">.</span><span class="n">end_time</span></a><span class="p">,</span>
+                            <span class="n">min_magnitude</span><span class="o">=</span><a href="../reference/generated/csep.core.forecasts.GriddedForecast.min_magnitude.html#csep.core.forecasts.GriddedForecast.min_magnitude" title="csep.core.forecasts.GriddedForecast.min_magnitude" class="sphx-glr-backref-module-csep-core-forecasts sphx-glr-backref-type-py-method"><span class="n">forecast</span><span class="o">.</span><span class="n">min_magnitude</span></a><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog" class="sphx-glr-backref-module-csep-core-catalogs sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catalog</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Fetched ComCat catalog in 3.784017562866211 seconds.
+
+Downloaded catalog from ComCat with following parameters
+Start Date: 2007-02-26 12:19:54.530000+00:00
+End Date: 2011-02-18 17:47:35.770000+00:00
+Min Latitude: 31.9788333 and Max Latitude: 41.1444
+Min Longitude: -125.0161667 and Max Longitude: -114.8398
+Min Magnitude: 4.96
+Found 34 events in the ComCat catalog.
+
+        Name: None
+
+        Start Date: 2007-02-26 12:19:54.530000+00:00
+        End Date: 2011-02-18 17:47:35.770000+00:00
+
+        Latitude: (31.9788333, 41.1444)
+        Longitude: (-125.0161667, -114.8398)
+
+        Min Mw: 4.96
+        Max Mw: 7.2
+
+        Event Count: 34
+</pre></div>
+</div>
+</div>
+<div class="section" id="filter-evaluation-catalog-in-space">
+<h2>Filter evaluation catalog in space<a class="headerlink" href="#filter-evaluation-catalog-in-space" title="Permalink to this headline">¶</a></h2>
+<p>We need to remove events in the evaluation catalog outside the valid region specified by the forecast.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog" class="sphx-glr-backref-module-csep-core-catalogs sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catalog</span></a> <span class="o">=</span> <a href="../reference/generated/csep.core.catalogs.CSEPCatalog.filter_spatial.html#csep.core.catalogs.CSEPCatalog.filter_spatial" title="csep.core.catalogs.CSEPCatalog.filter_spatial" class="sphx-glr-backref-module-csep-core-catalogs sphx-glr-backref-type-py-method"><span class="n">catalog</span><span class="o">.</span><span class="n">filter_spatial</span></a><span class="p">(</span><a href="../reference/generated/csep.core.regions.CartesianGrid2D.html#csep.core.regions.CartesianGrid2D" title="csep.core.regions.CartesianGrid2D" class="sphx-glr-backref-module-csep-core-regions sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">forecast</span><span class="o">.</span><span class="n">region</span></a><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog" class="sphx-glr-backref-module-csep-core-catalogs sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catalog</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Name: None
+
+Start Date: 2007-02-26 12:19:54.530000+00:00
+End Date: 2011-02-18 17:47:35.770000+00:00
+
+Latitude: (31.9788333, 41.1155)
+Longitude: (-125.0161667, -115.0481667)
+
+Min Mw: 4.96
+Max Mw: 7.2
+
+Event Count: 32
+</pre></div>
+</div>
+</div>
+<div class="section" id="compute-poisson-spatial-test">
+<h2>Compute Poisson spatial test<a class="headerlink" href="#compute-poisson-spatial-test" title="Permalink to this headline">¶</a></h2>
+<p>Simply call the <a class="reference internal" href="../reference/generated/csep.core.poisson_evaluations.spatial_test.html#csep.core.poisson_evaluations.spatial_test" title="csep.core.poisson_evaluations.spatial_test"><code class="xref py py-func docutils literal notranslate"><span class="pre">csep.core.poisson_evaluations.spatial_test()</span></code></a> function to evaluate the forecast using the specified
+evaluation catalog. The spatial test requires simulating from the Poisson forecast to provide uncertainty. The verbose
+option prints the status of the simulations to the standard output.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spatial_test_result</span> <span class="o">=</span> <a href="../reference/generated/csep.core.poisson_evaluations.spatial_test.html#csep.core.poisson_evaluations.spatial_test" title="csep.core.poisson_evaluations.spatial_test" class="sphx-glr-backref-module-csep-core-poisson_evaluations sphx-glr-backref-type-py-function"><span class="n">poisson</span><span class="o">.</span><span class="n">spatial_test</span></a><span class="p">(</span><a href="../reference/generated/csep.core.forecasts.GriddedForecast.html#csep.core.forecasts.GriddedForecast" title="csep.core.forecasts.GriddedForecast" class="sphx-glr-backref-module-csep-core-forecasts sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">forecast</span></a><span class="p">,</span> <a href="../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog" class="sphx-glr-backref-module-csep-core-catalogs sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catalog</span></a><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="store-evaluation-results">
+<h2>Store evaluation results<a class="headerlink" href="#store-evaluation-results" title="Permalink to this headline">¶</a></h2>
+<p>PyCSEP provides easy ways of storing objects to a JSON format using <code class="xref py py-func docutils literal notranslate"><span class="pre">csep.write_json()</span></code>. The evaluations can be read
+back into the program for plotting using <code class="xref py py-func docutils literal notranslate"><span class="pre">csep.load_evaluation_result()</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">csep</span><span class="o">.</span><span class="n">write_json</span><span class="p">(</span><span class="n">spatial_test_result</span><span class="p">,</span> <span class="s1">&#39;example_spatial_test.json&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plot-spatial-test-results">
+<h2>Plot spatial test results<a class="headerlink" href="#plot-spatial-test-results" title="Permalink to this headline">¶</a></h2>
+<p>We provide the function <code class="xref py py-func docutils literal notranslate"><span class="pre">csep.utils.plotting.plot_poisson_consistency_test()</span></code> to visualize the evaluation results from
+consistency tests.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <a href="../reference/generated/csep.utils.plots.plot_poisson_consistency_test.html#csep.utils.plots.plot_poisson_consistency_test" title="csep.utils.plots.plot_poisson_consistency_test" class="sphx-glr-backref-module-csep-utils-plots sphx-glr-backref-type-py-function"><span class="n">plots</span><span class="o">.</span><span class="n">plot_poisson_consistency_test</span></a><span class="p">(</span><span class="n">spatial_test_result</span><span class="p">,</span>
+                                        <span class="n">plot_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Spatial likelihood&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<img alt="Poisson S-Test" class="sphx-glr-single-img" src="../_images/sphx_glr_gridded_forecast_evaluation_001.png" />
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.160 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-tutorials-gridded-forecast-evaluation-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/0bc4fb5c821feba53f8fc0efc0a6cd74/gridded_forecast_evaluation.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">gridded_forecast_evaluation.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/008ccb012945e14d1d427ac6d41dd460/gridded_forecast_evaluation.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">gridded_forecast_evaluation.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="working_with_catalog_forecasts.html" class="btn btn-neutral float-right" title="Working with catalog-based forecasts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="plot_gridded_forecast.html" class="btn btn-neutral float-left" title="Plotting gridded forecast" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+ 
+&#169; 2020, University of Southern California.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

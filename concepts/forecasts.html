@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Forecasts &mdash; PyCSEP v0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Evaluations" href="evaluations.html" />
+    <link rel="prev" title="Catalogs" href="catalogs.html" />
+    <!-- Google Analytics -->
+    <!-- added options to anonymize ip and disable cookies using {'storage': 'none'} 
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-495056-15', 'auto', {'storage': 'none'});
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+    </script> -->
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PyCSEP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installing.html">Installing PyCSEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/core_concepts.html">Core Concepts for Beginners</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials and Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/catalog_filtering.html">Catalogs operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/plot_gridded_forecast.html">Plotting gridded forecast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gridded_forecast_evaluation.html">Grid-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/working_with_catalog_forecasts.html">Working with catalog-based forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/catalog_forecast_evaluation.html">Catalog-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/plot_customizations.html">Plot customizations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="catalogs.html">Catalogs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Forecasts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#gridded-forecasts">Gridded forecasts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#working-with-gridded-forecasts">Working with gridded forecasts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#default-file-format">Default file format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#custom-file-format">Custom file format</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#catalog-based-forecasts">Catalog-based forecasts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#working-with-catalog-based-forecasts">Working with catalog-based forecasts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regions.html">Regions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Help &amp; Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/glossary.html">Terms and Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/publications.html">Referenced Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/roadmap.html">Development Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/developer_notes.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/api_reference.html">API Reference</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">Source code and contributing</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CONTRIBUTING.md">Contributing</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/LICENSE">License</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/issues">Getting help</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2">Source Code</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyCSEP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Forecasts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/concepts/forecasts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="forecasts">
+<span id="forecast-reference"></span><h1>Forecasts<a class="headerlink" href="#forecasts" title="Permalink to this headline">¶</a></h1>
+<p>PyCSEP supports two types of earthquake forecasts that can be evaluated using the tools provided in this package.</p>
+<ol class="arabic simple">
+<li><p>Grid-based forecasts</p></li>
+<li><p>Catalog-based forecasts</p></li>
+</ol>
+<p>These forecast types and the PyCSEP objects used to represent them will be explained in detail in this document.</p>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#gridded-forecasts" id="id3">Gridded forecasts</a></p>
+<ul>
+<li><p><a class="reference internal" href="#working-with-gridded-forecasts" id="id4">Working with gridded forecasts</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#catalog-based-forecasts" id="id5">Catalog-based forecasts</a></p>
+<ul>
+<li><p><a class="reference internal" href="#working-with-catalog-based-forecasts" id="id6">Working with catalog-based forecasts</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="gridded-forecasts">
+<h2><a class="toc-backref" href="#id3">Gridded forecasts</a><a class="headerlink" href="#gridded-forecasts" title="Permalink to this headline">¶</a></h2>
+<p>Grid-based forecasts assume that earthquakes occur in independent and discrete space-time-magnitude bins. The occurrence
+of these earthquakes are described only by their expected rates. This forecast format provides a general representation
+of seismicity that can accommodate forecasts without explicit likelihood functions, such as those created using smoothed
+seismicity models. Gridded forecasts can also be produced using simulation-based approaches like
+epidemic-type aftershock sequence models.</p>
+<p>Currently, grid-based forecasts define their spatial component using a 2D Cartesian (rectangular) grid, and
+their magnitude bins using a 1D Cartesian (rectangular) grid. The last bin (largest magnitude) bin is assumed to
+continue until infinity. Forecasts use latitude and longitude to define the bin edge of the spatial grid. Typical values
+for the are 0.1° x 0.1° (lat x lon) and 0.1 ΔMw units. These choices are not strictly enforced and can defined
+according the specifications of an experiment.</p>
+<div class="section" id="working-with-gridded-forecasts">
+<h3><a class="toc-backref" href="#id4">Working with gridded forecasts</a><a class="headerlink" href="#working-with-gridded-forecasts" title="Permalink to this headline">¶</a></h3>
+<p>PyCSEP provides the <a class="reference internal" href="../reference/generated/csep.core.forecasts.GriddedForecast.html#csep.core.forecasts.GriddedForecast" title="csep.core.forecasts.GriddedForecast"><code class="xref py py-class docutils literal notranslate"><span class="pre">GriddedForecast</span></code></a> class to handle working with
+grid-based forecasts. Please see visit <a class="reference internal" href="../tutorials/gridded_forecast_evaluation.html#grid-forecast-evaluation"><span class="std std-ref">this example</span></a> for an end-to-end tutorial on
+how to evaluate a grid-based earthquake forecast.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.forecasts.GriddedForecast.html#csep.core.forecasts.GriddedForecast" title="csep.core.forecasts.GriddedForecast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">csep.core.forecasts.GriddedForecast</span></code></a>([…])</p></td>
+<td><p>Class to represent grid-based forecasts</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="default-file-format">
+<h4>Default file format<a class="headerlink" href="#default-file-format" title="Permalink to this headline">¶</a></h4>
+<p>The default file format of a gridded-forecast is a tab delimited ASCII file with the following columns
+(names are not included):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LON_0</span>       <span class="n">LON_1</span>   <span class="n">LAT_0</span>   <span class="n">LAT_1</span>   <span class="n">DEPTH_0</span> <span class="n">DEPTH_1</span> <span class="n">MAG_0</span>   <span class="n">MAG_1</span>   <span class="n">RATE</span>                                    <span class="n">FLAG</span>
+<span class="o">-</span><span class="mf">125.4</span>      <span class="o">-</span><span class="mf">125.3</span>  <span class="mf">40.1</span>    <span class="mf">40.2</span>    <span class="mf">0.0</span>     <span class="mf">30.0</span>    <span class="mf">4.95</span>    <span class="mf">5.05</span>    <span class="mf">5.8499099999999998e-04</span>  <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Each row represents a single space-magnitude bin and the entire forecast file contains the rate for a specified
+time-horizon. An example of a gridded forecast for the RELM testing region can be found
+<a class="reference external" href="https://github.com/SCECcode/csep2/blob/dev/csep/artifacts/ExampleForecasts/GriddedForecasts/helmstetter_et_al.hkj.aftershock-fromXML.dat">here</a>.</p>
+<p>The coordinates (LON, LAT, DEPTH, MAG) describe the independent space-magnitude region of the forecast. The lower
+coordinates are inclusive and the upper coordinates are exclusive. Rates are incremental within the magnitude range
+defined by [MAG_0, MAG_1). The FLAG is a legacy value from CSEP testing centers that indicates whether a spatial cell should
+be considered by the forecast. Currently, the implementation does not allow for individual space-magnitude cells to be
+flagged. Thus, if a spatial cell is flagged then all corresponding magnitude cells are flagged.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>PyCSEP only supports regions that have a thickness of one layer. In the future, we plan to support more complex regions
+including those that are defined using multiple depth regions. Multiple depth layers can be collapsed into a single
+layer by summing. This operations does reduce the resolution of the forecast.</p>
+</div>
+</div>
+<div class="section" id="custom-file-format">
+<h4>Custom file format<a class="headerlink" href="#custom-file-format" title="Permalink to this headline">¶</a></h4>
+<p>The <a class="reference internal" href="../reference/generated/csep.core.forecasts.GriddedForecast.from_custom.html#csep.core.forecasts.GriddedForecast.from_custom" title="csep.core.forecasts.GriddedForecast.from_custom"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GriddedForecast.from_custom</span></code></a> method allows you to provide
+a function that can read custom formats. This can be helpful, because writing this function might be required to convert
+the forecast into the appropriate format in the first place. This function has no requirements except that it returns the
+expected data.</p>
+<dl class="py method">
+<dt id="csep.core.forecasts.GriddedForecast.from_custom">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-prename descclassname"><span class="pre">GriddedForecast.</span></code><code class="sig-name descname"><span class="pre">from_custom</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/csep/core/forecasts.html#GriddedForecast.from_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#csep.core.forecasts.GriddedForecast.from_custom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates MarkedGriddedDataSet class from custom parsing function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>callable</em>) – function will be called as func(<a href="#id1"><span class="problematic" id="id2">*</span></a>func_args).</p></li>
+<li><p><strong>func_args</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a>) – arguments to pass to func</p></li>
+<li><p><strong>**kwargs</strong> – keyword arguments to pass to the GriddedForecast class constructor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>forecast object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../reference/generated/csep.core.forecasts.GriddedForecast.html#csep.core.forecasts.GriddedForecast" title="csep.core.forecasts.GriddedForecast"><code class="xref py py-class docutils literal notranslate"><span class="pre">csep.core.forecasts.GriddedForecast</span></code></a></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The loader function <cite>func</cite> needs to return a tuple that contains (data, region, magnitudes). data is a
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>, region is a <a class="reference internal" href="../reference/generated/csep.core.regions.CartesianGrid2D.html#csep.core.regions.CartesianGrid2D" title="csep.core.regions.CartesianGrid2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">CartesianGrid2D</span></code></a>, and
+magnitudes are a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> consisting of the magnitude bin edges. See the function
+<a class="reference internal" href="../reference/generated/csep.core.forecasts.GriddedForecast.load_ascii.html#csep.core.forecasts.GriddedForecast.load_ascii" title="csep.core.forecasts.GriddedForecast.load_ascii"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_ascii</span></code></a> for an example.</p>
+</div>
+</dd></dl>
+
+</div>
+</div>
+</div>
+<div class="section" id="catalog-based-forecasts">
+<h2><a class="toc-backref" href="#id5">Catalog-based forecasts</a><a class="headerlink" href="#catalog-based-forecasts" title="Permalink to this headline">¶</a></h2>
+<p>Catalog-based earthquake forecasts are issued as collections of synthetic earthquake catalogs. Every synthetic catalog
+represents a realization of the forecast that is representative the uncertainty present in the model that generated
+the forecast. Unlike grid-based forecasts, catalog-based forecasts retain the space-magnitude dependency of the events
+they are trying to model. A grid-based forecast can be easily computed from a catalog-based forecast by assuming a
+space-magnitude region and counting events within each bin from each catalog in the forecast. There can be issues with
+under sampling, especially for larger magnitude events.</p>
+<div class="section" id="working-with-catalog-based-forecasts">
+<h3><a class="toc-backref" href="#id6">Working with catalog-based forecasts</a><a class="headerlink" href="#working-with-catalog-based-forecasts" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.forecasts.CatalogForecast.html#csep.core.forecasts.CatalogForecast" title="csep.core.forecasts.CatalogForecast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">csep.core.forecasts.CatalogForecast</span></code></a>([…])</p></td>
+<td><p>Catalog based forecast defined as a family of stochastic event sets.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Please see visit <a class="reference internal" href="../tutorials/catalog_forecast_evaluation.html#catalog-forecast-evaluation"><span class="std std-ref">this</span></a> example for an end-to-end tutorial on how to evaluate a catalog-based
+earthquake forecast. An example of a catalog-based forecast stored in the default PyCSEP format can be found
+<cite>here&lt;https://github.com/SCECcode/csep2/blob/dev/csep/artifacts/ExampleForecasts/CatalogForecasts/ucerf3-landers_1992-06-28T11-57-34-14.csv&gt;_</cite>.</p>
+<p>We will be adding more to these documentation pages, so stay tuned for updated.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="evaluations.html" class="btn btn-neutral float-right" title="Evaluations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="catalogs.html" class="btn btn-neutral float-left" title="Catalogs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+ 
+&#169; 2020, University of Southern California.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

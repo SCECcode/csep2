@@ -1,0 +1,1088 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>API Reference &mdash; PyCSEP v0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="csep.load_stochastic_event_sets" href="generated/csep.load_stochastic_event_sets.html" />
+    <link rel="prev" title="Developer Notes" href="developer_notes.html" />
+    <!-- Google Analytics -->
+    <!-- added options to anonymize ip and disable cookies using {'storage': 'none'} 
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-495056-15', 'auto', {'storage': 'none'});
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+    </script> -->
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PyCSEP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installing.html">Installing PyCSEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/core_concepts.html">Core Concepts for Beginners</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials and Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/catalog_filtering.html">Catalogs operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/plot_gridded_forecast.html">Plotting gridded forecast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gridded_forecast_evaluation.html">Grid-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/working_with_catalog_forecasts.html">Working with catalog-based forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/catalog_forecast_evaluation.html">Catalog-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/plot_customizations.html">Plot customizations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/catalogs.html">Catalogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/forecasts.html">Forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts/regions.html">Regions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Help &amp; Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Terms and Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publications.html">Referenced Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Development Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer_notes.html">Developer Notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#loading-catalogs-and-forecasts">Loading catalogs and forecasts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.load_stochastic_event_sets.html">csep.load_stochastic_event_sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.load_catalog.html">csep.load_catalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.query_comcat.html">csep.query_comcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.load_gridded_forecast.html">csep.load_gridded_forecast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.load_catalog_forecast.html">csep.load_catalog_forecast</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#catalogs">Catalogs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.AbstractBaseCatalog.html">csep.core.catalogs.AbstractBaseCatalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.html">csep.core.catalogs.CSEPCatalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.UCERF3Catalog.html">csep.core.catalogs.UCERF3Catalog</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#catalog-operations">Catalog operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.to_dict.html">csep.core.catalogs.CSEPCatalog.to_dict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.from_dict.html">csep.core.catalogs.CSEPCatalog.from_dict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.to_dataframe.html">csep.core.catalogs.CSEPCatalog.to_dataframe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.from_dataframe.html">csep.core.catalogs.CSEPCatalog.from_dataframe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.write_json.html">csep.core.catalogs.CSEPCatalog.write_json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.load_json.html">csep.core.catalogs.CSEPCatalog.load_json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.load_catalog.html">csep.core.catalogs.CSEPCatalog.load_catalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.write_ascii.html">csep.core.catalogs.CSEPCatalog.write_ascii</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.load_ascii_catalogs.html">csep.core.catalogs.CSEPCatalog.load_ascii_catalogs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_csep_format.html">csep.core.catalogs.CSEPCatalog.get_csep_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.plot.html">csep.core.catalogs.CSEPCatalog.plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.event_count.html">csep.core.catalogs.CSEPCatalog.event_count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_magnitudes.html">csep.core.catalogs.CSEPCatalog.get_magnitudes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_longitudes.html">csep.core.catalogs.CSEPCatalog.get_longitudes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_latitudes.html">csep.core.catalogs.CSEPCatalog.get_latitudes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_depths.html">csep.core.catalogs.CSEPCatalog.get_depths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_epoch_times.html">csep.core.catalogs.CSEPCatalog.get_epoch_times</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_datetimes.html">csep.core.catalogs.CSEPCatalog.get_datetimes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_cumulative_number_of_events.html">csep.core.catalogs.CSEPCatalog.get_cumulative_number_of_events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.filter.html">csep.core.catalogs.CSEPCatalog.filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.filter_spatial.html">csep.core.catalogs.CSEPCatalog.filter_spatial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.apply_mct.html">csep.core.catalogs.CSEPCatalog.apply_mct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.spatial_counts.html">csep.core.catalogs.CSEPCatalog.spatial_counts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.magnitude_counts.html">csep.core.catalogs.CSEPCatalog.magnitude_counts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.spatial_magnitude_counts.html">csep.core.catalogs.CSEPCatalog.spatial_magnitude_counts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.update_catalog_stats.html">csep.core.catalogs.CSEPCatalog.update_catalog_stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.length_in_seconds.html">csep.core.catalogs.CSEPCatalog.length_in_seconds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_bvalue.html">csep.core.catalogs.CSEPCatalog.get_bvalue</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#forecasts">Forecasts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.html">csep.core.forecasts.GriddedForecast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.html">csep.core.forecasts.CatalogForecast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.data.html">csep.core.forecasts.GriddedForecast.data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.event_count.html">csep.core.forecasts.GriddedForecast.event_count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.sum.html">csep.core.forecasts.GriddedForecast.sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.magnitudes.html">csep.core.forecasts.GriddedForecast.magnitudes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.min_magnitude.html">csep.core.forecasts.GriddedForecast.min_magnitude</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.magnitude_counts.html">csep.core.forecasts.GriddedForecast.magnitude_counts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.spatial_counts.html">csep.core.forecasts.GriddedForecast.spatial_counts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.get_latitudes.html">csep.core.forecasts.GriddedForecast.get_latitudes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.get_longitudes.html">csep.core.forecasts.GriddedForecast.get_longitudes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.get_magnitudes.html">csep.core.forecasts.GriddedForecast.get_magnitudes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.get_index_of.html">csep.core.forecasts.GriddedForecast.get_index_of</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.get_magnitude_index.html">csep.core.forecasts.GriddedForecast.get_magnitude_index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.load_ascii.html">csep.core.forecasts.GriddedForecast.load_ascii</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.from_custom.html">csep.core.forecasts.GriddedForecast.from_custom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.get_rates.html">csep.core.forecasts.GriddedForecast.get_rates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.target_event_rates.html">csep.core.forecasts.GriddedForecast.target_event_rates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.scale_to_test_date.html">csep.core.forecasts.GriddedForecast.scale_to_test_date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.plot.html">csep.core.forecasts.GriddedForecast.plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.magnitudes.html">csep.core.forecasts.CatalogForecast.magnitudes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.min_magnitude.html">csep.core.forecasts.CatalogForecast.min_magnitude</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.spatial_counts.html">csep.core.forecasts.CatalogForecast.spatial_counts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.magnitude_counts.html">csep.core.forecasts.CatalogForecast.magnitude_counts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.get_expected_rates.html">csep.core.forecasts.CatalogForecast.get_expected_rates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.get_dataframe.html">csep.core.forecasts.CatalogForecast.get_dataframe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.write_ascii.html">csep.core.forecasts.CatalogForecast.write_ascii</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.load_ascii.html">csep.core.forecasts.CatalogForecast.load_ascii</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#evaluations">Evaluations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalog_evaluations.number_test.html">csep.core.catalog_evaluations.number_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalog_evaluations.spatial_test.html">csep.core.catalog_evaluations.spatial_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalog_evaluations.magnitude_test.html">csep.core.catalog_evaluations.magnitude_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalog_evaluations.pseudolikelihood_test.html">csep.core.catalog_evaluations.pseudolikelihood_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.catalog_evaluations.calibration_test.html">csep.core.catalog_evaluations.calibration_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.poisson_evaluations.number_test.html">csep.core.poisson_evaluations.number_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.poisson_evaluations.magnitude_test.html">csep.core.poisson_evaluations.magnitude_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.poisson_evaluations.spatial_test.html">csep.core.poisson_evaluations.spatial_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.poisson_evaluations.likelihood_test.html">csep.core.poisson_evaluations.likelihood_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.poisson_evaluations.conditional_likelihood_test.html">csep.core.poisson_evaluations.conditional_likelihood_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.poisson_evaluations.paired_t_test.html">csep.core.poisson_evaluations.paired_t_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.poisson_evaluations.w_test.html">csep.core.poisson_evaluations.w_test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#regions">Regions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.regions.CartesianGrid2D.html">csep.core.regions.CartesianGrid2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.regions.california_relm_region.html">csep.core.regions.california_relm_region</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.regions.italy_csep_region.html">csep.core.regions.italy_csep_region</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.regions.global_region.html">csep.core.regions.global_region</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.regions.magnitude_bins.html">csep.core.regions.magnitude_bins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.regions.create_space_magnitude_region.html">csep.core.regions.create_space_magnitude_region</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.regions.parse_csep_template.html">csep.core.regions.parse_csep_template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.regions.increase_grid_resolution.html">csep.core.regions.increase_grid_resolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.regions.masked_region.html">csep.core.regions.masked_region</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.regions.generate_aftershock_region.html">csep.core.regions.generate_aftershock_region</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.core.regions.Polygon.html">csep.core.regions.Polygon</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-csep.utils.plots">Plotting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_histogram.html">csep.utils.plots.plot_histogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_ecdf.html">csep.utils.plots.plot_ecdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_basemap.html">csep.utils.plots.plot_basemap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_magnitude_versus_time.html">csep.utils.plots.plot_magnitude_versus_time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_catalog.html">csep.utils.plots.plot_catalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_cumulative_events_versus_time.html">csep.utils.plots.plot_cumulative_events_versus_time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_magnitude_histogram.html">csep.utils.plots.plot_magnitude_histogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_number_test.html">csep.utils.plots.plot_number_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_magnitude_test.html">csep.utils.plots.plot_magnitude_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_distribution_test.html">csep.utils.plots.plot_distribution_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_likelihood_test.html">csep.utils.plots.plot_likelihood_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_spatial_test.html">csep.utils.plots.plot_spatial_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_spatial_dataset.html">csep.utils.plots.plot_spatial_dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_comparison_test.html">csep.utils.plots.plot_comparison_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.plots.plot_poisson_consistency_test.html">csep.utils.plots.plot_poisson_consistency_test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#time-utilities">Time Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.time_utils.epoch_time_to_utc_datetime.html">csep.utils.time_utils.epoch_time_to_utc_datetime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.time_utils.datetime_to_utc_epoch.html">csep.utils.time_utils.datetime_to_utc_epoch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.time_utils.millis_to_days.html">csep.utils.time_utils.millis_to_days</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.time_utils.days_to_millis.html">csep.utils.time_utils.days_to_millis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.time_utils.strptime_to_utc_epoch.html">csep.utils.time_utils.strptime_to_utc_epoch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.time_utils.timedelta_from_years.html">csep.utils.time_utils.timedelta_from_years</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.time_utils.strptime_to_utc_datetime.html">csep.utils.time_utils.strptime_to_utc_datetime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.time_utils.utc_now_datetime.html">csep.utils.time_utils.utc_now_datetime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.time_utils.utc_now_epoch.html">csep.utils.time_utils.utc_now_epoch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.time_utils.create_utc_datetime.html">csep.utils.time_utils.create_utc_datetime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.time_utils.decimal_year.html">csep.utils.time_utils.decimal_year</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#comcat-access">Comcat Access</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.comcat.search.html">csep.utils.comcat.search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.comcat.get_event_by_id.html">csep.utils.comcat.get_event_by_id</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#calculation-utilities">Calculation Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.calc.nearest_index.html">csep.utils.calc.nearest_index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.calc.find_nearest.html">csep.utils.calc.find_nearest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.calc.func_inverse.html">csep.utils.calc.func_inverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.calc.discretize.html">csep.utils.calc.discretize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.calc.bin1d_vec.html">csep.utils.calc.bin1d_vec</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#statistics-utilities">Statistics Utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.stats.sup_dist.html">csep.utils.stats.sup_dist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.stats.sup_dist_na.html">csep.utils.stats.sup_dist_na</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.stats.cumulative_square_diff.html">csep.utils.stats.cumulative_square_diff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.stats.binned_ecdf.html">csep.utils.stats.binned_ecdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.stats.ecdf.html">csep.utils.stats.ecdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.stats.greater_equal_ecdf.html">csep.utils.stats.greater_equal_ecdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.stats.less_equal_ecdf.html">csep.utils.stats.less_equal_ecdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.stats.min_or_none.html">csep.utils.stats.min_or_none</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.stats.max_or_none.html">csep.utils.stats.max_or_none</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.stats.get_quantiles.html">csep.utils.stats.get_quantiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.stats.poisson_log_likelihood.html">csep.utils.stats.poisson_log_likelihood</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.stats.poisson_joint_log_likelihood_ndarray.html">csep.utils.stats.poisson_joint_log_likelihood_ndarray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.stats.poisson_inverse_cdf.html">csep.utils.stats.poisson_inverse_cdf</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-types">Basic types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/csep.utils.basic_types.AdaptiveHistogram.html">csep.utils.basic_types.AdaptiveHistogram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">Source code and contributing</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CONTRIBUTING.md">Contributing</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/LICENSE">License</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/issues">Getting help</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2">Source Code</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyCSEP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>API Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/reference/api_reference.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<p>This contains a reference document to the PyCSEP API.</p>
+<span class="target" id="module-csep"></span><div class="section" id="loading-catalogs-and-forecasts">
+<h2>Loading catalogs and forecasts<a class="headerlink" href="#loading-catalogs-and-forecasts" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.load_stochastic_event_sets.html#csep.load_stochastic_event_sets" title="csep.load_stochastic_event_sets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_stochastic_event_sets</span></code></a>(filename[, type, …])</p></td>
+<td><p>General function to load stochastic event sets</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.load_catalog.html#csep.load_catalog" title="csep.load_catalog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_catalog</span></code></a>(filename[, type, format, …])</p></td>
+<td><p>General function to load single catalog</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.query_comcat.html#csep.query_comcat" title="csep.query_comcat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">query_comcat</span></code></a>(start_time, end_time[, …])</p></td>
+<td><p>Access Comcat catalog through web service</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.load_gridded_forecast.html#csep.load_gridded_forecast" title="csep.load_gridded_forecast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_gridded_forecast</span></code></a>(fname[, loader])</p></td>
+<td><p>Loads grid based forecast from hard-disk.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.load_catalog_forecast.html#csep.load_catalog_forecast" title="csep.load_catalog_forecast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_catalog_forecast</span></code></a>(fname[, …])</p></td>
+<td><p>General function to handle loading catalog forecasts.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="catalogs">
+<h2>Catalogs<a class="headerlink" href="#catalogs" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-csep.core.catalogs"></span><p>Catalog operations are defined using <a class="reference internal" href="generated/csep.core.catalogs.AbstractBaseCatalog.html#csep.core.catalogs.AbstractBaseCatalog" title="csep.core.catalogs.AbstractBaseCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractBaseCatalog</span></code></a> class.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.AbstractBaseCatalog.html#csep.core.catalogs.AbstractBaseCatalog" title="csep.core.catalogs.AbstractBaseCatalog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AbstractBaseCatalog</span></code></a>([filename, data, …])</p></td>
+<td><p>Abstract catalog base class for PyCSEP catalogs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog</span></code></a>(**kwargs)</p></td>
+<td><p>Standard catalog class for PyCSEP catalog operations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.UCERF3Catalog.html#csep.core.catalogs.UCERF3Catalog" title="csep.core.catalogs.UCERF3Catalog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UCERF3Catalog</span></code></a>(**kwargs)</p></td>
+<td><p>Catalog written from UCERF3-ETAS binary format</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="catalog-operations">
+<h2>Catalog operations<a class="headerlink" href="#catalog-operations" title="Permalink to this headline">¶</a></h2>
+<p>Input and output operations for catalogs:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.to_dict.html#csep.core.catalogs.CSEPCatalog.to_dict" title="csep.core.catalogs.CSEPCatalog.to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.to_dict</span></code></a>()</p></td>
+<td><p>Serializes class to json dictionary.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.from_dict.html#csep.core.catalogs.CSEPCatalog.from_dict" title="csep.core.catalogs.CSEPCatalog.from_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.from_dict</span></code></a>(adict, **kwargs)</p></td>
+<td><p>Creates a class from the dictionary representation of the class state.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.to_dataframe.html#csep.core.catalogs.CSEPCatalog.to_dataframe" title="csep.core.catalogs.CSEPCatalog.to_dataframe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.to_dataframe</span></code></a>([with_datetime])</p></td>
+<td><p>Returns pandas Dataframe describing the catalog.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.from_dataframe.html#csep.core.catalogs.CSEPCatalog.from_dataframe" title="csep.core.catalogs.CSEPCatalog.from_dataframe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.from_dataframe</span></code></a>(df, **kwargs)</p></td>
+<td><p>Creates catalog from dataframe.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.write_json.html#csep.core.catalogs.CSEPCatalog.write_json" title="csep.core.catalogs.CSEPCatalog.write_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.write_json</span></code></a>(filename)</p></td>
+<td><p>Writes catalog to json file</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.load_json.html#csep.core.catalogs.CSEPCatalog.load_json" title="csep.core.catalogs.CSEPCatalog.load_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.load_json</span></code></a>(filename, **kwargs)</p></td>
+<td><p>Loads catalog from JSON file</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.load_catalog.html#csep.core.catalogs.CSEPCatalog.load_catalog" title="csep.core.catalogs.CSEPCatalog.load_catalog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.load_catalog</span></code></a>(filename[, loader])</p></td>
+<td><p>Loads catalog stored in CSEP1 ascii format</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.write_ascii.html#csep.core.catalogs.CSEPCatalog.write_ascii" title="csep.core.catalogs.CSEPCatalog.write_ascii"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.write_ascii</span></code></a>(filename[, …])</p></td>
+<td><p>Write catalog in csep2 ascii format.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.load_ascii_catalogs.html#csep.core.catalogs.CSEPCatalog.load_ascii_catalogs" title="csep.core.catalogs.CSEPCatalog.load_ascii_catalogs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.load_ascii_catalogs</span></code></a>(filename, …)</p></td>
+<td><p>Loads multiple CSEP catalogs in ASCII format.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_csep_format.html#csep.core.catalogs.CSEPCatalog.get_csep_format" title="csep.core.catalogs.CSEPCatalog.get_csep_format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_csep_format</span></code></a>()</p></td>
+<td><p>Returns CSEP format for a catalog</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.plot.html#csep.core.catalogs.CSEPCatalog.plot" title="csep.core.catalogs.CSEPCatalog.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.plot</span></code></a>([ax, show, extent, …])</p></td>
+<td><p>Plot catalog according to plate-carree projection</p></td>
+</tr>
+</tbody>
+</table>
+<p>Accessing event information:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.event_count.html#csep.core.catalogs.CSEPCatalog.event_count" title="csep.core.catalogs.CSEPCatalog.event_count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.event_count</span></code></a></p></td>
+<td><p>Number of events in catalog</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_magnitudes.html#csep.core.catalogs.CSEPCatalog.get_magnitudes" title="csep.core.catalogs.CSEPCatalog.get_magnitudes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_magnitudes</span></code></a>()</p></td>
+<td><p>Returns magnitudes of all events in catalog</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_longitudes.html#csep.core.catalogs.CSEPCatalog.get_longitudes" title="csep.core.catalogs.CSEPCatalog.get_longitudes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_longitudes</span></code></a>()</p></td>
+<td><p>Returns longitudes of all events in catalog</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_latitudes.html#csep.core.catalogs.CSEPCatalog.get_latitudes" title="csep.core.catalogs.CSEPCatalog.get_latitudes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_latitudes</span></code></a>()</p></td>
+<td><p>Returns latitudes of all events in catalog</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_depths.html#csep.core.catalogs.CSEPCatalog.get_depths" title="csep.core.catalogs.CSEPCatalog.get_depths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_depths</span></code></a>()</p></td>
+<td><p>Returns depths of all events in catalog</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_epoch_times.html#csep.core.catalogs.CSEPCatalog.get_epoch_times" title="csep.core.catalogs.CSEPCatalog.get_epoch_times"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_epoch_times</span></code></a>()</p></td>
+<td><p>Returns the datetime of the event as the UTC epoch time (aka unix timestamp)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_datetimes.html#csep.core.catalogs.CSEPCatalog.get_datetimes" title="csep.core.catalogs.CSEPCatalog.get_datetimes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_datetimes</span></code></a>()</p></td>
+<td><p>Returns datetime object from timestamp representation in catalog</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_cumulative_number_of_events.html#csep.core.catalogs.CSEPCatalog.get_cumulative_number_of_events" title="csep.core.catalogs.CSEPCatalog.get_cumulative_number_of_events"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_cumulative_number_of_events</span></code></a>()</p></td>
+<td><p>Returns the cumulative number of events in the catalog.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Filtering and binning:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.filter.html#csep.core.catalogs.CSEPCatalog.filter" title="csep.core.catalogs.CSEPCatalog.filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.filter</span></code></a>([statements, in_place])</p></td>
+<td><p>Filters the catalog based on statements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.filter_spatial.html#csep.core.catalogs.CSEPCatalog.filter_spatial" title="csep.core.catalogs.CSEPCatalog.filter_spatial"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.filter_spatial</span></code></a>([region, …])</p></td>
+<td><p>Removes events outside of the region.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.apply_mct.html#csep.core.catalogs.CSEPCatalog.apply_mct" title="csep.core.catalogs.CSEPCatalog.apply_mct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.apply_mct</span></code></a>(m_main, event_epoch[, mc])</p></td>
+<td><p>Applies time-dependent magnitude of completeness following a mainshock.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.spatial_counts.html#csep.core.catalogs.CSEPCatalog.spatial_counts" title="csep.core.catalogs.CSEPCatalog.spatial_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.spatial_counts</span></code></a>()</p></td>
+<td><p>Returns counts of events within discrete spatial region</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.magnitude_counts.html#csep.core.catalogs.CSEPCatalog.magnitude_counts" title="csep.core.catalogs.CSEPCatalog.magnitude_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.magnitude_counts</span></code></a>([mag_bins, …])</p></td>
+<td><p>Computes the count of events within mag_bins</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.spatial_magnitude_counts.html#csep.core.catalogs.CSEPCatalog.spatial_magnitude_counts" title="csep.core.catalogs.CSEPCatalog.spatial_magnitude_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.spatial_magnitude_counts</span></code></a>([…])</p></td>
+<td><p>Return counts of events in space-magnitude region.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Other utilities:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.update_catalog_stats.html#csep.core.catalogs.CSEPCatalog.update_catalog_stats" title="csep.core.catalogs.CSEPCatalog.update_catalog_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.update_catalog_stats</span></code></a>()</p></td>
+<td><p>Compute summary statistics of events in catalog</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.length_in_seconds.html#csep.core.catalogs.CSEPCatalog.length_in_seconds" title="csep.core.catalogs.CSEPCatalog.length_in_seconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.length_in_seconds</span></code></a>()</p></td>
+<td><p>Returns catalog length in seconds assuming that the catalog is sorted by time.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalogs.CSEPCatalog.get_bvalue.html#csep.core.catalogs.CSEPCatalog.get_bvalue" title="csep.core.catalogs.CSEPCatalog.get_bvalue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_bvalue</span></code></a>([mag_bins, return_error])</p></td>
+<td><p>Estimates the b-value of a catalog from Marzocchi and Sandri (2003).</p></td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-csep.core.forecasts"></span></div>
+<div class="section" id="forecasts">
+<h2>Forecasts<a class="headerlink" href="#forecasts" title="Permalink to this headline">¶</a></h2>
+<p>PyCSEP provides classes to interact with catalog and grid based Forecasts</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.html#csep.core.forecasts.GriddedForecast" title="csep.core.forecasts.GriddedForecast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast</span></code></a>([start_time, end_time])</p></td>
+<td><p>Class to represent grid-based forecasts</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.html#csep.core.forecasts.CatalogForecast" title="csep.core.forecasts.CatalogForecast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CatalogForecast</span></code></a>([filename, catalogs, name, …])</p></td>
+<td><p>Catalog based forecast defined as a family of stochastic event sets.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Gridded forecast methods:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.data.html#csep.core.forecasts.GriddedForecast.data" title="csep.core.forecasts.GriddedForecast.data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.data</span></code></a></p></td>
+<td><p>Contains the spatio-magnitude forecast as 2d numpy.ndarray.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.event_count.html#csep.core.forecasts.GriddedForecast.event_count" title="csep.core.forecasts.GriddedForecast.event_count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.event_count</span></code></a></p></td>
+<td><p>Returns a sum of the forecast data</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.sum.html#csep.core.forecasts.GriddedForecast.sum" title="csep.core.forecasts.GriddedForecast.sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.sum</span></code></a>()</p></td>
+<td><p>Sums over all of the forecast data</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.magnitudes.html#csep.core.forecasts.GriddedForecast.magnitudes" title="csep.core.forecasts.GriddedForecast.magnitudes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.magnitudes</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.min_magnitude.html#csep.core.forecasts.GriddedForecast.min_magnitude" title="csep.core.forecasts.GriddedForecast.min_magnitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.min_magnitude</span></code></a></p></td>
+<td><p>Returns the lowest magnitude bin edge</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.magnitude_counts.html#csep.core.forecasts.GriddedForecast.magnitude_counts" title="csep.core.forecasts.GriddedForecast.magnitude_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.magnitude_counts</span></code></a>()</p></td>
+<td><p>Returns counts of events in magnitude bins</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.spatial_counts.html#csep.core.forecasts.GriddedForecast.spatial_counts" title="csep.core.forecasts.GriddedForecast.spatial_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.spatial_counts</span></code></a>([cartesian])</p></td>
+<td><p>Integrates over magnitudes to return the spatial version of the forecast.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.get_latitudes.html#csep.core.forecasts.GriddedForecast.get_latitudes" title="csep.core.forecasts.GriddedForecast.get_latitudes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.get_latitudes</span></code></a>()</p></td>
+<td><p>Returns the latitude of the lower left node of the spatial grid</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.get_longitudes.html#csep.core.forecasts.GriddedForecast.get_longitudes" title="csep.core.forecasts.GriddedForecast.get_longitudes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.get_longitudes</span></code></a>()</p></td>
+<td><p>Returns the lognitude of the lower left node of the spatial grid</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.get_magnitudes.html#csep.core.forecasts.GriddedForecast.get_magnitudes" title="csep.core.forecasts.GriddedForecast.get_magnitudes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.get_magnitudes</span></code></a>()</p></td>
+<td><p>Returns the left edge of the magnitude bins.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.get_index_of.html#csep.core.forecasts.GriddedForecast.get_index_of" title="csep.core.forecasts.GriddedForecast.get_index_of"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.get_index_of</span></code></a>(lons, lats)</p></td>
+<td><p>Returns the index of lons, lats in spatial region</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.get_magnitude_index.html#csep.core.forecasts.GriddedForecast.get_magnitude_index" title="csep.core.forecasts.GriddedForecast.get_magnitude_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.get_magnitude_index</span></code></a>(mags[, tol])</p></td>
+<td><p>Returns the indices into the magnitude bins of selected magnitudes</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.load_ascii.html#csep.core.forecasts.GriddedForecast.load_ascii" title="csep.core.forecasts.GriddedForecast.load_ascii"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.load_ascii</span></code></a>(ascii_fname[, …])</p></td>
+<td><p>Reads Forecast file from CSEP1 ascii format.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.from_custom.html#csep.core.forecasts.GriddedForecast.from_custom" title="csep.core.forecasts.GriddedForecast.from_custom"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.from_custom</span></code></a>(func[, func_args])</p></td>
+<td><p>Creates MarkedGriddedDataSet class from custom parsing function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.get_rates.html#csep.core.forecasts.GriddedForecast.get_rates" title="csep.core.forecasts.GriddedForecast.get_rates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.get_rates</span></code></a>(lons, lats, mags)</p></td>
+<td><p>Returns the rate associated with a longitude, latitude, and magnitude.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.target_event_rates.html#csep.core.forecasts.GriddedForecast.target_event_rates" title="csep.core.forecasts.GriddedForecast.target_event_rates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.target_event_rates</span></code></a>(…[, scale])</p></td>
+<td><p>Generates data set of target event rates given a target data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.scale_to_test_date.html#csep.core.forecasts.GriddedForecast.scale_to_test_date" title="csep.core.forecasts.GriddedForecast.scale_to_test_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.scale_to_test_date</span></code></a>(test_datetime)</p></td>
+<td><p>Scales forecast data by the fraction of the date.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.forecasts.GriddedForecast.plot.html#csep.core.forecasts.GriddedForecast.plot" title="csep.core.forecasts.GriddedForecast.plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GriddedForecast.plot</span></code></a>([ax, show, log, …])</p></td>
+<td><p>Plot gridded forecast according to plate-carree projection</p></td>
+</tr>
+</tbody>
+</table>
+<p>Catalog forecast methods:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.magnitudes.html#csep.core.forecasts.CatalogForecast.magnitudes" title="csep.core.forecasts.CatalogForecast.magnitudes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CatalogForecast.magnitudes</span></code></a></p></td>
+<td><p>Returns left bin-edges of magnitude bins</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.min_magnitude.html#csep.core.forecasts.CatalogForecast.min_magnitude" title="csep.core.forecasts.CatalogForecast.min_magnitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CatalogForecast.min_magnitude</span></code></a></p></td>
+<td><p>Returns smallest magnitude bin edge of forecast</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.spatial_counts.html#csep.core.forecasts.CatalogForecast.spatial_counts" title="csep.core.forecasts.CatalogForecast.spatial_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CatalogForecast.spatial_counts</span></code></a>([cartesian])</p></td>
+<td><p>Returns the expected spatial counts from forecast</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.magnitude_counts.html#csep.core.forecasts.CatalogForecast.magnitude_counts" title="csep.core.forecasts.CatalogForecast.magnitude_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CatalogForecast.magnitude_counts</span></code></a>()</p></td>
+<td><p>Returns expected magnitude counts from forecast</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.get_expected_rates.html#csep.core.forecasts.CatalogForecast.get_expected_rates" title="csep.core.forecasts.CatalogForecast.get_expected_rates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CatalogForecast.get_expected_rates</span></code></a>([…])</p></td>
+<td><p>Compute the expected rates in space-magnitude bins</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.get_dataframe.html#csep.core.forecasts.CatalogForecast.get_dataframe" title="csep.core.forecasts.CatalogForecast.get_dataframe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CatalogForecast.get_dataframe</span></code></a>()</p></td>
+<td><p>Return a single dataframe with all of the events from all of the catalogs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.write_ascii.html#csep.core.forecasts.CatalogForecast.write_ascii" title="csep.core.forecasts.CatalogForecast.write_ascii"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CatalogForecast.write_ascii</span></code></a>(fname[, header, …])</p></td>
+<td><p>Writes data forecast to ASCII format</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.forecasts.CatalogForecast.load_ascii.html#csep.core.forecasts.CatalogForecast.load_ascii" title="csep.core.forecasts.CatalogForecast.load_ascii"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CatalogForecast.load_ascii</span></code></a>(fname, **kwargs)</p></td>
+<td><p>Loads ASCII format for data forecast.</p></td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-csep.core.catalog_evaluations"></span></div>
+<div class="section" id="evaluations">
+<h2>Evaluations<a class="headerlink" href="#evaluations" title="Permalink to this headline">¶</a></h2>
+<p>PyCSEP provides implementations of evaluations for both catalog-based forecasts and grid-based forecasts.</p>
+<p>Catalog-based forecast evaluations:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalog_evaluations.number_test.html#csep.core.catalog_evaluations.number_test" title="csep.core.catalog_evaluations.number_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_test</span></code></a>(forecast, observed_catalog)</p></td>
+<td><p>Performs the number test on a catalog-based forecast.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalog_evaluations.spatial_test.html#csep.core.catalog_evaluations.spatial_test" title="csep.core.catalog_evaluations.spatial_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spatial_test</span></code></a>(forecast, observed_catalog)</p></td>
+<td><p>Performs spatial test for catalog-based forecasts.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalog_evaluations.magnitude_test.html#csep.core.catalog_evaluations.magnitude_test" title="csep.core.catalog_evaluations.magnitude_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">magnitude_test</span></code></a>(forecast, observed_catalog)</p></td>
+<td><p>Performs magnitude test for catalog-based forecasts</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.catalog_evaluations.pseudolikelihood_test.html#csep.core.catalog_evaluations.pseudolikelihood_test" title="csep.core.catalog_evaluations.pseudolikelihood_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pseudolikelihood_test</span></code></a>(forecast, observed_catalog)</p></td>
+<td><p>Performs the spatial pseudolikelihood test for catalog forecasts.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.catalog_evaluations.calibration_test.html#csep.core.catalog_evaluations.calibration_test" title="csep.core.catalog_evaluations.calibration_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibration_test</span></code></a>(evaluation_results[, delta_1])</p></td>
+<td><p>Perform the calibration test by computing a Kilmogorov-Smirnov test of the observed quantiles against a uniform distribution.</p></td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-csep.core.poisson_evaluations"></span><p>Grid-based forecast evaluations:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.poisson_evaluations.number_test.html#csep.core.poisson_evaluations.number_test" title="csep.core.poisson_evaluations.number_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_test</span></code></a>(gridded_forecast, observed_catalog)</p></td>
+<td><p>Computes “N-Test” on a gridded forecast.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.poisson_evaluations.magnitude_test.html#csep.core.poisson_evaluations.magnitude_test" title="csep.core.poisson_evaluations.magnitude_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">magnitude_test</span></code></a>(gridded_forecast, …[, …])</p></td>
+<td><p>Performs the Magnitude Test on a Gridded Forecast using an observed catalog.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.poisson_evaluations.spatial_test.html#csep.core.poisson_evaluations.spatial_test" title="csep.core.poisson_evaluations.spatial_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spatial_test</span></code></a>(gridded_forecast, observed_catalog)</p></td>
+<td><p>Performs the Spatial Test on the Forecast using the Observed Catalogs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.poisson_evaluations.likelihood_test.html#csep.core.poisson_evaluations.likelihood_test" title="csep.core.poisson_evaluations.likelihood_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">likelihood_test</span></code></a>(gridded_forecast, …[, …])</p></td>
+<td><p>Performs the likelihood test on Gridded Forecast using an Observed Catalog.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.poisson_evaluations.conditional_likelihood_test.html#csep.core.poisson_evaluations.conditional_likelihood_test" title="csep.core.poisson_evaluations.conditional_likelihood_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conditional_likelihood_test</span></code></a>(…[, …])</p></td>
+<td><p>Performs the conditional likelihood test on Gridded Forecast using an Observed Catalog.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.poisson_evaluations.paired_t_test.html#csep.core.poisson_evaluations.paired_t_test" title="csep.core.poisson_evaluations.paired_t_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">paired_t_test</span></code></a>(forecast, benchmark_forecast, …)</p></td>
+<td><p>Computes the t-test for gridded earthquake forecasts.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.poisson_evaluations.w_test.html#csep.core.poisson_evaluations.w_test" title="csep.core.poisson_evaluations.w_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">w_test</span></code></a>(gridded_forecast1, gridded_forecast2, …)</p></td>
+<td><p>Calculate the Single Sample Wilcoxon signed-rank test between two gridded forecasts.</p></td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-csep.core.regions"></span></div>
+<div class="section" id="regions">
+<h2>Regions<a class="headerlink" href="#regions" title="Permalink to this headline">¶</a></h2>
+<p>PyCSEP includes commonly used CSEP testing regions and classes that facilitate working with gridded data sets. This
+module is early in development and help is welcome here!</p>
+<p>Region class(es):</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.regions.CartesianGrid2D.html#csep.core.regions.CartesianGrid2D" title="csep.core.regions.CartesianGrid2D"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CartesianGrid2D</span></code></a>(polygons, dh[, name, mask])</p></td>
+<td><p>Represents a 2D cartesian gridded region.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Testing regions:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.regions.california_relm_region.html#csep.core.regions.california_relm_region" title="csep.core.regions.california_relm_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">california_relm_region</span></code></a>([dh_scale, …])</p></td>
+<td><p>Returns class representing California testing region.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.regions.italy_csep_region.html#csep.core.regions.italy_csep_region" title="csep.core.regions.italy_csep_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">italy_csep_region</span></code></a>([dh_scale, magnitudes, name])</p></td>
+<td><p>Returns class representing Italian testing region.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.regions.global_region.html#csep.core.regions.global_region" title="csep.core.regions.global_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global_region</span></code></a>([dh, name, magnitudes])</p></td>
+<td><p>Creates a global region used for evaluating gridded forecasts on the global scale.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Region utilities:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.regions.magnitude_bins.html#csep.core.regions.magnitude_bins" title="csep.core.regions.magnitude_bins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">magnitude_bins</span></code></a>(start_magnitude, …)</p></td>
+<td><p>Returns array holding magnitude bin edges.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.regions.create_space_magnitude_region.html#csep.core.regions.create_space_magnitude_region" title="csep.core.regions.create_space_magnitude_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_space_magnitude_region</span></code></a>(region, magnitudes)</p></td>
+<td><p>Simple wrapper to create space-magnitude region</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.regions.parse_csep_template.html#csep.core.regions.parse_csep_template" title="csep.core.regions.parse_csep_template"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_csep_template</span></code></a>(xml_filename)</p></td>
+<td><p>Reads CSEP XML template file and returns the lat/lon values for the forecast.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.regions.increase_grid_resolution.html#csep.core.regions.increase_grid_resolution" title="csep.core.regions.increase_grid_resolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">increase_grid_resolution</span></code></a>(points, dh, factor)</p></td>
+<td><p>Takes a set of origin points and returns a new set with higher grid resolution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.regions.masked_region.html#csep.core.regions.masked_region" title="csep.core.regions.masked_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">masked_region</span></code></a>(region, polygon)</p></td>
+<td><p>Build a new region based off the coordinates in the polygon.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.core.regions.generate_aftershock_region.html#csep.core.regions.generate_aftershock_region" title="csep.core.regions.generate_aftershock_region"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_aftershock_region</span></code></a>(mainshock_mw, …)</p></td>
+<td><p>Creates a spatial region around a given epicenter</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.core.regions.Polygon.html#csep.core.regions.Polygon" title="csep.core.regions.Polygon"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Polygon</span></code></a>(points)</p></td>
+<td><p>Represents polygons defined through a collection of vertices.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="module-csep.utils.plots">
+<span id="plotting"></span><h2>Plotting<a class="headerlink" href="#module-csep.utils.plots" title="Permalink to this headline">¶</a></h2>
+<p>General plotting:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_histogram.html#csep.utils.plots.plot_histogram" title="csep.utils.plots.plot_histogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_histogram</span></code></a>(simulated, observation[, …])</p></td>
+<td><p>Plots histogram of single statistic for stochastic event sets and observations.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_ecdf.html#csep.utils.plots.plot_ecdf" title="csep.utils.plots.plot_ecdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_ecdf</span></code></a>(x, ecdf[, axes, xv, show, plot_args])</p></td>
+<td><p>Plots empirical cumulative distribution function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_basemap.html#csep.utils.plots.plot_basemap" title="csep.utils.plots.plot_basemap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_basemap</span></code></a>(basemap, extent[, ax, …])</p></td>
+<td><p>Wrapper function for multiple cartopy base plots, including access to standard raster webservices</p></td>
+</tr>
+</tbody>
+</table>
+<p>Plotting from catalogs:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_magnitude_versus_time.html#csep.utils.plots.plot_magnitude_versus_time" title="csep.utils.plots.plot_magnitude_versus_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_magnitude_versus_time</span></code></a>(catalog[, …])</p></td>
+<td><p>Plots magnitude versus linear time for an earthquake data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_catalog.html#csep.utils.plots.plot_catalog" title="csep.utils.plots.plot_catalog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_catalog</span></code></a>(catalog[, ax, show, extent, …])</p></td>
+<td><p>Plot catalog in a region</p></td>
+</tr>
+</tbody>
+</table>
+<p>Plotting from stochastic event sets:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_cumulative_events_versus_time.html#csep.utils.plots.plot_cumulative_events_versus_time" title="csep.utils.plots.plot_cumulative_events_versus_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_cumulative_events_versus_time</span></code></a>(…[, …])</p></td>
+<td><p>Same as below but performs the statistics on numpy arrays without using pandas data frames.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_magnitude_histogram.html#csep.utils.plots.plot_magnitude_histogram" title="csep.utils.plots.plot_magnitude_histogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_magnitude_histogram</span></code></a>(catalogs, comcat[, …])</p></td>
+<td><p>Generates a magnitude histogram from a catalog-based forecast</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_number_test.html#csep.utils.plots.plot_number_test" title="csep.utils.plots.plot_number_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_number_test</span></code></a>(evaluation_result[, axes, …])</p></td>
+<td><p>Takes result from evaluation and generates a specific histogram plot to show the results of the statistical evaluation for the n-test.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_magnitude_test.html#csep.utils.plots.plot_magnitude_test" title="csep.utils.plots.plot_magnitude_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_magnitude_test</span></code></a>(evaluation_result[, …])</p></td>
+<td><p>Takes result from evaluation and generates a specific histogram plot to show the results of the statistical evaluation for the M-test.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_distribution_test.html#csep.utils.plots.plot_distribution_test" title="csep.utils.plots.plot_distribution_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_distribution_test</span></code></a>(evaluation_result[, …])</p></td>
+<td><p>Takes result from evaluation and generates a specific histogram plot to show the results of the statistical evaluation for the M-test.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_likelihood_test.html#csep.utils.plots.plot_likelihood_test" title="csep.utils.plots.plot_likelihood_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_likelihood_test</span></code></a>(evaluation_result[, …])</p></td>
+<td><p>Takes result from evaluation and generates a specific histogram plot to show the results of the statistical evaluation for the L-test.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_spatial_test.html#csep.utils.plots.plot_spatial_test" title="csep.utils.plots.plot_spatial_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_spatial_test</span></code></a>(evaluation_result[, axes, …])</p></td>
+<td><p>Plot spatial test result from catalog based forecast</p></td>
+</tr>
+</tbody>
+</table>
+<p>Plotting gridded forecasts and evaluations:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_spatial_dataset.html#csep.utils.plots.plot_spatial_dataset" title="csep.utils.plots.plot_spatial_dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_spatial_dataset</span></code></a>(gridded, region[, ax, …])</p></td>
+<td><p>Plot spatial dataset such as data from a gridded forecast</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_comparison_test.html#csep.utils.plots.plot_comparison_test" title="csep.utils.plots.plot_comparison_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_comparison_test</span></code></a>(results[, plot_args])</p></td>
+<td><p>Plots list of T-Test or W-Test Results</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.plots.plot_poisson_consistency_test.html#csep.utils.plots.plot_poisson_consistency_test" title="csep.utils.plots.plot_poisson_consistency_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_poisson_consistency_test</span></code></a>(eval_results)</p></td>
+<td><p>Plots results from CSEP1 tests following the CSEP1 convention.</p></td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-csep.utils.time_utils"></span></div>
+<div class="section" id="time-utilities">
+<h2>Time Utilities<a class="headerlink" href="#time-utilities" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.time_utils.epoch_time_to_utc_datetime.html#csep.utils.time_utils.epoch_time_to_utc_datetime" title="csep.utils.time_utils.epoch_time_to_utc_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">epoch_time_to_utc_datetime</span></code></a>(epoch_time_milli)</p></td>
+<td><p>Accepts an epoch_time in milliseconds the UTC timezone and returns a python datetime object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.time_utils.datetime_to_utc_epoch.html#csep.utils.time_utils.datetime_to_utc_epoch" title="csep.utils.time_utils.datetime_to_utc_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datetime_to_utc_epoch</span></code></a>(dt)</p></td>
+<td><p>Converts python datetime.datetime into epoch_time in milliseconds.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.time_utils.millis_to_days.html#csep.utils.time_utils.millis_to_days" title="csep.utils.time_utils.millis_to_days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">millis_to_days</span></code></a>(millis)</p></td>
+<td><p>Converts time in millis to days</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.time_utils.days_to_millis.html#csep.utils.time_utils.days_to_millis" title="csep.utils.time_utils.days_to_millis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">days_to_millis</span></code></a>(days)</p></td>
+<td><p>Converts days to millis</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.time_utils.strptime_to_utc_epoch.html#csep.utils.time_utils.strptime_to_utc_epoch" title="csep.utils.time_utils.strptime_to_utc_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">strptime_to_utc_epoch</span></code></a>(time_string[, format])</p></td>
+<td><p>Returns epoch time from formatted time string</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.time_utils.timedelta_from_years.html#csep.utils.time_utils.timedelta_from_years" title="csep.utils.time_utils.timedelta_from_years"><code class="xref py py-obj docutils literal notranslate"><span class="pre">timedelta_from_years</span></code></a>(time_in_years)</p></td>
+<td><p>Returns python datetime.timedelta object based on the astronomical year in seconds.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.time_utils.strptime_to_utc_datetime.html#csep.utils.time_utils.strptime_to_utc_datetime" title="csep.utils.time_utils.strptime_to_utc_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">strptime_to_utc_datetime</span></code></a>(time_string[, format])</p></td>
+<td><p>Converts time_string with format into time-zone aware datetime object in the UTC timezone.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.time_utils.utc_now_datetime.html#csep.utils.time_utils.utc_now_datetime" title="csep.utils.time_utils.utc_now_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utc_now_datetime</span></code></a>()</p></td>
+<td><p>Returns current datetime</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.time_utils.utc_now_epoch.html#csep.utils.time_utils.utc_now_epoch" title="csep.utils.time_utils.utc_now_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utc_now_epoch</span></code></a>()</p></td>
+<td><p>Returns current epoch time</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.time_utils.create_utc_datetime.html#csep.utils.time_utils.create_utc_datetime" title="csep.utils.time_utils.create_utc_datetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_utc_datetime</span></code></a>(datetime)</p></td>
+<td><p>Creates TZAware UTC datetime object from unaware object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.time_utils.decimal_year.html#csep.utils.time_utils.decimal_year" title="csep.utils.time_utils.decimal_year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decimal_year</span></code></a>(test_date)</p></td>
+<td><p>Convert given test date to the decimal year representation.</p></td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-csep.utils.comcat"></span></div>
+<div class="section" id="comcat-access">
+<h2>Comcat Access<a class="headerlink" href="#comcat-access" title="Permalink to this headline">¶</a></h2>
+<p>We integrated the code developed by Mike Hearne and others at the USGS to reduce the dependencies of this package. We plan
+to move this to an external and optional dependency in the future.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.comcat.search.html#csep.utils.comcat.search" title="csep.utils.comcat.search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search</span></code></a>([starttime, endtime, updatedafter, …])</p></td>
+<td><p>Search the ComCat database for events matching input criteria. This search function is a wrapper around the ComCat Web API described here: <a class="reference external" href="https://earthquake.usgs.gov/fdsnws/event/1/">https://earthquake.usgs.gov/fdsnws/event/1/</a> Some of the search parameters described there are NOT implemented here, usually because they do not apply to GeoJSON search results, which we are getting here and parsing into Python data structures. This function returns a list of SummaryEvent objects, described elsewhere in this package. Usage:   TODO: Show usage information. :param starttime: Python datetime - Limit to events on or after the specified start time. :type starttime: datetime :param endtime: Python datetime - Limit to events on or before the specified end time. :type endtime: datetime :param updatedafter: Python datetime - Limit to events updated after the specified time. :type updatedafter: datetime :param minlatitude: Limit to events with a latitude larger than the specified minimum. :type minlatitude: float :param maxlatitude: Limit to events with a latitude smaller than the specified maximum. :type maxlatitude: float :param minlongitude: Limit to events with a longitude larger than the specified minimum. :type minlongitude: float :param maxlongitude: Limit to events with a longitude smaller than the specified maximum. :type maxlongitude: float :param latitude: Specify the latitude to be used for a radius search. :type latitude: float :param longitude: Specify the longitude to be used for a radius search. :type longitude: float :param maxradiuskm: Limit to events within the specified maximum number of kilometers                     from the geographic point defined by the latitude and longitude parameters. :type maxradiuskm: float :param maxradius: Limit to events within the specified maximum number of degrees                   from the geographic point defined by the latitude and longitude parameters. :type maxradius: float :param catalog: Limit to events from a specified catalog. :type catalog: str :param contributor: Limit to events contributed by a specified contributor. :type contributor: str :param limit:               Limit the results to the specified number of events. NOTE, this will be throttled by this Python API to the supported Web API limit of 20,000. :type limit: int :param maxdepth: Limit to events with depth less than the specified maximum. :type maxdepth: float :param maxmagnitude: Limit to events with a magnitude smaller than the specified maximum. :type maxmagnitude: float :param mindepth: Limit to events with depth more than the specified minimum. :type mindepth: float :param minmagnitude: Limit to events with a magnitude larger than the specified minimum. :type minmagnitude: float :param offset: Return results starting at the event count specified, starting at 1. :type offset: int :param orderby: Order the results. The allowed values are:                 - time order by origin descending time                 - time-asc order by origin ascending time                 - magnitude order by descending magnitude                 - magnitude-asc order by ascending magnitude :type orderby: str :param alertlevel:                    Limit to events with a specific PAGER alert level. The allowed values are:                      - green Limit to events with PAGER alert level “green”. - yellow Limit to events with PAGER alert level “yellow”. - orange Limit to events with PAGER alert level “orange”. - red Limit to events with PAGER alert level “red”. :type alertlevel: str :param eventtype: Limit to events of a specific type. NOTE: “earthquake” will filter non-earthquake events. :type eventtype: str :param maxcdi: Maximum value for Maximum Community Determined Intensity reported by DYFI. :type maxcdi: float :param maxgap: Limit to events with no more than this azimuthal gap. :type maxgap: float :param maxmmi: Maximum value for Maximum Modified Mercalli Intensity reported by ShakeMap. :type maxmmi: float :param maxsig: Limit to events with no more than this significance. :type maxsig: float :param mincdi: Minimum value for Maximum Community Determined Intensity reported by DYFI. :type mincdi: float :param minfelt: Limit to events with this many DYFI responses. :type minfelt: int :param mingap: Limit to events with no less than this azimuthal gap. :type mingap: float :param minsig: Limit to events with no less than this significance. :type minsig: float :param producttype:                     Limit to events that have this type of product associated. Example producttypes:                        - moment-tensor                        - focal-mechanism                        - shakemap                        - losspager                        - dyfi :type producttype: str :param productcode: Return the event that is associated with the productcode. The event will be returned even if the productcode is not                     the preferred code for the event. Example productcodes:                      - nn00458749                      - at00ndf1fr :type productcode: str :param reviewstatus:                      Limit to events with a specific review status. The different review statuses are:                          - automatic Limit to events with review status “automatic”. - reviewed Limit to events with review status “reviewed”. :type reviewstatus: str :param host: Replace default ComCat host (earthquake.usgs.gov) with a custom host. :type host: str :param enable_limit: Enable 20,000 event search limit. Will turn off searching                      in segments, which is meant to safely avoid that limit. Use only when you are certain your search will be small. :type enable_limit: bool.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.comcat.get_event_by_id.html#csep.utils.comcat.get_event_by_id" title="csep.utils.comcat.get_event_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_event_by_id</span></code></a>(eventid[, catalog, …])</p></td>
+<td><p>Search the ComCat database for an event matching the input event id.</p></td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-csep.utils.calc"></span></div>
+<div class="section" id="calculation-utilities">
+<h2>Calculation Utilities<a class="headerlink" href="#calculation-utilities" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.calc.nearest_index.html#csep.utils.calc.nearest_index" title="csep.utils.calc.nearest_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nearest_index</span></code></a>(array, value)</p></td>
+<td><p>Returns the index from array that is less than the value specified.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.calc.find_nearest.html#csep.utils.calc.find_nearest" title="csep.utils.calc.find_nearest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_nearest</span></code></a>(array, value)</p></td>
+<td><p>Returns the value from array that is less than the value specified.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.calc.func_inverse.html#csep.utils.calc.func_inverse" title="csep.utils.calc.func_inverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">func_inverse</span></code></a>(x, y, val[, kind])</p></td>
+<td><p>Returns the value of a function based on interpolation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.calc.discretize.html#csep.utils.calc.discretize" title="csep.utils.calc.discretize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">discretize</span></code></a>(data, bin_edges[, right_continuous])</p></td>
+<td><p>returns array with len(bin_edges) consisting of the discretized values from each bin.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.calc.bin1d_vec.html#csep.utils.calc.bin1d_vec" title="csep.utils.calc.bin1d_vec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bin1d_vec</span></code></a>(p, bins[, tol, right_continuous])</p></td>
+<td><p>Efficient implementation of binning routine on 1D Cartesian Grid.</p></td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-csep.utils.stats"></span></div>
+<div class="section" id="statistics-utilities">
+<h2>Statistics Utilities<a class="headerlink" href="#statistics-utilities" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.stats.sup_dist.html#csep.utils.stats.sup_dist" title="csep.utils.stats.sup_dist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sup_dist</span></code></a>(cdf1, cdf2)</p></td>
+<td><p>given two cumulative distribution functions, compute the supremum of the set of absolute distances.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.stats.sup_dist_na.html#csep.utils.stats.sup_dist_na" title="csep.utils.stats.sup_dist_na"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sup_dist_na</span></code></a>(data1, data2)</p></td>
+<td><p>computes the ks statistic for two ecdfs that are not necessarily aligned on the same values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.stats.cumulative_square_diff.html#csep.utils.stats.cumulative_square_diff" title="csep.utils.stats.cumulative_square_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cumulative_square_diff</span></code></a>(cdf1, cdf2)</p></td>
+<td><p>given two cumulative distribution functions, compute the cumulative sq.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.stats.binned_ecdf.html#csep.utils.stats.binned_ecdf" title="csep.utils.stats.binned_ecdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">binned_ecdf</span></code></a>(x, vals)</p></td>
+<td><p>returns the statement P(X ≤ x) for val in vals.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.stats.ecdf.html#csep.utils.stats.ecdf" title="csep.utils.stats.ecdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ecdf</span></code></a>(x)</p></td>
+<td><p>Compute the ecdf of vector x.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.stats.greater_equal_ecdf.html#csep.utils.stats.greater_equal_ecdf" title="csep.utils.stats.greater_equal_ecdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">greater_equal_ecdf</span></code></a>(x, val[, cdf])</p></td>
+<td><p>Given val return P(x ≥ val).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.stats.less_equal_ecdf.html#csep.utils.stats.less_equal_ecdf" title="csep.utils.stats.less_equal_ecdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">less_equal_ecdf</span></code></a>(x, val[, cdf])</p></td>
+<td><p>Given val return P(x ≤ val).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.stats.min_or_none.html#csep.utils.stats.min_or_none" title="csep.utils.stats.min_or_none"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min_or_none</span></code></a>(x)</p></td>
+<td><p>Given an array x, returns the min value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.stats.max_or_none.html#csep.utils.stats.max_or_none" title="csep.utils.stats.max_or_none"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_or_none</span></code></a>(x)</p></td>
+<td><p>Given an array x, returns the max value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.stats.get_quantiles.html#csep.utils.stats.get_quantiles" title="csep.utils.stats.get_quantiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_quantiles</span></code></a>(sim_counts, obs_count)</p></td>
+<td><p>Computes delta1 and delta2 quantile scores from empirical distribution and observation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.stats.poisson_log_likelihood.html#csep.utils.stats.poisson_log_likelihood" title="csep.utils.stats.poisson_log_likelihood"><code class="xref py py-obj docutils literal notranslate"><span class="pre">poisson_log_likelihood</span></code></a>(observation, forecast)</p></td>
+<td><p>Wrapper around scipy to compute the Poisson log-likelihood</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/csep.utils.stats.poisson_joint_log_likelihood_ndarray.html#csep.utils.stats.poisson_joint_log_likelihood_ndarray" title="csep.utils.stats.poisson_joint_log_likelihood_ndarray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">poisson_joint_log_likelihood_ndarray</span></code></a>(…)</p></td>
+<td><p>Efficient calculation of joint log-likelihood of grid-based forecast.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.stats.poisson_inverse_cdf.html#csep.utils.stats.poisson_inverse_cdf" title="csep.utils.stats.poisson_inverse_cdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">poisson_inverse_cdf</span></code></a>(random_matrix, lam)</p></td>
+<td><p>Wrapper around scipy inverse poisson cdf function</p></td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-csep.utils.basic_types"></span></div>
+<div class="section" id="basic-types">
+<h2>Basic types<a class="headerlink" href="#basic-types" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/csep.utils.basic_types.AdaptiveHistogram.html#csep.utils.basic_types.AdaptiveHistogram" title="csep.utils.basic_types.AdaptiveHistogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaptiveHistogram</span></code></a>([dh, anchor])</p></td>
+<td><p>Allows us to work with data that need to be discretized and aggregated even though the the global min/max values are not known before hand.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="generated/csep.load_stochastic_event_sets.html" class="btn btn-neutral float-right" title="csep.load_stochastic_event_sets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="developer_notes.html" class="btn btn-neutral float-left" title="Developer Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+ 
+&#169; 2020, University of Southern California.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

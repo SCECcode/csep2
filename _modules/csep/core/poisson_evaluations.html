@@ -1,0 +1,826 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>csep.core.poisson_evaluations &mdash; PyCSEP v0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <!-- Google Analytics -->
+    <!-- added options to anonymize ip and disable cookies using {'storage': 'none'} 
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-495056-15', 'auto', {'storage': 'none'});
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+    </script> -->
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PyCSEP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installing.html">Installing PyCSEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/core_concepts.html">Core Concepts for Beginners</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials and Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/catalog_filtering.html">Catalogs operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/plot_gridded_forecast.html">Plotting gridded forecast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/gridded_forecast_evaluation.html">Grid-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/working_with_catalog_forecasts.html">Working with catalog-based forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/catalog_forecast_evaluation.html">Catalog-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/plot_customizations.html">Plot customizations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/catalogs.html">Catalogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/forecasts.html">Forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/regions.html">Regions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Help &amp; Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/glossary.html">Terms and Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/publications.html">Referenced Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/roadmap.html">Development Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/developer_notes.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/api_reference.html">API Reference</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">Source code and contributing</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CONTRIBUTING.md">Contributing</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/LICENSE">License</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/issues">Getting help</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2">Source Code</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyCSEP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../csep.html">csep</a> &raquo;</li>
+        
+      <li>csep.core.poisson_evaluations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for csep.core.poisson_evaluations</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span>
+
+<span class="kn">from</span> <span class="nn">csep.models</span> <span class="kn">import</span> <span class="n">EvaluationResult</span>
+<span class="kn">from</span> <span class="nn">csep.utils.stats</span> <span class="kn">import</span> <span class="n">poisson_joint_log_likelihood_ndarray</span>
+
+
+<div class="viewcode-block" id="paired_t_test"><a class="viewcode-back" href="../../../reference/generated/csep.core.poisson_evaluations.paired_t_test.html#csep.core.poisson_evaluations.paired_t_test">[docs]</a><span class="k">def</span> <span class="nf">paired_t_test</span><span class="p">(</span><span class="n">forecast</span><span class="p">,</span> <span class="n">benchmark_forecast</span><span class="p">,</span> <span class="n">observed_catalog</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Computes the t-test for gridded earthquake forecasts.</span>
+
+<span class="sd">    This score is positively oriented, meaning that positive values of the information gain indicate that the</span>
+<span class="sd">    forecast is performing better than the benchmark forecast.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        forecast (csep.core.forecasts.GriddedForecast): nd-array storing gridded rates, axis=-1 should be the magnitude column</span>
+<span class="sd">        benchmark_forecast (csep.core.forecasts.GriddedForecast): nd-array storing gridded rates, axis=-1 should be the magnitude column</span>
+<span class="sd">        observed_catalog (csep.core.catalogs.AbstractBaseCatalog): number of observed earthquakes, should be whole number and &gt;= zero.</span>
+<span class="sd">        alpha (float): tolerance level for the type-i error rate of the statistical test</span>
+<span class="sd">        scale (bool): if true, scale forecasted rates down to a single day</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        evaluation_result: csep.core.evaluations.EvaluationResult</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># needs some pre-processing to put the forecasts in the context that is required for the t-test. this is different</span>
+    <span class="c1"># for cumulative forecasts (eg, multiple time-horizons) and static file-based forecasts.</span>
+    <span class="n">target_event_rate_forecast1</span><span class="p">,</span> <span class="n">n_fore1</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">target_event_rates</span><span class="p">(</span><span class="n">observed_catalog</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+    <span class="n">target_event_rate_forecast2</span><span class="p">,</span> <span class="n">n_fore2</span> <span class="o">=</span> <span class="n">benchmark_forecast</span><span class="o">.</span><span class="n">target_event_rates</span><span class="p">(</span><span class="n">observed_catalog</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+
+    <span class="c1"># call the primative version operating on ndarray</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">_t_test_ndarray</span><span class="p">(</span><span class="n">target_event_rate_forecast1</span><span class="p">,</span> <span class="n">target_event_rate_forecast2</span><span class="p">,</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">event_count</span><span class="p">,</span> <span class="n">n_fore1</span><span class="p">,</span> <span class="n">n_fore2</span><span class="p">,</span>
+                          <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+    <span class="c1"># storing this for later</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="p">()</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Paired T-Test&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">test_distribution</span> <span class="o">=</span> <span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;ig_lower&#39;</span><span class="p">],</span> <span class="n">out</span><span class="p">[</span><span class="s1">&#39;ig_upper&#39;</span><span class="p">])</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">observed_statistic</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="s1">&#39;information_gain&#39;</span><span class="p">]</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">quantile</span> <span class="o">=</span> <span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;t_statistic&#39;</span><span class="p">],</span> <span class="n">out</span><span class="p">[</span><span class="s1">&#39;t_critical&#39;</span><span class="p">])</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">=</span> <span class="p">(</span><span class="n">forecast</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">benchmark_forecast</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">obs_name</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">min_mw</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">forecast</span><span class="o">.</span><span class="n">magnitudes</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="w_test"><a class="viewcode-back" href="../../../reference/generated/csep.core.poisson_evaluations.w_test.html#csep.core.poisson_evaluations.w_test">[docs]</a><span class="k">def</span> <span class="nf">w_test</span><span class="p">(</span><span class="n">gridded_forecast1</span><span class="p">,</span> <span class="n">gridded_forecast2</span><span class="p">,</span> <span class="n">observed_catalog</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Calculate the Single Sample Wilcoxon signed-rank test between two gridded forecasts.</span>
+
+<span class="sd">    This test allows to test the null hypothesis that the median of Sample (X1(i)-X2(i)) is equal to a (N1-N2) / N_obs.</span>
+<span class="sd">    where, N1, N2 = Sum of expected values of Forecast_1 and Forecast_2, respectively.</span>
+
+<span class="sd">    The Wilcoxon signed-rank test tests the null hypothesis that difference of Xi and Yi come from the same distribution.</span>
+<span class="sd">    In particular, it tests whether the distribution of the differences is symmetric around given mean.</span>
+
+<span class="sd">    Parameters</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        gridded_forecast1: Forecast of a model_1 (Grided) (Numpy Array)</span>
+<span class="sd">                A forecast has to be in terms of Average Number of Events in Each Bin</span>
+<span class="sd">                It can be anything greater than zero</span>
+
+<span class="sd">        gridded_forecast2: Forecast of model_2 (Grided) (Numpy Array)</span>
+<span class="sd">                A forecast has to be in terms of Average Number of Events in Each Bin</span>
+<span class="sd">                It can be anything greater than zero</span>
+
+<span class="sd">        observation: Observed (Grided) seismicity (Numpy Array):</span>
+<span class="sd">                An Observation has to be observed seismicity in each Bin</span>
+<span class="sd">                It has to be a either zero or positive integer only (No Floating Point)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">        out: csep.core.evaluations.EvaluationResult</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># needs some pre-processing to put the forecasts in the context that is required for the t-test. this is different</span>
+    <span class="c1"># for cumulative forecasts (eg, multiple time-horizons) and static file-based forecasts.</span>
+    <span class="n">target_event_rate_forecast1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">gridded_forecast1</span><span class="o">.</span><span class="n">target_event_rates</span><span class="p">(</span><span class="n">observed_catalog</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+    <span class="n">target_event_rate_forecast2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">gridded_forecast2</span><span class="o">.</span><span class="n">target_event_rates</span><span class="p">(</span><span class="n">observed_catalog</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">event_count</span>  <span class="c1"># Sum of all the observed earthquakes</span>
+    <span class="n">N1</span> <span class="o">=</span> <span class="n">gridded_forecast1</span><span class="o">.</span><span class="n">event_count</span>  <span class="c1"># Total number of Forecasted earthquakes by Model 1</span>
+    <span class="n">N2</span> <span class="o">=</span> <span class="n">gridded_forecast2</span><span class="o">.</span><span class="n">event_count</span>  <span class="c1"># Total number of Forecasted earthquakes by Model 2</span>
+    <span class="n">X1</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">target_event_rate_forecast1</span><span class="p">)</span>  <span class="c1"># Log of every element of Forecast 1</span>
+    <span class="n">X2</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">target_event_rate_forecast2</span><span class="p">)</span>  <span class="c1"># Log of every element of Forecast 2</span>
+
+    <span class="c1"># this ratio is the same as long as we scale all the forecasts and catalog rates by the same value</span>
+    <span class="n">median_value</span> <span class="o">=</span> <span class="p">(</span><span class="n">N1</span> <span class="o">-</span> <span class="n">N2</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
+
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">X1</span> <span class="o">-</span> <span class="n">X2</span>
+
+    <span class="c1"># w_test is One Sample Wilcoxon Signed Rank Test. It accepts the data only in 1D array.</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">diff</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>  <span class="c1"># Converting 2D Difference to 1D</span>
+
+    <span class="n">w_test_dic</span> <span class="o">=</span> <span class="n">_w_test_ndarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">median_value</span><span class="p">)</span>
+
+    <span class="c1"># configure test result</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="p">()</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;W-Test&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">test_distribution</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">observed_statistic</span> <span class="o">=</span> <span class="n">w_test_dic</span><span class="p">[</span><span class="s1">&#39;z_statistic&#39;</span><span class="p">]</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">quantile</span> <span class="o">=</span> <span class="n">w_test_dic</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">]</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">=</span> <span class="p">(</span><span class="n">gridded_forecast1</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">gridded_forecast2</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">obs_name</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">min_mw</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">gridded_forecast1</span><span class="o">.</span><span class="n">magnitudes</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="number_test"><a class="viewcode-back" href="../../../reference/generated/csep.core.poisson_evaluations.number_test.html#csep.core.poisson_evaluations.number_test">[docs]</a><span class="k">def</span> <span class="nf">number_test</span><span class="p">(</span><span class="n">gridded_forecast</span><span class="p">,</span> <span class="n">observed_catalog</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes &quot;N-Test&quot; on a gridded forecast.</span>
+<span class="sd">    author: @asim</span>
+
+<span class="sd">    Computes Number (N) test for Observed and Forecasts. Both data sets are expected to be in terms of event counts.</span>
+<span class="sd">    We find the Total number of events in Observed Catalog and Forecasted Catalogs. Which are then employed to compute the probablities of</span>
+<span class="sd">    (i) At least no. of events (delta 1)</span>
+<span class="sd">    (ii) At most no. of events (delta 2) assuming the poissonian distribution.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        observation: Observed (Gridded) seismicity (Numpy Array):</span>
+<span class="sd">                    An Observation has to be Number of Events in Each Bin</span>
+<span class="sd">                    It has to be a either zero or positive integer only (No Floating Point)</span>
+<span class="sd">        forecast:   Forecast of a Model (Gridded) (Numpy Array)</span>
+<span class="sd">                    A forecast has to be in terms of Average Number of Events in Each Bin</span>
+<span class="sd">                    It can be anything greater than zero</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        out (tuple): (delta_1, delta_2)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="p">()</span>
+
+    <span class="c1"># observed count</span>
+    <span class="n">obs_cnt</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">event_count</span>
+
+    <span class="c1"># forecasts provide the expeceted number of events during the time horizon of the forecast</span>
+    <span class="n">fore_cnt</span> <span class="o">=</span> <span class="n">gridded_forecast</span><span class="o">.</span><span class="n">event_count</span>
+
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-6</span>
+
+    <span class="c1"># stores the actual result of the number test</span>
+    <span class="n">delta1</span><span class="p">,</span> <span class="n">delta2</span> <span class="o">=</span> <span class="n">_number_test_ndarray</span><span class="p">(</span><span class="n">fore_cnt</span><span class="p">,</span> <span class="n">obs_cnt</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">)</span>
+
+    <span class="c1"># store results</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">test_distribution</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="n">fore_cnt</span><span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Poisson N-Test&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">observed_statistic</span> <span class="o">=</span> <span class="n">obs_cnt</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">quantile</span> <span class="o">=</span> <span class="p">(</span><span class="n">delta1</span><span class="p">,</span> <span class="n">delta2</span><span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">=</span> <span class="n">gridded_forecast</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">obs_name</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">min_mw</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">gridded_forecast</span><span class="o">.</span><span class="n">magnitudes</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="conditional_likelihood_test"><a class="viewcode-back" href="../../../reference/generated/csep.core.poisson_evaluations.conditional_likelihood_test.html#csep.core.poisson_evaluations.conditional_likelihood_test">[docs]</a><span class="k">def</span> <span class="nf">conditional_likelihood_test</span><span class="p">(</span><span class="n">gridded_forecast</span><span class="p">,</span> <span class="n">observed_catalog</span><span class="p">,</span> <span class="n">num_simulations</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_numbers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Performs the conditional likelihood test on Gridded Forecast using an Observed Catalog.</span>
+
+<span class="sd">    This test normalizes the forecast so the forecasted rate are consistent with the observations. This modification</span>
+<span class="sd">    eliminates the strong impact differences in the number distribution have on the forecasted rates.</span>
+
+<span class="sd">    Note: The forecast and the observations should be scaled to the same time period before calling this function. This increases</span>
+<span class="sd">    transparency as no assumptions are being made about the length of the forecasts. This is particularly important for</span>
+<span class="sd">    gridded forecasts that supply their forecasts as rates.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        gridded_forecast: csep.core.forecasts.GriddedForecast</span>
+<span class="sd">        observed_catalog: csep.core.catalogs.Catalog</span>
+<span class="sd">        num_simulations (int): number of simulations used to compute the quantile score</span>
+<span class="sd">        seed (int): used fore reproducibility, and testing</span>
+<span class="sd">        random_numbers (numpy.ndarray): random numbers used to override the random number generation. injection point for testing.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        evaluation_result: csep.core.evaluations.EvaluationResult</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># grid catalog onto spatial grid</span>
+    <span class="n">gridded_catalog_data</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">spatial_magnitude_counts</span><span class="p">()</span>
+
+    <span class="c1"># simply call likelihood test on catalog data and forecast</span>
+    <span class="n">qs</span><span class="p">,</span> <span class="n">obs_ll</span><span class="p">,</span> <span class="n">simulated_ll</span> <span class="o">=</span> <span class="n">_poisson_likelihood_test</span><span class="p">(</span><span class="n">gridded_forecast</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">gridded_catalog_data</span><span class="p">,</span>
+                                                        <span class="n">num_simulations</span><span class="o">=</span><span class="n">num_simulations</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span> <span class="n">random_numbers</span><span class="o">=</span><span class="n">random_numbers</span><span class="p">,</span>
+                                                        <span class="n">use_observed_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                        <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+
+    <span class="c1"># populate result data structure</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="p">()</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">test_distribution</span> <span class="o">=</span> <span class="n">simulated_ll</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Poisson CL-Test&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">observed_statistic</span> <span class="o">=</span> <span class="n">obs_ll</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">quantile</span> <span class="o">=</span> <span class="n">qs</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">=</span> <span class="n">gridded_forecast</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">obs_name</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">min_mw</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">gridded_forecast</span><span class="o">.</span><span class="n">magnitudes</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="magnitude_test"><a class="viewcode-back" href="../../../reference/generated/csep.core.poisson_evaluations.magnitude_test.html#csep.core.poisson_evaluations.magnitude_test">[docs]</a><span class="k">def</span> <span class="nf">magnitude_test</span><span class="p">(</span><span class="n">gridded_forecast</span><span class="p">,</span> <span class="n">observed_catalog</span><span class="p">,</span> <span class="n">num_simulations</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_numbers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Performs the Magnitude Test on a Gridded Forecast using an observed catalog.</span>
+
+<span class="sd">    Note: The forecast and the observations should be scaled to the same time period before calling this function. This increases</span>
+<span class="sd">    transparency as no assumptions are being made about the length of the forecasts. This is particularly important for</span>
+<span class="sd">    gridded forecasts that supply their forecasts as rates.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        gridded_forecast: csep.core.forecasts.GriddedForecast</span>
+<span class="sd">        observed_catalog: csep.core.catalogs.Catalog</span>
+<span class="sd">        num_simulations (int): number of simulations used to compute the quantile score</span>
+<span class="sd">        seed (int): used fore reproducibility, and testing</span>
+<span class="sd">        random_numbers (numpy.ndarray): random numbers used to override the random number generation. injection point for testing.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        evaluation_result: csep.core.evaluations.EvaluationResult</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># grid catalog onto spatial grid</span>
+    <span class="n">gridded_catalog_data</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">magnitude_counts</span><span class="p">(</span><span class="n">mag_bins</span><span class="o">=</span><span class="n">gridded_forecast</span><span class="o">.</span><span class="n">magnitudes</span><span class="p">)</span>
+
+    <span class="c1"># simply call likelihood test on catalog data and forecast</span>
+    <span class="n">qs</span><span class="p">,</span> <span class="n">obs_ll</span><span class="p">,</span> <span class="n">simulated_ll</span> <span class="o">=</span> <span class="n">_poisson_likelihood_test</span><span class="p">(</span><span class="n">gridded_forecast</span><span class="o">.</span><span class="n">magnitude_counts</span><span class="p">(),</span> <span class="n">gridded_catalog_data</span><span class="p">,</span>
+                                                        <span class="n">num_simulations</span><span class="o">=</span><span class="n">num_simulations</span><span class="p">,</span>
+                                                        <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+                                                        <span class="n">random_numbers</span><span class="o">=</span><span class="n">random_numbers</span><span class="p">,</span>
+                                                        <span class="n">use_observed_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                        <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+
+    <span class="c1"># populate result data structure</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="p">()</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">test_distribution</span> <span class="o">=</span> <span class="n">simulated_ll</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Poisson M-Test&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">observed_statistic</span> <span class="o">=</span> <span class="n">obs_ll</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">quantile</span> <span class="o">=</span> <span class="n">qs</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">=</span> <span class="n">gridded_forecast</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">obs_name</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">min_mw</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">gridded_forecast</span><span class="o">.</span><span class="n">magnitudes</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="spatial_test"><a class="viewcode-back" href="../../../reference/generated/csep.core.poisson_evaluations.spatial_test.html#csep.core.poisson_evaluations.spatial_test">[docs]</a><span class="k">def</span> <span class="nf">spatial_test</span><span class="p">(</span><span class="n">gridded_forecast</span><span class="p">,</span> <span class="n">observed_catalog</span><span class="p">,</span> <span class="n">num_simulations</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_numbers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Performs the Spatial Test on the Forecast using the Observed Catalogs.</span>
+
+<span class="sd">    Note: The forecast and the observations should be scaled to the same time period before calling this function. This increases</span>
+<span class="sd">    transparency as no assumptions are being made about the length of the forecasts. This is particularly important for</span>
+<span class="sd">    gridded forecasts that supply their forecasts as rates.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        gridded_forecast: csep.core.forecasts.GriddedForecast</span>
+<span class="sd">        observed_catalog: csep.core.catalogs.Catalog</span>
+<span class="sd">        num_simulations (int): number of simulations used to compute the quantile score</span>
+<span class="sd">        seed (int): used fore reproducibility, and testing</span>
+<span class="sd">        random_numbers (numpy.ndarray): random numbers used to override the random number generation. injection point for testing.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        evaluation_result: csep.core.evaluations.EvaluationResult</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># grid catalog onto spatial grid</span>
+    <span class="n">gridded_catalog_data</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">spatial_counts</span><span class="p">()</span>
+
+    <span class="c1"># simply call likelihood test on catalog data and forecast</span>
+    <span class="n">qs</span><span class="p">,</span> <span class="n">obs_ll</span><span class="p">,</span> <span class="n">simulated_ll</span> <span class="o">=</span> <span class="n">_poisson_likelihood_test</span><span class="p">(</span><span class="n">gridded_forecast</span><span class="o">.</span><span class="n">spatial_counts</span><span class="p">(),</span> <span class="n">gridded_catalog_data</span><span class="p">,</span>
+                                                        <span class="n">num_simulations</span><span class="o">=</span><span class="n">num_simulations</span><span class="p">,</span>
+                                                        <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+                                                        <span class="n">random_numbers</span><span class="o">=</span><span class="n">random_numbers</span><span class="p">,</span>
+                                                        <span class="n">use_observed_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                        <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+
+    <span class="c1"># populate result data structure</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="p">()</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">test_distribution</span> <span class="o">=</span> <span class="n">simulated_ll</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Poisson S-Test&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">observed_statistic</span> <span class="o">=</span> <span class="n">obs_ll</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">quantile</span> <span class="o">=</span> <span class="n">qs</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">=</span> <span class="n">gridded_forecast</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">obs_name</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">min_mw</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">gridded_forecast</span><span class="o">.</span><span class="n">magnitudes</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">min_mw</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="likelihood_test"><a class="viewcode-back" href="../../../reference/generated/csep.core.poisson_evaluations.likelihood_test.html#csep.core.poisson_evaluations.likelihood_test">[docs]</a><span class="k">def</span> <span class="nf">likelihood_test</span><span class="p">(</span><span class="n">gridded_forecast</span><span class="p">,</span> <span class="n">observed_catalog</span><span class="p">,</span> <span class="n">num_simulations</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_numbers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Performs the likelihood test on Gridded Forecast using an Observed Catalog.</span>
+
+<span class="sd">    Note: The forecast and the observations should be scaled to the same time period before calling this function. This increases</span>
+<span class="sd">    transparency as no assumptions are being made about the length of the forecasts. This is particularly important for</span>
+<span class="sd">    gridded forecasts that supply their forecasts as rates.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        gridded_forecast: csep.core.forecasts.GriddedForecast</span>
+<span class="sd">        observed_catalog: csep.core.catalogs.Catalog</span>
+<span class="sd">        num_simulations (int): number of simulations used to compute the quantile score</span>
+<span class="sd">        seed (int): used fore reproducibility, and testing</span>
+<span class="sd">        random_numbers (numpy.ndarray): random numbers used to override the random number generation.</span>
+<span class="sd">                               injection point for testing.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        evaluation_result: csep.core.evaluations.EvaluationResult</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># grid catalog onto spatial grid</span>
+    <span class="n">gridded_catalog_data</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">spatial_magnitude_counts</span><span class="p">()</span>
+
+    <span class="c1"># simply call likelihood test on catalog and forecast</span>
+    <span class="n">qs</span><span class="p">,</span> <span class="n">obs_ll</span><span class="p">,</span> <span class="n">simulated_ll</span> <span class="o">=</span> <span class="n">_poisson_likelihood_test</span><span class="p">(</span><span class="n">gridded_forecast</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">gridded_catalog_data</span><span class="p">,</span>
+                                                        <span class="n">num_simulations</span><span class="o">=</span><span class="n">num_simulations</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span> <span class="n">random_numbers</span><span class="o">=</span><span class="n">random_numbers</span><span class="p">,</span>
+                                                        <span class="n">use_observed_counts</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                                        <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+
+    <span class="c1"># populate result data structure</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">EvaluationResult</span><span class="p">()</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">test_distribution</span> <span class="o">=</span> <span class="n">simulated_ll</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Poisson L-Test&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">observed_statistic</span> <span class="o">=</span> <span class="n">obs_ll</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">quantile</span> <span class="o">=</span> <span class="n">qs</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">=</span> <span class="n">gridded_forecast</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">obs_name</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">min_mw</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">gridded_forecast</span><span class="o">.</span><span class="n">magnitudes</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+<span class="k">def</span> <span class="nf">_number_test_ndarray</span><span class="p">(</span><span class="n">fore_cnt</span><span class="p">,</span> <span class="n">obs_cnt</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Computes delta1 and delta2 values from the csep1 number test.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        fore_cnt (float): parameter of poisson distribution coming from expected value of the forecast</span>
+<span class="sd">        obs_cnt (float): count of earthquakes observed during the testing period.</span>
+<span class="sd">        epsilon (float): tolerance level to satisfy the requirements of two-sided p-value</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">        result (tuple): (delta1, delta2)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">delta1</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">obs_cnt</span> <span class="o">-</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">fore_cnt</span><span class="p">)</span>
+    <span class="n">delta2</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">obs_cnt</span> <span class="o">+</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">fore_cnt</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">delta1</span><span class="p">,</span> <span class="n">delta2</span>
+
+<span class="k">def</span> <span class="nf">_t_test_ndarray</span><span class="p">(</span><span class="n">target_event_rates1</span><span class="p">,</span> <span class="n">target_event_rates2</span><span class="p">,</span> <span class="n">n_obs</span><span class="p">,</span> <span class="n">n_f1</span><span class="p">,</span> <span class="n">n_f2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Computes T test statistic by comparing two target event rate distributions.</span>
+
+<span class="sd">    We compare Forecast from Model 1 and with Forecast of Model 2. Information Gain is computed, which is then employed</span>
+<span class="sd">    to compute T statistic. Confidence interval of Information Gain can be computed using T_critical. For a complete explanation</span>
+<span class="sd">    see Rhoades, D. A., et al., (2011). Efficient testing of earthquake forecasting models. Acta Geophysica, 59(4), 728-747.</span>
+<span class="sd">    doi:10.2478/s11600-011-0013-5</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        target_event_rates1 (numpy.ndarray): nd-array storing target event rates</span>
+<span class="sd">        target_event_rates2 (numpy.ndarray): nd-array storing target event rates</span>
+<span class="sd">        n_obs (float, int, numpy.ndarray): number of observed earthquakes, should be whole number and &gt;= zero.</span>
+<span class="sd">        alpha (float): tolerance level for the type-i error rate of the statistical test</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        out (dict): relevant statistics from the t-test</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Some Pre Calculations -  Because they are being used repeatedly.</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">n_obs</span>  <span class="c1"># Total number of observed earthquakes</span>
+    <span class="n">N1</span> <span class="o">=</span> <span class="n">n_f1</span>  <span class="c1"># Total number of forecasted earthquakes by Model 1</span>
+    <span class="n">N2</span> <span class="o">=</span> <span class="n">n_f2</span>  <span class="c1"># Total number of forecasted earthquakes by Model 2</span>
+    <span class="n">X1</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">target_event_rates1</span><span class="p">)</span>  <span class="c1"># Log of every element of Forecast 1</span>
+    <span class="n">X2</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">target_event_rates2</span><span class="p">)</span>  <span class="c1"># Log of every element of Forecast 2</span>
+
+    <span class="c1"># Information Gain, using Equation (17)  of Rhoades et al. 2011</span>
+    <span class="n">information_gain</span> <span class="o">=</span> <span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">X1</span> <span class="o">-</span> <span class="n">X2</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">N1</span> <span class="o">-</span> <span class="n">N2</span><span class="p">))</span> <span class="o">/</span> <span class="n">N</span>
+
+    <span class="c1"># Compute variance of (X1-X2) using Equation (18)  of Rhoades et al. 2011</span>
+    <span class="n">first_term</span> <span class="o">=</span> <span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">power</span><span class="p">((</span><span class="n">X1</span> <span class="o">-</span> <span class="n">X2</span><span class="p">),</span> <span class="mi">2</span><span class="p">)))</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">second_term</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">X1</span> <span class="o">-</span> <span class="n">X2</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">forecast_variance</span> <span class="o">=</span> <span class="n">first_term</span> <span class="o">-</span> <span class="n">second_term</span>
+
+    <span class="n">forecast_std</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">forecast_variance</span><span class="p">)</span>
+    <span class="n">t_statistic</span> <span class="o">=</span> <span class="n">information_gain</span> <span class="o">/</span> <span class="p">(</span><span class="n">forecast_std</span> <span class="o">/</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+
+    <span class="c1"># Obtaining the Critical Value of T from T distribution.</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">t_critical</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">alpha</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">df</span><span class="p">)</span>  <span class="c1"># Assuming 2-Tail Distribution  for 2 tail, divide 0.05/2.</span>
+
+    <span class="c1"># Computing Information Gain Interval.</span>
+    <span class="n">ig_lower</span> <span class="o">=</span> <span class="n">information_gain</span> <span class="o">-</span> <span class="p">(</span><span class="n">t_critical</span> <span class="o">*</span> <span class="n">forecast_std</span> <span class="o">/</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+    <span class="n">ig_upper</span> <span class="o">=</span> <span class="n">information_gain</span> <span class="o">+</span> <span class="p">(</span><span class="n">t_critical</span> <span class="o">*</span> <span class="n">forecast_std</span> <span class="o">/</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+
+    <span class="c1"># If T value greater than T critical, Then both Lower and Upper Confidence Interval limits will be greater than Zero.</span>
+    <span class="c1"># If above Happens, Then It means that Forecasting Model 1 is better than Forecasting Model 2.</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;t_statistic&#39;</span><span class="p">:</span> <span class="n">t_statistic</span><span class="p">,</span>
+            <span class="s1">&#39;t_critical&#39;</span><span class="p">:</span> <span class="n">t_critical</span><span class="p">,</span>
+            <span class="s1">&#39;information_gain&#39;</span><span class="p">:</span> <span class="n">information_gain</span><span class="p">,</span>
+            <span class="s1">&#39;ig_lower&#39;</span><span class="p">:</span> <span class="n">ig_lower</span><span class="p">,</span>
+            <span class="s1">&#39;ig_upper&#39;</span><span class="p">:</span> <span class="n">ig_upper</span><span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">_w_test_ndarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Calculate the Single Sample Wilcoxon signed-rank test for an ndarray.</span>
+
+<span class="sd">    This method is based on collecting a number of samples from a population with unknown median, m.</span>
+<span class="sd">    The Wilcoxon One Sample Signed-Rank test is the non parametric version of the t-test.</span>
+<span class="sd">    It is based on ranks and because of that, the location parameter is not here the mean but the median.</span>
+<span class="sd">    This test allows to test the null hypothesis that the sample median is equal to a given value provided by the user.</span>
+<span class="sd">    If we designate m to be the assumed median of the sample:</span>
+<span class="sd">    Null hypothesis (simplified): The population from which the data were sampled is symmetric about the Given value (m).</span>
+<span class="sd">    Alternative hypothesis (simplified, two-sided): The population from which the data were sampled is not symmetric around m.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x:   1D vector of paired differences.</span>
+<span class="sd">        m:   Designated median value.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: {&#39;z_statistic&#39;: Value of Z statistic, considering two-side test,</span>
+<span class="sd">               &#39;probablity&#39;: Probablity value }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># compute median differences</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">m</span>
+
+    <span class="c1"># remove zero values</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">not_equal</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">d</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="n">numpy</span><span class="o">.</span><span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Sample size too small for normal approximation.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># compute ranks</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">rankdata</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+    <span class="n">r_plus</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">d</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">r</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">r_minus</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">d</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">r</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># for &quot;two-sided&quot;, choose minimum of both</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">r_plus</span><span class="p">,</span> <span class="n">r_minus</span><span class="p">)</span>
+
+    <span class="c1"># Correction to be introduced</span>
+    <span class="n">mn</span> <span class="o">=</span> <span class="n">count</span> <span class="o">*</span> <span class="p">(</span><span class="n">count</span> <span class="o">+</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.25</span>
+    <span class="n">se</span> <span class="o">=</span> <span class="n">count</span> <span class="o">*</span> <span class="p">(</span><span class="n">count</span> <span class="o">+</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">*</span> <span class="n">count</span> <span class="o">+</span> <span class="mf">1.</span><span class="p">)</span>
+
+    <span class="n">replist</span><span class="p">,</span> <span class="n">repnum</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">find_repeats</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">repnum</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Correction for repeated elements.</span>
+        <span class="n">se</span> <span class="o">-=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">repnum</span> <span class="o">*</span> <span class="p">(</span><span class="n">repnum</span> <span class="o">*</span> <span class="n">repnum</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="n">se</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">se</span> <span class="o">/</span> <span class="mi">24</span><span class="p">)</span>
+
+    <span class="c1"># compute statistic and p-value using normal approximation</span>
+    <span class="c1">#  z = (T - mn - d) / se Continuity correction. But We are not considering continuity correction.</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">mn</span><span class="p">)</span> <span class="o">/</span> <span class="n">se</span>
+
+    <span class="c1"># 2, is multiplied for &quot;two-sided&quot; distribution</span>
+    <span class="n">prob</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+
+    <span class="c1"># Accept the NULL Hypothesis [Median(Xi-Yi) = Given value]. If probability is greater than 0.05</span>
+    <span class="c1"># If Probability is smaller than 0.05, Reject the NULL Hypothesis, that Median(Xi-Yi) != Given Value</span>
+    <span class="n">w_test_eval</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;z_statistic&#39;</span><span class="p">:</span> <span class="n">z</span><span class="p">,</span>
+                   <span class="s1">&#39;probability&#39;</span><span class="p">:</span> <span class="n">prob</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">w_test_eval</span>
+
+<span class="k">def</span> <span class="nf">_simulate_catalog</span><span class="p">(</span><span class="n">num_events</span><span class="p">,</span> <span class="n">sampling_weights</span><span class="p">,</span> <span class="n">sim_fore</span><span class="p">,</span> <span class="n">random_numbers</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="c1"># generate uniformly distributed random numbers in [0,1), this</span>
+    <span class="k">if</span> <span class="n">random_numbers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">random_numbers</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num_events</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># TODO: ensure that random numbers are all between 0 and 1.</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># reset simulation array to zero, but don&#39;t reallocate</span>
+    <span class="n">sim_fore</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># find insertion points using binary search inserting to satisfy a[i-1] &lt;= v &lt; a[i]</span>
+    <span class="n">pnts</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">sampling_weights</span><span class="p">,</span> <span class="n">random_numbers</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+
+    <span class="c1"># create simulated catalog by adding to the original locations</span>
+    <span class="n">numpy</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="n">sim_fore</span><span class="p">,</span> <span class="n">pnts</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">sim_fore</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="n">num_events</span><span class="p">,</span> <span class="s2">&quot;simulated the wrong number of events!&quot;</span>
+
+    <span class="k">return</span> <span class="n">sim_fore</span>
+
+<span class="k">def</span> <span class="nf">_poisson_likelihood_test</span><span class="p">(</span><span class="n">forecast_data</span><span class="p">,</span> <span class="n">observed_data</span><span class="p">,</span> <span class="n">num_simulations</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">random_numbers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_observed_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the likelihood-test from CSEP using an efficient simulation based approach.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        forecast_data (numpy.ndarray): nd array where [:, -1] are the magnitude bins.</span>
+<span class="sd">        observed_data (numpy.ndarray): same format as observation.</span>
+<span class="sd">        num_simulations: default number of simulations to use for likelihood based simulations</span>
+<span class="sd">        seed: used for reproducibility of the prng</span>
+<span class="sd">        random_numbers (numpy.ndarray): can supply an explicit list of random numbers, primarily used for software testing</span>
+<span class="sd">        use_observed_counts (bool): if true, will simulate catalogs using the observed events, if false will draw from poisson distrubtion</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># set seed for the likelihood test</span>
+    <span class="k">if</span> <span class="n">seed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="c1"># used to determine where simulated earthquake should be placed, by definition of cumsum these are sorted</span>
+    <span class="n">sampling_weights</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">forecast_data</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span> <span class="o">/</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">forecast_data</span><span class="p">)</span>
+
+    <span class="c1"># data structures to store results</span>
+    <span class="n">sim_fore</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">sampling_weights</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">simulated_ll</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">n_obs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">observed_data</span><span class="p">)</span>
+    <span class="n">n_fore</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">forecast_data</span><span class="p">)</span>
+
+    <span class="c1"># used for conditional-likelihood, magnitude, and spatial tests to normalize the rate-component of the forecasts.</span>
+    <span class="k">if</span> <span class="n">use_observed_counts</span><span class="p">:</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">n_obs</span> <span class="o">/</span> <span class="n">n_fore</span>
+        <span class="n">expected_forecast_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_obs</span><span class="p">)</span>
+        <span class="c1"># Numpy warnings can occur if forecasts have masked cells and thus zero valued rates</span>
+        <span class="k">with</span> <span class="n">numpy</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">):</span>
+            <span class="n">log_bin_expectations</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">forecast_data</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">*</span> <span class="n">scale</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">expected_forecast_count</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">forecast_data</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">numpy</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">):</span>
+            <span class="n">log_bin_expectations</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">forecast_data</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+
+    <span class="c1"># gets the 1d indices to bins that contain target events, these indexes perform copies and not views into the array</span>
+    <span class="n">target_idx</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">observed_data</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+
+    <span class="c1"># these operations perform copies</span>
+    <span class="n">observed_data_nonzero</span> <span class="o">=</span> <span class="n">observed_data</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="n">target_idx</span><span class="p">]</span>
+    <span class="n">target_event_forecast</span> <span class="o">=</span> <span class="n">log_bin_expectations</span><span class="p">[</span><span class="n">target_idx</span><span class="p">]</span> <span class="o">*</span> <span class="n">observed_data_nonzero</span>
+
+    <span class="c1"># main simulation step in this loop</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_simulations</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">use_observed_counts</span><span class="p">:</span>
+            <span class="n">num_events_to_simulate</span> <span class="o">=</span> <span class="n">expected_forecast_count</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">num_events_to_simulate</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">expected_forecast_count</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">random_numbers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sim_fore</span> <span class="o">=</span> <span class="n">_simulate_catalog</span><span class="p">(</span><span class="n">num_events_to_simulate</span><span class="p">,</span> <span class="n">sampling_weights</span><span class="p">,</span> <span class="n">sim_fore</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sim_fore</span> <span class="o">=</span> <span class="n">_simulate_catalog</span><span class="p">(</span><span class="n">num_events_to_simulate</span><span class="p">,</span> <span class="n">sampling_weights</span><span class="p">,</span> <span class="n">sim_fore</span><span class="p">,</span>
+                                         <span class="n">random_numbers</span><span class="o">=</span><span class="n">random_numbers</span><span class="p">[</span><span class="n">idx</span><span class="p">,:])</span>
+
+        <span class="c1"># compute joint log-likelihood from simulation by leveraging that only cells with target events contribute to likelihood</span>
+        <span class="n">sim_target_idx</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">sim_fore</span><span class="p">)</span>
+        <span class="n">sim_obs_nonzero</span> <span class="o">=</span> <span class="n">sim_fore</span><span class="p">[</span><span class="n">sim_target_idx</span><span class="p">]</span>
+        <span class="n">sim_target_event_forecast</span> <span class="o">=</span> <span class="n">log_bin_expectations</span><span class="p">[</span><span class="n">sim_target_idx</span><span class="p">]</span> <span class="o">*</span> <span class="n">sim_obs_nonzero</span>
+
+        <span class="c1"># compute joint log-likelihood</span>
+        <span class="n">current_ll</span> <span class="o">=</span> <span class="n">poisson_joint_log_likelihood_ndarray</span><span class="p">(</span><span class="n">sim_target_event_forecast</span><span class="p">,</span> <span class="n">sim_obs_nonzero</span><span class="p">,</span> <span class="n">expected_forecast_count</span><span class="p">)</span>
+
+        <span class="c1"># append to list of simulated log-likelihoods</span>
+        <span class="n">simulated_ll</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_ll</span><span class="p">)</span>
+
+        <span class="c1"># just be verbose</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;... </span><span class="si">{</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s1"> catalogs simulated.&#39;</span><span class="p">)</span>
+
+    <span class="c1"># observed joint log-likelihood</span>
+    <span class="n">obs_ll</span> <span class="o">=</span> <span class="n">poisson_joint_log_likelihood_ndarray</span><span class="p">(</span><span class="n">target_event_forecast</span><span class="p">,</span> <span class="n">observed_data_nonzero</span><span class="p">,</span> <span class="n">expected_forecast_count</span><span class="p">)</span>
+
+    <span class="c1"># quantile score</span>
+    <span class="n">qs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">simulated_ll</span> <span class="o">&lt;=</span> <span class="n">obs_ll</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_simulations</span>
+
+    <span class="c1"># float, float, list</span>
+    <span class="k">return</span> <span class="n">qs</span><span class="p">,</span> <span class="n">obs_ll</span><span class="p">,</span> <span class="n">simulated_ll</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on Thu Jan 23 20:06:58 2020</span>
+
+<span class="sd">@author: khawaja and wsavran</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+ 
+&#169; 2020, University of Southern California.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

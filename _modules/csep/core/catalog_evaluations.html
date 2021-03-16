@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>csep.core.catalog_evaluations &mdash; PyCSEP v0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <!-- Google Analytics -->
+    <!-- added options to anonymize ip and disable cookies using {'storage': 'none'} 
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-495056-15', 'auto', {'storage': 'none'});
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+    </script> -->
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PyCSEP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installing.html">Installing PyCSEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/core_concepts.html">Core Concepts for Beginners</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials and Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/catalog_filtering.html">Catalogs operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/plot_gridded_forecast.html">Plotting gridded forecast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/gridded_forecast_evaluation.html">Grid-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/working_with_catalog_forecasts.html">Working with catalog-based forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/catalog_forecast_evaluation.html">Catalog-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/plot_customizations.html">Plot customizations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/catalogs.html">Catalogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/forecasts.html">Forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/regions.html">Regions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Help &amp; Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/glossary.html">Terms and Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/publications.html">Referenced Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/roadmap.html">Development Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/developer_notes.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/api_reference.html">API Reference</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">Source code and contributing</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CONTRIBUTING.md">Contributing</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/LICENSE">License</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/issues">Getting help</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2">Source Code</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyCSEP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../csep.html">csep</a> &raquo;</li>
+        
+      <li>csep.core.catalog_evaluations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for csep.core.catalog_evaluations</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Third-Party Imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span>
+
+<span class="c1"># PyCSEP imports</span>
+<span class="kn">from</span> <span class="nn">csep.core.exceptions</span> <span class="kn">import</span> <span class="n">CSEPEvaluationException</span>
+<span class="kn">from</span> <span class="nn">csep.models</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CatalogNumberTestResult</span><span class="p">,</span>
+    <span class="n">CatalogSpatialTestResult</span><span class="p">,</span>
+    <span class="n">CatalogMagnitudeTestResult</span><span class="p">,</span>
+    <span class="n">CatalogPseudolikelihoodTestResult</span><span class="p">,</span>
+    <span class="n">CalibrationTestResult</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">csep.utils.calc</span> <span class="kn">import</span> <span class="n">_compute_likelihood</span>
+<span class="kn">from</span> <span class="nn">csep.utils.stats</span> <span class="kn">import</span> <span class="n">get_quantiles</span><span class="p">,</span> <span class="n">cumulative_square_diff</span>
+
+
+<div class="viewcode-block" id="number_test"><a class="viewcode-back" href="../../../reference/generated/csep.core.catalog_evaluations.number_test.html#csep.core.catalog_evaluations.number_test">[docs]</a><span class="k">def</span> <span class="nf">number_test</span><span class="p">(</span><span class="n">forecast</span><span class="p">,</span> <span class="n">observed_catalog</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Performs the number test on a catalog-based forecast.</span>
+
+<span class="sd">    The number test builds an empirical distribution of the event counts for each data. By default, this</span>
+<span class="sd">    function does not perform any filtering on the catalogs in the forecast or observation. These should be handled</span>
+<span class="sd">    outside of the function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        forecast (:class:`csep.core.forecasts.CatalogForecast`): forecast to evaluate</span>
+<span class="sd">        observed_catalog (:class:`csep.core.catalogs.AbstractBaseCatalog`): evaluation data</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        evaluation result (:class:`csep.models.EvaluationResult`): evaluation result</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">event_counts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">catalog</span> <span class="ow">in</span> <span class="n">forecast</span><span class="p">:</span>
+        <span class="n">event_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">catalog</span><span class="o">.</span><span class="n">event_count</span><span class="p">)</span>
+    <span class="n">obs_count</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">event_count</span>
+    <span class="n">delta_1</span><span class="p">,</span> <span class="n">delta_2</span> <span class="o">=</span> <span class="n">get_quantiles</span><span class="p">(</span><span class="n">event_counts</span><span class="p">,</span> <span class="n">obs_count</span><span class="p">)</span>
+    <span class="c1"># prepare result</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">CatalogNumberTestResult</span><span class="p">(</span><span class="n">test_distribution</span><span class="o">=</span><span class="n">event_counts</span><span class="p">,</span>
+                                     <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Catalog N-Test&#39;</span><span class="p">,</span>
+                                     <span class="n">observed_statistic</span><span class="o">=</span><span class="n">obs_count</span><span class="p">,</span>
+                                     <span class="n">quantile</span><span class="o">=</span><span class="p">(</span><span class="n">delta_1</span><span class="p">,</span> <span class="n">delta_2</span><span class="p">),</span>
+                                     <span class="n">status</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span>
+                                     <span class="n">obs_catalog_repr</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">observed_catalog</span><span class="p">),</span>
+                                     <span class="n">sim_name</span><span class="o">=</span><span class="n">forecast</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                     <span class="n">min_mw</span><span class="o">=</span><span class="n">forecast</span><span class="o">.</span><span class="n">min_magnitude</span><span class="p">,</span>
+                                     <span class="n">obs_name</span><span class="o">=</span><span class="n">observed_catalog</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="spatial_test"><a class="viewcode-back" href="../../../reference/generated/csep.core.catalog_evaluations.spatial_test.html#csep.core.catalog_evaluations.spatial_test">[docs]</a><span class="k">def</span> <span class="nf">spatial_test</span><span class="p">(</span><span class="n">forecast</span><span class="p">,</span> <span class="n">observed_catalog</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Performs spatial test for catalog-based forecasts.</span>
+
+
+
+<span class="sd">        Args:</span>
+<span class="sd">            forecast: CatalogForecast</span>
+<span class="sd">            observed_catalog: CSEPCatalog filtered to be consistent with the forecast</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            CatalogSpatialTestResult</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">forecast</span><span class="o">.</span><span class="n">region</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CSEPEvaluationException</span><span class="p">(</span><span class="s2">&quot;Forecast must have region member to perform spatial test.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># get observed likelihood</span>
+    <span class="k">if</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">event_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Spatial test not-invalid because no events in observed catalog.&#39;</span><span class="p">)</span>
+
+    <span class="n">test_distribution</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># compute expected rates for forecast if needed</span>
+    <span class="k">if</span> <span class="n">forecast</span><span class="o">.</span><span class="n">expected_rates</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">forecast</span><span class="o">.</span><span class="n">get_expected_rates</span><span class="p">()</span>
+
+    <span class="n">expected_cond_count</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">expected_rates</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">forecast_mean_spatial_rates</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">expected_rates</span><span class="o">.</span><span class="n">spatial_counts</span><span class="p">()</span>
+
+    <span class="c1"># summing over spatial counts ensures that the correct number of events are used; even through the catalogs should</span>
+    <span class="c1"># be filtered before calling this function</span>
+    <span class="n">gridded_obs</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">spatial_counts</span><span class="p">()</span>
+    <span class="n">n_obs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gridded_obs</span><span class="p">)</span>
+
+    <span class="c1"># iterate through catalogs in forecast and compute likelihood</span>
+    <span class="k">for</span> <span class="n">catalog</span> <span class="ow">in</span> <span class="n">forecast</span><span class="p">:</span>
+        <span class="n">gridded_cat</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">spatial_counts</span><span class="p">()</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">lh_norm</span> <span class="o">=</span> <span class="n">_compute_likelihood</span><span class="p">(</span><span class="n">gridded_cat</span><span class="p">,</span> <span class="n">forecast_mean_spatial_rates</span><span class="p">,</span> <span class="n">expected_cond_count</span><span class="p">,</span> <span class="n">n_obs</span><span class="p">)</span>
+        <span class="n">test_distribution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lh_norm</span><span class="p">)</span>
+
+    <span class="n">_</span><span class="p">,</span> <span class="n">obs_lh_norm</span> <span class="o">=</span> <span class="n">_compute_likelihood</span><span class="p">(</span><span class="n">gridded_obs</span><span class="p">,</span> <span class="n">forecast_mean_spatial_rates</span><span class="p">,</span> <span class="n">expected_cond_count</span><span class="p">,</span> <span class="n">n_obs</span><span class="p">)</span>
+    <span class="c1"># if obs_lh is -numpy.inf, recompute but only for indexes where obs and simulated are non-zero</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;normal&quot;</span>
+    <span class="k">if</span> <span class="n">obs_lh_norm</span> <span class="o">==</span> <span class="o">-</span><span class="n">numpy</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span>
+        <span class="n">idx_good_sim</span> <span class="o">=</span> <span class="n">forecast_mean_spatial_rates</span> <span class="o">!=</span> <span class="mi">0</span>
+        <span class="n">new_gridded_obs</span> <span class="o">=</span> <span class="n">gridded_obs</span><span class="p">[</span><span class="n">idx_good_sim</span><span class="p">]</span>
+        <span class="n">new_n_obs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">new_gridded_obs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found -inf as the observed likelihood score. &quot;</span>
+              <span class="sa">f</span><span class="s2">&quot;Assuming event(s) occurred in undersampled region of forecast.</span><span class="se">\n</span><span class="s2">&quot;</span>
+              <span class="sa">f</span><span class="s2">&quot;Recomputing with </span><span class="si">{</span><span class="n">new_n_obs</span><span class="si">}</span><span class="s2"> events after removing </span><span class="si">{</span><span class="n">n_obs</span> <span class="o">-</span> <span class="n">new_n_obs</span><span class="si">}</span><span class="s2"> events.&quot;</span><span class="p">)</span>
+
+        <span class="n">new_ard</span> <span class="o">=</span> <span class="n">forecast_mean_spatial_rates</span><span class="p">[</span><span class="n">idx_good_sim</span><span class="p">]</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">obs_lh_norm</span> <span class="o">=</span> <span class="n">_compute_likelihood</span><span class="p">(</span><span class="n">new_gridded_obs</span><span class="p">,</span> <span class="n">new_ard</span><span class="p">,</span> <span class="n">expected_cond_count</span><span class="p">,</span> <span class="n">n_obs</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;undersampled&quot;</span>
+
+    <span class="c1"># check for nans here and remove from spatial distribution</span>
+    <span class="n">test_distribution_spatial_1d</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_distribution</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">test_distribution_spatial_1d</span><span class="p">)):</span>
+        <span class="n">test_distribution_spatial_1d</span> <span class="o">=</span> <span class="n">test_distribution_spatial_1d</span><span class="p">[</span><span class="o">~</span><span class="n">numpy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">test_distribution_spatial_1d</span><span class="p">)]</span>
+
+    <span class="k">if</span> <span class="n">n_obs</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">obs_lh_norm</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;not-valid&quot;</span>
+        <span class="n">delta_1</span><span class="p">,</span> <span class="n">delta_2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">delta_1</span><span class="p">,</span> <span class="n">delta_2</span> <span class="o">=</span> <span class="n">get_quantiles</span><span class="p">(</span><span class="n">test_distribution_spatial_1d</span><span class="p">,</span> <span class="n">obs_lh_norm</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">CatalogSpatialTestResult</span><span class="p">(</span><span class="n">test_distribution</span><span class="o">=</span><span class="n">test_distribution_spatial_1d</span><span class="p">,</span>
+                                      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;S-Test&#39;</span><span class="p">,</span>
+                                      <span class="n">observed_statistic</span><span class="o">=</span><span class="n">obs_lh_norm</span><span class="p">,</span>
+                                      <span class="n">quantile</span><span class="o">=</span><span class="p">(</span><span class="n">delta_1</span><span class="p">,</span> <span class="n">delta_2</span><span class="p">),</span>
+                                      <span class="n">status</span><span class="o">=</span><span class="n">message</span><span class="p">,</span>
+                                      <span class="n">min_mw</span><span class="o">=</span><span class="n">forecast</span><span class="o">.</span><span class="n">min_magnitude</span><span class="p">,</span>
+                                      <span class="n">obs_catalog_repr</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">observed_catalog</span><span class="p">),</span>
+                                      <span class="n">sim_name</span><span class="o">=</span><span class="n">forecast</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                      <span class="n">obs_name</span><span class="o">=</span><span class="n">observed_catalog</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="magnitude_test"><a class="viewcode-back" href="../../../reference/generated/csep.core.catalog_evaluations.magnitude_test.html#csep.core.catalog_evaluations.magnitude_test">[docs]</a><span class="k">def</span> <span class="nf">magnitude_test</span><span class="p">(</span><span class="n">forecast</span><span class="p">,</span> <span class="n">observed_catalog</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Performs magnitude test for catalog-based forecasts &quot;&quot;&quot;</span>
+    <span class="n">test_distribution</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="n">forecast</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">magnitudes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CSEPEvaluationException</span><span class="p">(</span><span class="s2">&quot;Forecast must have region.magnitudes member to perform magnitude test.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># short-circuit if zero events</span>
+    <span class="k">if</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">event_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cannot perform magnitude test when observed event count is zero.&quot;</span><span class="p">)</span>
+        <span class="c1"># prepare result</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">CatalogMagnitudeTestResult</span><span class="p">(</span><span class="n">test_distribution</span><span class="o">=</span><span class="n">test_distribution</span><span class="p">,</span>
+                                            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;M-Test&#39;</span><span class="p">,</span>
+                                            <span class="n">observed_statistic</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                            <span class="n">quantile</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                                            <span class="n">status</span><span class="o">=</span><span class="s1">&#39;not-valid&#39;</span><span class="p">,</span>
+                                            <span class="n">min_mw</span><span class="o">=</span><span class="n">forecast</span><span class="o">.</span><span class="n">min_magnitude</span><span class="p">,</span>
+                                            <span class="n">obs_catalog_repr</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">observed_catalog</span><span class="p">),</span>
+                                            <span class="n">obs_name</span><span class="o">=</span><span class="n">observed_catalog</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                            <span class="n">sim_name</span><span class="o">=</span><span class="n">forecast</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="c1"># compute expected rates for forecast if needed</span>
+    <span class="k">if</span> <span class="n">forecast</span><span class="o">.</span><span class="n">expected_rates</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">forecast</span><span class="o">.</span><span class="n">get_expected_rates</span><span class="p">()</span>
+
+    <span class="c1"># returns the average events in the magnitude bins</span>
+    <span class="n">union_histogram</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">expected_rates</span><span class="o">.</span><span class="n">magnitude_counts</span><span class="p">()</span>
+    <span class="n">n_union_events</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">union_histogram</span><span class="p">)</span>
+    <span class="n">obs_histogram</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">magnitude_counts</span><span class="p">()</span>
+    <span class="n">n_obs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">obs_histogram</span><span class="p">)</span>
+    <span class="n">union_scale</span> <span class="o">=</span> <span class="n">n_obs</span> <span class="o">/</span> <span class="n">n_union_events</span>
+    <span class="n">scaled_union_histogram</span> <span class="o">=</span> <span class="n">union_histogram</span> <span class="o">*</span> <span class="n">union_scale</span>
+
+    <span class="c1"># compute the test statistic for each catalog</span>
+    <span class="k">for</span> <span class="n">catalog</span> <span class="ow">in</span> <span class="n">forecast</span><span class="p">:</span>
+        <span class="n">mag_counts</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">magnitude_counts</span><span class="p">()</span>
+        <span class="n">n_events</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mag_counts</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n_events</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># print(&quot;Skipping to next because catalog contained zero events.&quot;)</span>
+            <span class="k">continue</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">n_obs</span> <span class="o">/</span> <span class="n">n_events</span>
+        <span class="n">catalog_histogram</span> <span class="o">=</span> <span class="n">mag_counts</span> <span class="o">*</span> <span class="n">scale</span>
+        <span class="c1"># compute magnitude test statistic for the catalog</span>
+        <span class="n">test_distribution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">cumulative_square_diff</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">catalog_histogram</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">scaled_union_histogram</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="p">)</span>
+
+    <span class="c1"># compute observed statistic</span>
+    <span class="n">obs_d_statistic</span> <span class="o">=</span> <span class="n">cumulative_square_diff</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">obs_histogram</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">scaled_union_histogram</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># score evaluation</span>
+    <span class="n">delta_1</span><span class="p">,</span> <span class="n">delta_2</span> <span class="o">=</span> <span class="n">get_quantiles</span><span class="p">(</span><span class="n">test_distribution</span><span class="p">,</span> <span class="n">obs_d_statistic</span><span class="p">)</span>
+
+    <span class="c1"># prepare result</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">CatalogMagnitudeTestResult</span><span class="p">(</span><span class="n">test_distribution</span><span class="o">=</span><span class="n">test_distribution</span><span class="p">,</span>
+                              <span class="n">name</span><span class="o">=</span><span class="s1">&#39;M-Test&#39;</span><span class="p">,</span>
+                              <span class="n">observed_statistic</span><span class="o">=</span><span class="n">obs_d_statistic</span><span class="p">,</span>
+                              <span class="n">quantile</span><span class="o">=</span><span class="p">(</span><span class="n">delta_1</span><span class="p">,</span> <span class="n">delta_2</span><span class="p">),</span>
+                              <span class="n">status</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span>
+                              <span class="n">min_mw</span><span class="o">=</span><span class="n">forecast</span><span class="o">.</span><span class="n">min_magnitude</span><span class="p">,</span>
+                              <span class="n">obs_catalog_repr</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">observed_catalog</span><span class="p">),</span>
+                              <span class="n">obs_name</span><span class="o">=</span><span class="n">observed_catalog</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                              <span class="n">sim_name</span><span class="o">=</span><span class="n">forecast</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="pseudolikelihood_test"><a class="viewcode-back" href="../../../reference/generated/csep.core.catalog_evaluations.pseudolikelihood_test.html#csep.core.catalog_evaluations.pseudolikelihood_test">[docs]</a><span class="k">def</span> <span class="nf">pseudolikelihood_test</span><span class="p">(</span><span class="n">forecast</span><span class="p">,</span> <span class="n">observed_catalog</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Performs the spatial pseudolikelihood test for catalog forecasts.</span>
+
+<span class="sd">    Performs the spatial pseudolikelihood test as described by Savran et al., 2020. The tests uses a pseudolikelihood</span>
+<span class="sd">    statistic computed from the expected rates in spatial cells. A pseudolikelihood test based on space-magnitude bins</span>
+<span class="sd">    is in a development mode and does not exist currently.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        forecast: :class:`csep.core.forecasts.CatalogForecast`</span>
+<span class="sd">        observed_catalog: :class:`csep.core.catalogs.AbstractBaseCatalog`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">forecast</span><span class="o">.</span><span class="n">region</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CSEPEvaluationException</span><span class="p">(</span><span class="s2">&quot;Forecast must have region member to perform spatial test.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># get observed likelihood</span>
+    <span class="k">if</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">event_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Skipping pseudolikelihood test because no events in observed catalog.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">test_distribution</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># compute expected rates for forecast if needed</span>
+    <span class="k">if</span> <span class="n">forecast</span><span class="o">.</span><span class="n">expected_rates</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">get_expected_rates</span><span class="p">()</span>
+
+    <span class="n">expected_cond_count</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">expected_rates</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">forecast_mean_spatial_rates</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="n">expected_rates</span><span class="o">.</span><span class="n">spatial_counts</span><span class="p">()</span>
+
+    <span class="c1"># summing over spatial counts ensures that the correct number of events are used; even through the catalogs should</span>
+    <span class="c1"># be filtered before calling this function</span>
+    <span class="n">gridded_obs</span> <span class="o">=</span> <span class="n">observed_catalog</span><span class="o">.</span><span class="n">spatial_counts</span><span class="p">()</span>
+    <span class="n">n_obs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gridded_obs</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">catalog</span> <span class="ow">in</span> <span class="n">forecast</span><span class="p">:</span>
+        <span class="n">gridded_cat</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">spatial_counts</span><span class="p">()</span>
+        <span class="n">plh</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_compute_likelihood</span><span class="p">(</span><span class="n">gridded_cat</span><span class="p">,</span> <span class="n">forecast_mean_spatial_rates</span><span class="p">,</span> <span class="n">expected_cond_count</span><span class="p">,</span> <span class="n">n_obs</span><span class="p">)</span>
+        <span class="n">test_distribution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plh</span><span class="p">)</span>
+
+    <span class="n">obs_plh</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_compute_likelihood</span><span class="p">(</span><span class="n">gridded_obs</span><span class="p">,</span> <span class="n">forecast_mean_spatial_rates</span><span class="p">,</span> <span class="n">expected_cond_count</span><span class="p">,</span> <span class="n">n_obs</span><span class="p">)</span>
+    <span class="c1"># if obs_lh is -numpy.inf, recompute but only for indexes where obs and simulated are non-zero</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;normal&quot;</span>
+    <span class="k">if</span> <span class="n">obs_plh</span> <span class="o">==</span> <span class="o">-</span><span class="n">numpy</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span>
+        <span class="n">idx_good_sim</span> <span class="o">=</span> <span class="n">forecast_mean_spatial_rates</span> <span class="o">!=</span> <span class="mi">0</span>
+        <span class="n">new_gridded_obs</span> <span class="o">=</span> <span class="n">gridded_obs</span><span class="p">[</span><span class="n">idx_good_sim</span><span class="p">]</span>
+        <span class="n">new_n_obs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">new_gridded_obs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found -inf as the observed likelihood score. &quot;</span>
+              <span class="sa">f</span><span class="s2">&quot;Assuming event(s) occurred in undersampled region of forecast.</span><span class="se">\n</span><span class="s2">&quot;</span>
+              <span class="sa">f</span><span class="s2">&quot;Recomputing with </span><span class="si">{</span><span class="n">new_n_obs</span><span class="si">}</span><span class="s2"> events after removing </span><span class="si">{</span><span class="n">n_obs</span> <span class="o">-</span> <span class="n">new_n_obs</span><span class="si">}</span><span class="s2"> events.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">new_n_obs</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;Skipping pseudo-likelihood based tests for because no events in observed catalog &#39;</span>
+                <span class="sa">f</span><span class="s1">&#39;after correcting for under-sampling in forecast.&#39;</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">new_ard</span> <span class="o">=</span> <span class="n">forecast_mean_spatial_rates</span><span class="p">[</span><span class="n">idx_good_sim</span><span class="p">]</span>
+        <span class="c1"># we need to use the old n_obs here, because if we normalize the ard to a different value the observed</span>
+        <span class="c1"># statistic will not be computed correctly.</span>
+        <span class="n">obs_plh</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_compute_likelihood</span><span class="p">(</span><span class="n">new_gridded_obs</span><span class="p">,</span> <span class="n">new_ard</span><span class="p">,</span> <span class="n">expected_cond_count</span><span class="p">,</span> <span class="n">n_obs</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;undersampled&quot;</span>
+
+    <span class="c1"># check for nans here</span>
+    <span class="n">test_distribution_1d</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_distribution</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">test_distribution_1d</span><span class="p">)):</span>
+        <span class="n">test_distribution_1d</span> <span class="o">=</span> <span class="n">test_distribution_1d</span><span class="p">[</span><span class="o">~</span><span class="n">numpy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">test_distribution_1d</span><span class="p">)]</span>
+
+    <span class="k">if</span> <span class="n">n_obs</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">obs_plh</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;not-valid&quot;</span>
+        <span class="n">delta_1</span><span class="p">,</span> <span class="n">delta_2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">delta_1</span><span class="p">,</span> <span class="n">delta_2</span> <span class="o">=</span> <span class="n">get_quantiles</span><span class="p">(</span><span class="n">test_distribution_1d</span><span class="p">,</span> <span class="n">obs_plh</span><span class="p">)</span>
+
+    <span class="c1"># prepare evaluation result</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">CatalogPseudolikelihoodTestResult</span><span class="p">(</span>
+        <span class="n">test_distribution</span><span class="o">=</span><span class="n">test_distribution_1d</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;PL-Test&#39;</span><span class="p">,</span>
+        <span class="n">observed_statistic</span><span class="o">=</span><span class="n">obs_plh</span><span class="p">,</span>
+        <span class="n">quantile</span><span class="o">=</span><span class="p">(</span><span class="n">delta_1</span><span class="p">,</span> <span class="n">delta_2</span><span class="p">),</span>
+        <span class="n">status</span><span class="o">=</span><span class="n">message</span><span class="p">,</span>
+        <span class="n">min_mw</span><span class="o">=</span><span class="n">forecast</span><span class="o">.</span><span class="n">min_magnitude</span><span class="p">,</span>
+        <span class="n">obs_catalog_repr</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">observed_catalog</span><span class="p">),</span>
+        <span class="n">sim_name</span><span class="o">=</span><span class="n">forecast</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="n">obs_name</span><span class="o">=</span><span class="n">observed_catalog</span><span class="o">.</span><span class="n">name</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="calibration_test"><a class="viewcode-back" href="../../../reference/generated/csep.core.catalog_evaluations.calibration_test.html#csep.core.catalog_evaluations.calibration_test">[docs]</a><span class="k">def</span> <span class="nf">calibration_test</span><span class="p">(</span><span class="n">evaluation_results</span><span class="p">,</span> <span class="n">delta_1</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Perform the calibration test by computing a Kilmogorov-Smirnov test of the observed quantiles against a uniform</span>
+<span class="sd">    distribution.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            evaluation_results: iterable of evaluation result objects</span>
+<span class="sd">            delta_1 (bool): use delta_1 for quantiles. default false -&gt; use delta_2 quantile score for calibration test</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># this is using &quot;delta_2&quot; which is the cdf value less-equal</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">delta_1</span> <span class="k">else</span> <span class="mi">1</span>
+    <span class="n">quantiles</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">quantile</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">evaluation_results</span><span class="p">]</span>
+    <span class="n">ks</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">kstest</span><span class="p">(</span><span class="n">quantiles</span><span class="p">,</span> <span class="s1">&#39;uniform&#39;</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">CalibrationTestResult</span><span class="p">(</span>
+        <span class="n">test_distribution</span> <span class="o">=</span> <span class="n">quantiles</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">evaluation_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> Calibration Test&#39;</span><span class="p">,</span>
+        <span class="n">observed_statistic</span><span class="o">=</span><span class="n">ks</span><span class="p">,</span>
+        <span class="n">quantile</span><span class="o">=</span><span class="n">p_value</span><span class="p">,</span>
+        <span class="n">status</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span>
+        <span class="n">min_mw</span> <span class="o">=</span> <span class="n">evaluation_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min_mw</span><span class="p">,</span>
+        <span class="n">obs_catalog_repr</span><span class="o">=</span><span class="n">evaluation_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">obs_catalog_repr</span><span class="p">,</span>
+        <span class="n">sim_name</span><span class="o">=</span><span class="n">evaluation_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sim_name</span><span class="p">,</span>
+        <span class="n">obs_name</span><span class="o">=</span><span class="n">evaluation_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">obs_name</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+ 
+&#169; 2020, University of Southern California.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

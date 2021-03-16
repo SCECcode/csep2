@@ -1,0 +1,1448 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>csep.core.catalogs &mdash; PyCSEP v0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <!-- Google Analytics -->
+    <!-- added options to anonymize ip and disable cookies using {'storage': 'none'} 
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-495056-15', 'auto', {'storage': 'none'});
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+    </script> -->
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PyCSEP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installing.html">Installing PyCSEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/core_concepts.html">Core Concepts for Beginners</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials and Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/catalog_filtering.html">Catalogs operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/plot_gridded_forecast.html">Plotting gridded forecast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/gridded_forecast_evaluation.html">Grid-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/working_with_catalog_forecasts.html">Working with catalog-based forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/catalog_forecast_evaluation.html">Catalog-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/plot_customizations.html">Plot customizations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/catalogs.html">Catalogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/forecasts.html">Forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concepts/regions.html">Regions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Help &amp; Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/glossary.html">Terms and Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/publications.html">Referenced Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/roadmap.html">Development Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/developer_notes.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/api_reference.html">API Reference</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">Source code and contributing</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CONTRIBUTING.md">Contributing</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/LICENSE">License</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/issues">Getting help</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2">Source Code</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyCSEP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../csep.html">csep</a> &raquo;</li>
+        
+      <li>csep.core.catalogs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for csep.core.catalogs</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">operator</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="c1"># 3rd party required for core package</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+
+<span class="c1"># CSEP Imports</span>
+<span class="kn">from</span> <span class="nn">csep.core</span> <span class="kn">import</span> <span class="n">regions</span>
+<span class="kn">from</span> <span class="nn">csep.utils.time_utils</span> <span class="kn">import</span> <span class="n">epoch_time_to_utc_datetime</span><span class="p">,</span> <span class="n">datetime_to_utc_epoch</span><span class="p">,</span> <span class="n">strptime_to_utc_datetime</span><span class="p">,</span> \
+    <span class="n">millis_to_days</span><span class="p">,</span> <span class="n">parse_string_format</span><span class="p">,</span> <span class="n">days_to_millis</span><span class="p">,</span> <span class="n">strptime_to_utc_epoch</span><span class="p">,</span> <span class="n">utc_now_datetime</span><span class="p">,</span> <span class="n">create_utc_datetime</span>
+<span class="kn">from</span> <span class="nn">csep.utils.stats</span> <span class="kn">import</span> <span class="n">min_or_none</span><span class="p">,</span> <span class="n">max_or_none</span>
+<span class="kn">from</span> <span class="nn">csep.utils.calc</span> <span class="kn">import</span> <span class="n">discretize</span>
+<span class="kn">from</span> <span class="nn">csep.utils.comcat</span> <span class="kn">import</span> <span class="n">SummaryEvent</span>
+<span class="kn">from</span> <span class="nn">csep.core.exceptions</span> <span class="kn">import</span> <span class="n">CSEPSchedulerException</span><span class="p">,</span> <span class="n">CSEPCatalogException</span><span class="p">,</span> <span class="n">CSEPIOException</span>
+<span class="kn">from</span> <span class="nn">csep.utils.calc</span> <span class="kn">import</span> <span class="n">bin1d_vec</span>
+<span class="kn">from</span> <span class="nn">csep.utils.constants</span> <span class="kn">import</span> <span class="n">CSEP_MW_BINS</span>
+<span class="kn">from</span> <span class="nn">csep.utils.log</span> <span class="kn">import</span> <span class="n">LoggingMixin</span>
+<span class="kn">from</span> <span class="nn">csep.utils.readers</span> <span class="kn">import</span> <span class="n">csep_ascii</span>
+<span class="kn">from</span> <span class="nn">csep.utils.file</span> <span class="kn">import</span> <span class="n">get_file_extension</span>
+<span class="kn">from</span> <span class="nn">csep.utils.plots</span> <span class="kn">import</span> <span class="n">plot_catalog</span>
+
+<div class="viewcode-block" id="AbstractBaseCatalog"><a class="viewcode-back" href="../../../reference/generated/csep.core.catalogs.AbstractBaseCatalog.html#csep.core.catalogs.AbstractBaseCatalog">[docs]</a><span class="k">class</span> <span class="nc">AbstractBaseCatalog</span><span class="p">(</span><span class="n">LoggingMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract catalog base class for PyCSEP catalogs. This class should not and cannot be used on its own. This just</span>
+<span class="sd">    provides the interface for implementing custom catalog classes.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dtype</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="AbstractBaseCatalog.__init__"><a class="viewcode-back" href="../../../reference/generated/csep.core.catalogs.AbstractBaseCatalog.html#csep.core.catalogs.AbstractBaseCatalog.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">catalog_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">compute_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">date_accessed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot; Standard catalog format for CSEP catalogs. Primary event data are stored in structured numpy array. Additional</span>
+<span class="sd">            metadata are available by the event_id in the catalog metadata information.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filename: location of catalog</span>
+<span class="sd">            catalog (numpy.ndarray or eventlist): catalog data</span>
+<span class="sd">            catalog_id: catalog id number (used for stochastic event set forecasts)</span>
+<span class="sd">            format: identification used for serialization</span>
+<span class="sd">            name: human readable name of catalog</span>
+<span class="sd">            region: spatial and magnitude region</span>
+<span class="sd">            compute_stats: whether statistics should be computed for the catalog</span>
+<span class="sd">            filters (str or list): filtering operations to apply to the catalog</span>
+<span class="sd">            metadata (dict): additional information for events</span>
+<span class="sd">            date_accessed (str): time string when catalog was accessed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">catalog_id</span> <span class="o">=</span> <span class="n">catalog_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="nb">format</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">region</span> <span class="o">=</span> <span class="n">region</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_stats</span> <span class="o">=</span> <span class="n">compute_stats</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filters</span> <span class="o">=</span> <span class="n">filters</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">date_accessed</span> <span class="o">=</span> <span class="n">date_accessed</span> <span class="ow">or</span> <span class="n">utc_now_datetime</span><span class="p">()</span>  <span class="c1"># type datetime.datetime</span>
+
+        <span class="c1"># used to store additional event information based on the event_id key, if no event_id will default to an</span>
+        <span class="c1"># integer index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span> <span class="ow">or</span> <span class="p">{}</span>
+
+        <span class="c1"># cleans the catalog to set as ndarray, see setter.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span> <span class="o">=</span> <span class="n">data</span>  <span class="c1"># type: numpy.ndarray</span>
+
+        <span class="c1"># use user defined stats if entered into catalog</span>
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_stats</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_catalog_stats</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Compares whether two catalogs are equal by comparing their dicts. &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_catalog_stats</span><span class="p">()</span>
+
+        <span class="n">s</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        Name: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"></span>
+<span class="s1">        </span>
+<span class="s1">        Start Date: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="si">}</span><span class="s1"></span>
+<span class="s1">        End Date: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">end_time</span><span class="si">}</span><span class="s1"></span>
+<span class="s1">        </span>
+<span class="s1">        Latitude: (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">min_latitude</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_latitude</span><span class="si">}</span><span class="s1">)</span>
+<span class="s1">        Longitude: (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">min_longitude</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_longitude</span><span class="si">}</span><span class="s1">)</span>
+<span class="s1">        </span>
+<span class="s1">        Min Mw: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">min_magnitude</span><span class="si">}</span><span class="s1"></span>
+<span class="s1">        Max Mw: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_magnitude</span><span class="si">}</span><span class="s1"></span>
+<span class="s1">        </span>
+<span class="s1">        Event Count: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">event_count</span><span class="si">}</span><span class="s1"></span>
+<span class="s1">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">s</span>
+
+    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Serializes class to json dictionary.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            catalog as dict</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">excluded</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_catalog&#39;</span><span class="p">]</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># note: if &#39;v&#39; is callable that implies that we have a function bound to a class-member. this happens</span>
+            <span class="c1"># for the catalog forecast and requires excluding this value.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">callable</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="ow">and</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">excluded</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="s1">&#39;to_dict&#39;</span><span class="p">):</span>
+                    <span class="n">new_v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">new_v</span> <span class="o">=</span> <span class="n">v</span>
+                <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">):</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span> <span class="o">=</span> <span class="n">new_v</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_v</span>
+        <span class="n">out</span><span class="p">[</span><span class="s1">&#39;catalog&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">tolist</span><span class="p">()):</span>
+            <span class="n">new_line</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="c1"># try to decode, if it fails just use original, we use this to handle string-based event_ids</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">item</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="k">finally</span><span class="p">:</span>
+                    <span class="n">new_line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+            <span class="n">out</span><span class="p">[</span><span class="s1">&#39;catalog&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_line</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">event_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Number of events in catalog &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_number_of_events</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_catalog</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">loader</span><span class="o">=</span><span class="n">csep_ascii</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;subclass should implement load_catalog funtion.&quot;</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">adict</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Creates a class from the dictionary representation of the class state. The catalog is serialized into a list of</span>
+<span class="sd">        tuples that contain the event information in the order defined by the dtype.</span>
+
+<span class="sd">        This needs to handle reading in region information at some point.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># could these be class values? can be changed later.</span>
+        <span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_catalog&#39;</span><span class="p">]</span>
+        <span class="n">time_members</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;date_accessed&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;end_time&#39;</span><span class="p">]</span>
+        <span class="n">catalog</span> <span class="o">=</span> <span class="n">adict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;catalog&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">catalog</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">out</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">time_members</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="nb">setattr</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">adict</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+                    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">setattr</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">_none_or_datetime</span><span class="p">(</span><span class="n">adict</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="n">out</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dataframe</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates catalog from dataframe. Dataframe must have columns that are equivalent to whatever fields</span>
+<span class="sd">        the catalog expects in the catalog dtype.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">                cat = CSEPCatalog()</span>
+<span class="sd">                df = cat.get_dataframe()</span>
+<span class="sd">                new_cat = CSEPCatalog.from_dataframe(df)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            df (pandas.DataFrame): pandas dataframe</span>
+<span class="sd">            **kwargs:</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Catalog</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">catalog_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">catalog_id</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;catalog_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="n">col_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">)</span>
+        <span class="c1"># we want this to be a structured array not a record array and only returns core attributes listed in dtype</span>
+        <span class="c1"># loses information about the region and event meta data</span>
+        <span class="n">catalog</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col_list</span><span class="p">]</span><span class="o">.</span><span class="n">to_records</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="n">out_cls</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">catalog</span><span class="p">,</span> <span class="n">catalog_id</span><span class="o">=</span><span class="n">catalog_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out_cls</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Loads catalog from JSON file &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">adict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">adict</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">write_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Writes catalog to json file</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filename (str): path to save file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;: &#39;</span><span class="p">),</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catalog</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catalog</span>
+
+    <span class="nd">@catalog</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ensures that catalogs with formats not numpy arrray are treated as numpy.array</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This requires that catalog classes implement the self._get_catalog_as_ndarray() function.</span>
+<span class="sd">            This function should return structured numpy.ndarray.</span>
+<span class="sd">            Catalog will remain None, if assigned that way in constructor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_catalog</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catalog</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_catalog</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_catalog_as_ndarray</span><span class="p">()</span>
+            <span class="c1"># ensure that people are behaving, somewhat non-pythonic but needed</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_catalog</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Error: Catalog must be numpy.ndarray! Ensure that self._get_catalog_as_ndarray()&quot;</span> <span class="o">+</span>
+                                 <span class="s2">&quot; returns an ndarray&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_stats</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_catalog</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_catalog_stats</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_get_catalog_as_ndarray</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function will be called anytime that a catalog is assigned to self.catalog</span>
+
+<span class="sd">        The purpose of this function is to ensure that the catalog is being properly parsed into the correct format, and</span>
+<span class="sd">        to prevent users of the catalog classes from assigning improper data types.</span>
+
+<span class="sd">        This also acts as a convenience to allow easy assignment of different types to the catalog. The default</span>
+<span class="sd">        implementation of this function expects that the data are arranged as a collection of tuples corresponding to</span>
+<span class="sd">        the catalog data type.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts eventlist into ndarray format.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">         Failure state exists if self.catalog is not bound</span>
+<span class="sd">            to instance explicity.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># short-circuit</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span>
+        <span class="c1"># if catalog is not a numpy array, class must have dtype information</span>
+        <span class="n">catalog_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">)</span>
+        <span class="n">catalog</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">catalog_length</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">catalog_length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">catalog</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">event</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">):</span>
+                <span class="n">catalog</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">SummaryEvent</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">event</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">):</span>
+                <span class="n">catalog</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">datetime_to_utc_epoch</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">time</span><span class="p">),</span>
+                              <span class="n">event</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">depth</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">magnitude</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Catalog data must be list of events tuples with order:</span><span class="se">\n</span><span class="s2">&quot;</span>
+                            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">)</span><span class="si">}</span><span class="s2"> or </span><span class="se">\n</span><span class="s2">&quot;</span>
+                            <span class="s2">&quot;list of SummaryEvent type.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">catalog</span>
+
+    <span class="k">def</span> <span class="nf">write_ascii</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">write_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">write_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">id_col</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write catalog in csep2 ascii format.</span>
+
+<span class="sd">        This format only uses the required variables from the catalog and should work by default. It can be overwritten</span>
+<span class="sd">        if an event_id (or other columns should be used). By default, the routine will look for a column the catalog array</span>
+<span class="sd">        called &#39;id&#39; and will populate the event_id column with these values. If the &#39;id&#39; column is not found, then it will</span>
+<span class="sd">        leave this column blank</span>
+
+<span class="sd">        Short format description (comma separated values):</span>
+<span class="sd">            longitude, latitude, M, time_string format=&quot;%Y-%m-%dT%H:%M:%S.%f&quot;, depth, catalog_id, [event_id]</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filename (str): the file location to write the the ascii catalog file</span>
+<span class="sd">            write_header (bool): Write header string (default true)</span>
+<span class="sd">            write_empty (bool): Write file event if no events in catalog</span>
+<span class="sd">            append (bool): If true, append to the filename</span>
+<span class="sd">            id_col (str): name of event_id column (if included)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            NoneType</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># longitude, latitude, M, epoch_time (time in millisecond since Unix epoch in GMT), depth, catalog_id, event_id</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;mag&#39;</span><span class="p">,</span> <span class="s1">&#39;time_string&#39;</span><span class="p">,</span> <span class="s1">&#39;depth&#39;</span><span class="p">,</span> <span class="s1">&#39;catalog_id&#39;</span><span class="p">,</span> <span class="s1">&#39;event_id&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">append</span><span class="p">:</span>
+            <span class="n">write_string</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">write_string</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">write_string</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+            <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="n">header</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">write_header</span><span class="p">:</span>
+                <span class="n">writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">write_empty</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">return</span>
+            <span class="c1"># create iterator from catalog columns</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">event_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="n">id_col</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">event_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_count</span>
+            <span class="n">row_iter</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_longitudes</span><span class="p">(),</span>
+                           <span class="bp">self</span><span class="o">.</span><span class="n">get_latitudes</span><span class="p">(),</span>
+                           <span class="bp">self</span><span class="o">.</span><span class="n">get_magnitudes</span><span class="p">(),</span>
+                           <span class="bp">self</span><span class="o">.</span><span class="n">get_epoch_times</span><span class="p">(),</span>
+                           <span class="bp">self</span><span class="o">.</span><span class="n">get_depths</span><span class="p">(),</span>
+                           <span class="c1"># populate list with `self.event_count` elements with val self.catalog_id</span>
+                           <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_id</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_count</span><span class="p">,</span>
+                           <span class="n">event_ids</span><span class="p">)</span>
+            <span class="c1"># write csv file using DictWriter interface</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">row_iter</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">event_id</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                    <span class="n">event_id</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+                <span class="c1"># create dictionary for each row</span>
+                <span class="n">adict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lon&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                         <span class="s1">&#39;lat&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                         <span class="s1">&#39;mag&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                         <span class="s1">&#39;time_string&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">epoch_time_to_utc_datetime</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">),</span>
+                         <span class="s1">&#39;depth&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                         <span class="s1">&#39;catalog_id&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+                         <span class="s1">&#39;event_id&#39;</span><span class="p">:</span> <span class="n">event_id</span><span class="p">}</span>
+                <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">adict</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">to_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">with_datetime</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns pandas Dataframe describing the catalog. Explicitly casts to pandas DataFrame.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            The dataframe will be in the format of the original catalog. If you require that the</span>
+<span class="sd">            dataframe be in the CSEP ZMAP format, you must explicitly convert the catalog.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (pandas.DataFrame): This function must return a pandas DataFrame</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If self._catalog cannot be passed to pandas.DataFrame constructor, this function</span>
+<span class="sd">                        must be overridden in the child class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;counts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;catalog_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog_id</span>
+        <span class="k">if</span> <span class="n">with_datetime</span><span class="p">:</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;origin_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">epoch_time_to_utc_datetime</span><span class="p">)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span>
+        <span class="c1"># queries the region for the index of each event</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;region_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">get_index_of</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_longitudes</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_latitudes</span><span class="p">())</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># bin magnitudes</span>
+                <span class="n">df</span><span class="p">[</span><span class="s1">&#39;mag_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mag_idx</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="c1"># set index as datetime</span>
+        <span class="k">return</span> <span class="n">df</span>
+
+    <span class="k">def</span> <span class="nf">get_mag_idx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return magnitude index from region magnitudes &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">bin1d_vec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_magnitudes</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">magnitudes</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">,</span> <span class="n">right_continuous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CSEPCatalogException</span><span class="p">(</span><span class="s2">&quot;Cannot return magnitude index without self.region.magnitudes&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_spatial_idx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return spatial index of region for a longitudes and latitudes in catalog. &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">region_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">get_index_of</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_longitudes</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_latitudes</span><span class="p">())</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CSEPCatalogException</span><span class="p">(</span><span class="s2">&quot;Must have region information to compute region index.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">region_idx</span>
+
+    <span class="k">def</span> <span class="nf">get_event_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_number_of_events</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the number of events from a catalog by checking its length.</span>
+
+<span class="sd">        :returns: number of events in catalog, zero if catalog is None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">get_epoch_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the datetime of the event as the UTC epoch time (aka unix timestamp)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="s1">&#39;origin_time&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_cumulative_number_of_events</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the cumulative number of events in the catalog.</span>
+
+<span class="sd">        Primarily used for plotting purposes.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.array: numpy array of the cumulative number of events, empty array if catalog is empty.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event_count</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">get_magnitudes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns magnitudes of all events in catalog</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="s1">&#39;magnitude&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_datetimes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns datetime object from timestamp representation in catalog</span>
+
+<span class="sd">        :returns: list of timestamps from events in catalog.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot; Returns datetimes from events in catalog &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">epoch_time_to_utc_datetime</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_epoch_times</span><span class="p">()))</span>
+
+    <span class="k">def</span> <span class="nf">get_latitudes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns latitudes of all events in catalog</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_longitudes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns longitudes of all events in catalog</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (numpy.array): longitudes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_bbox</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns bounding box of all events in the catalog</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (numpy.array): [lon_min, lon_max, lat_min, lat_max]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bbox</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]),</span>
+                            <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]),</span>
+                            <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]),</span>
+                            <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">])])</span>
+        <span class="k">return</span> <span class="n">bbox</span>
+
+    <span class="k">def</span> <span class="nf">get_depths</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns depths of all events in catalog &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="s1">&#39;depth&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">statements</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">in_place</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Filters the catalog based on statements. This function takes about 60% of the run-time for processing UCERF3-ETAS</span>
+<span class="sd">        simulations, so likely all other simulations. Implementations should try and limit how often this function</span>
+<span class="sd">        will be called.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            statements (str, iter): logical statements to evaluate, e.g., [&#39;magnitude &gt; 4.0&#39;, &#39;year &gt;= 1995&#39;]</span>
+<span class="sd">            in_place (bool): return new instance of catalog</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self: instance of AbstractBaseCatalog, so that this function can be chained.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">filters</span> <span class="ow">and</span> <span class="n">statements</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CSEPCatalogException</span><span class="p">(</span><span class="s2">&quot;Must provide filter statements to function or class to filter&quot;</span><span class="p">)</span>
+
+        <span class="c1"># programmatically assign operators</span>
+        <span class="n">operators</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;&gt;&#39;</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">gt</span><span class="p">,</span>
+                     <span class="s1">&#39;&lt;&#39;</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">lt</span><span class="p">,</span>
+                     <span class="s1">&#39;&gt;=&#39;</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">ge</span><span class="p">,</span>
+                     <span class="s1">&#39;&lt;=&#39;</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">le</span><span class="p">,</span>
+                     <span class="s1">&#39;==&#39;</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">eq</span><span class="p">}</span>
+
+        <span class="c1"># filter catalogs, implied logical and</span>
+        <span class="k">if</span> <span class="n">statements</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">statements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filters</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">statements</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">statements</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;datetime&#39;</span><span class="p">:</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">oper</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">statements</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;origin_time&#39;</span>
+                <span class="c1"># can be a datetime.datetime object or datetime string, if we want to support filtering on meta data it</span>
+                <span class="c1"># can happen here. but need to determine what to do if entry are not present bc meta data does not</span>
+                <span class="c1"># need to be square</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">strptime_to_utc_epoch</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">date</span><span class="p">,</span> <span class="n">time</span><span class="p">]))</span>
+                <span class="n">filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="n">operators</span><span class="p">[</span><span class="n">oper</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">))]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">name</span><span class="p">,</span> <span class="n">oper</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">statements</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+                <span class="n">filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="n">operators</span><span class="p">[</span><span class="n">oper</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">))]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">statements</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+            <span class="c1"># slower but at the convenience of not having to call multiple times</span>
+            <span class="n">filters</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">statements</span><span class="p">)</span>
+            <span class="n">filtered</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">filt</span> <span class="ow">in</span> <span class="n">filters</span><span class="p">:</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">filt</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="c1"># create indexing array, start with all events</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;datetime&#39;</span><span class="p">:</span>
+                    <span class="n">_</span><span class="p">,</span> <span class="n">oper</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">filt</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+                    <span class="c1"># we map the requested datetime to an epoch time so we act like the user requested origin_time</span>
+                    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;origin_time&#39;</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">strptime_to_utc_epoch</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">date</span><span class="p">,</span> <span class="n">time</span><span class="p">]))</span>
+                    <span class="n">filtered</span> <span class="o">=</span> <span class="n">filtered</span><span class="p">[</span><span class="n">operators</span><span class="p">[</span><span class="n">oper</span><span class="p">](</span><span class="n">filtered</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">))]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">name</span><span class="p">,</span> <span class="n">oper</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">filt</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+                    <span class="n">filtered</span> <span class="o">=</span> <span class="n">filtered</span><span class="p">[</span><span class="n">operators</span><span class="p">[</span><span class="n">oper</span><span class="p">](</span><span class="n">filtered</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">))]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;statements should be either a string or list or tuple of strings&#39;</span><span class="p">)</span>
+        <span class="c1"># can return new instance of class or original instance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filters</span> <span class="o">=</span> <span class="n">statements</span>
+        <span class="k">if</span> <span class="n">in_place</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span> <span class="o">=</span> <span class="n">filtered</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># make and return new object</span>
+            <span class="bp">cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span>
+            <span class="n">inst</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">filtered</span><span class="p">,</span> <span class="n">catalog_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_id</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                       <span class="n">region</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="n">statements</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">inst</span>
+
+    <span class="k">def</span> <span class="nf">filter_spatial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">update_stats</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">in_place</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Removes events outside of the region. This takes some time and should be used sparingly. Typically for isolating a region</span>
+<span class="sd">        near the mainshock or inside a testing region. This should not be used to create gridded style data sets.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            region: csep.utils.spatial.Region</span>
+<span class="sd">            update_stats (bool): if true will update catalog statistics</span>
+<span class="sd">            in_place (bool): if false, will create a new instance of the catalog preserving state</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">region</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CSEPCatalogException</span><span class="p">(</span><span class="s2">&quot;region provided to function or bound to the catalog instance.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># update the region to the new region</span>
+        <span class="k">if</span> <span class="n">region</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">region</span> <span class="o">=</span> <span class="n">region</span>
+
+        <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">get_masked</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_longitudes</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_latitudes</span><span class="p">())</span>
+        <span class="c1"># logical index uses opposite boolean values than masked arrays.</span>
+
+        <span class="n">filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">in_place</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span> <span class="o">=</span> <span class="n">filtered</span>
+            <span class="k">if</span> <span class="n">update_stats</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">update_catalog_stats</span><span class="p">()</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span>
+            <span class="n">inst</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">filtered</span><span class="p">,</span> <span class="n">catalog_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_id</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                       <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> <span class="n">compute_stats</span><span class="o">=</span><span class="n">update_stats</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">inst</span>
+
+    <span class="k">def</span> <span class="nf">apply_mct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m_main</span><span class="p">,</span> <span class="n">event_epoch</span><span class="p">,</span> <span class="n">mc</span><span class="o">=</span><span class="mf">2.5</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Applies time-dependent magnitude of completeness following a mainshock. Taken</span>
+<span class="sd">        from Eq. (15) from Helmstetter et al., 2006.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            m_main (float): mainshock magnitude</span>
+<span class="sd">            event_epoch: epoch time in millis of event</span>
+<span class="sd">            mc (float): mag_completeness</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">compute_mct</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">m</span> <span class="o">-</span> <span class="mf">4.5</span> <span class="o">-</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+        <span class="c1"># compute critical time for efficiency</span>
+        <span class="n">t_crit_days</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="o">-</span><span class="p">((</span><span class="n">mc</span> <span class="o">-</span> <span class="n">m_main</span> <span class="o">+</span> <span class="mf">4.5</span><span class="p">)</span> <span class="o">/</span> <span class="mf">0.75</span><span class="p">)</span>
+        <span class="n">t_crit_millis</span> <span class="o">=</span> <span class="n">days_to_millis</span><span class="p">(</span><span class="n">t_crit_days</span><span class="p">)</span>
+
+        <span class="n">times</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_epoch_times</span><span class="p">()</span>
+        <span class="n">mws</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_magnitudes</span><span class="p">()</span>
+
+        <span class="c1"># catalogs are stored stored by milliseconds</span>
+        <span class="n">t_crit_epoch</span> <span class="o">=</span> <span class="n">t_crit_millis</span> <span class="o">+</span> <span class="n">event_epoch</span>
+
+        <span class="c1"># another short-circuit, again assumes that catalogs are sorted in time</span>
+        <span class="k">if</span> <span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">t_crit_epoch</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span>
+
+        <span class="c1"># this is used to index the array, starting with accepting all events</span>
+        <span class="nb">filter</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event_count</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">mw</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">mws</span><span class="p">,</span> <span class="n">times</span><span class="p">)):</span>
+            <span class="c1"># we can break bc events are sorted in time</span>
+            <span class="k">if</span> <span class="n">time</span> <span class="o">&gt;</span> <span class="n">t_crit_epoch</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">if</span> <span class="n">time</span> <span class="o">&lt;</span> <span class="n">event_epoch</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">time_from_mshock_in_days</span> <span class="o">=</span> <span class="n">millis_to_days</span><span class="p">(</span><span class="n">time</span> <span class="o">-</span> <span class="n">event_epoch</span><span class="p">)</span>
+            <span class="n">mct</span> <span class="o">=</span> <span class="n">compute_mct</span><span class="p">(</span><span class="n">time_from_mshock_in_days</span><span class="p">,</span> <span class="n">m_main</span><span class="p">)</span>
+            <span class="c1"># ignore events with mw &lt; mct</span>
+            <span class="k">if</span> <span class="n">mw</span> <span class="o">&lt;</span> <span class="n">mct</span><span class="p">:</span>
+                <span class="nb">filter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="n">filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">[</span><span class="nb">filter</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">catalog</span> <span class="o">=</span> <span class="n">filtered</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">get_csep_format</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method should be overwritten for catalog formats that do not adhere to the CSEP ZMAP catalog format. For</span>
+<span class="sd">        those that do, this method will return the catalog as is.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;get_csep_format() not implemented.&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update_catalog_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Compute summary statistics of events in catalog &quot;&quot;&quot;</span>
+        <span class="c1"># update min and max values</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_magnitude</span> <span class="o">=</span> <span class="n">min_or_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_magnitudes</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_magnitude</span> <span class="o">=</span> <span class="n">max_or_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_magnitudes</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_latitude</span> <span class="o">=</span> <span class="n">min_or_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_latitudes</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_latitude</span> <span class="o">=</span> <span class="n">max_or_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_latitudes</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_longitude</span> <span class="o">=</span> <span class="n">min_or_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_longitudes</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_longitude</span> <span class="o">=</span> <span class="n">max_or_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_longitudes</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">epoch_time_to_utc_datetime</span><span class="p">(</span><span class="n">min_or_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_epoch_times</span><span class="p">()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="o">=</span> <span class="n">epoch_time_to_utc_datetime</span><span class="p">(</span><span class="n">max_or_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_epoch_times</span><span class="p">()))</span>
+
+    <span class="k">def</span> <span class="nf">spatial_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns counts of events within discrete spatial region</span>
+
+<span class="sd">        We figure out the index of the polygons and create a map that relates the spatial coordinate in the</span>
+<span class="sd">        Cartesian grid with with the polygon in region.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ndarray containing the event count in each spatial bin</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># make sure region is specified with catalog</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CSEPSchedulerException</span><span class="p">(</span><span class="s2">&quot;Cannot create binned rates without region information.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># todo: this should be routed through self.region to allow for different types of regions</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">regions</span><span class="o">.</span><span class="n">_bin_catalog_spatial_counts</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_longitudes</span><span class="p">(),</span>
+                                                     <span class="bp">self</span><span class="o">.</span><span class="n">get_latitudes</span><span class="p">(),</span>
+                                                     <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span>
+                                                     <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">bbox_mask</span><span class="p">,</span>
+                                                     <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">idx_map</span><span class="p">,</span>
+                                                     <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">xs</span><span class="p">,</span>
+                                                     <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">ys</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span>
+
+    <span class="k">def</span> <span class="nf">spatial_event_probability</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># make sure region is specified with catalog</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CSEPSchedulerException</span><span class="p">(</span><span class="s2">&quot;Cannot create binned probabilities without region information.&quot;</span><span class="p">)</span>
+
+        <span class="n">output</span> <span class="o">=</span> <span class="n">regions</span><span class="o">.</span><span class="n">_bin_catalog_probability</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_longitudes</span><span class="p">(),</span>
+                                                  <span class="bp">self</span><span class="o">.</span><span class="n">get_latitudes</span><span class="p">(),</span>
+                                                  <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">polygons</span><span class="p">),</span>
+                                                  <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">bbox_mask</span><span class="p">,</span>
+                                                  <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">idx_map</span><span class="p">,</span>
+                                                  <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">xs</span><span class="p">,</span>
+                                                  <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">ys</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span>
+
+    <span class="k">def</span> <span class="nf">magnitude_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mag_bins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">,</span> <span class="n">retbins</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Computes the count of events within mag_bins</span>
+
+
+<span class="sd">        Args:</span>
+<span class="sd">            mag_bins: uses csep.utils.constants.CSEP_MW_BINS as default magnitude bins</span>
+<span class="sd">            retbins (bool): if this is true, return the bins used</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: showing the counts of hte events in each magnitude bin</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># todo: keep track of events that are ignored</span>
+        <span class="k">if</span> <span class="n">mag_bins</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># a forecast is a type of region, but region does not need a magnitude</span>
+                <span class="n">mag_bins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">magnitudes</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="c1"># use default magnitude bins from csep</span>
+                <span class="n">mag_bins</span> <span class="o">=</span> <span class="n">CSEP_MW_BINS</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">magnitudes</span> <span class="o">=</span> <span class="n">mag_bins</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">num_mag_bins</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mag_bins</span><span class="p">)</span>
+
+        <span class="n">out</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mag_bins</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">retbins</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">mag_bins</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">out</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">bin1d_vec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_magnitudes</span><span class="p">(),</span> <span class="n">mag_bins</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">,</span> <span class="n">right_continuous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">numpy</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">retbins</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">mag_bins</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">out</span>
+
+    <span class="k">def</span> <span class="nf">spatial_magnitude_counts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mag_bins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">0.00001</span><span class="p">,</span> <span class="n">ret_skipped</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return counts of events in space-magnitude region.</span>
+
+<span class="sd">        We figure out the index of the polygons and create a map that relates the spatial coordinate in the</span>
+<span class="sd">        Cartesian grid with with the polygon in region.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            mag_bins: magnitude bins (optional). tries to use magnitue bins associated with region</span>
+<span class="sd">            ret_skipped (bool): if true, will return list of (lon, lat, mw) tuple of skipped points</span>
+
+
+<span class="sd">        Returns:</span>
+<span class="sd">            output: unnormalized event count in each bin, 1d ndarray where index corresponds to midpoints</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># make sure region is specified with catalog</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CSEPCatalogException</span><span class="p">(</span><span class="s2">&quot;Cannot create binned rates without region information.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># short-circuit if zero-events in catalog... return array of zeros</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">n_poly</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">num_nodes</span>
+            <span class="n">n_mws</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">num_mag_bins</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_poly</span><span class="p">,</span> <span class="n">n_mws</span><span class="p">))</span>
+            <span class="n">skipped</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">mag_bins</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># a forecast is a type of region, but region does not need a magnitude</span>
+                    <span class="n">mag_bins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">magnitudes</span>
+                <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                    <span class="c1"># use default magnitude bins from csep</span>
+                    <span class="n">mag_bins</span> <span class="o">=</span> <span class="n">CSEP_MW_BINS</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">magnitudes</span> <span class="o">=</span> <span class="n">mag_bins</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">num_mag_bins</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mag_bins</span><span class="p">)</span>
+
+            <span class="c1"># compute if not</span>
+            <span class="c1"># todo: this should be routed through self.region to allow for different types of regions</span>
+            <span class="n">output</span><span class="p">,</span> <span class="n">skipped</span> <span class="o">=</span> <span class="n">regions</span><span class="o">.</span><span class="n">_bin_catalog_spatio_magnitude_counts</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_longitudes</span><span class="p">(),</span>
+                                                                           <span class="bp">self</span><span class="o">.</span><span class="n">get_latitudes</span><span class="p">(),</span>
+                                                                           <span class="bp">self</span><span class="o">.</span><span class="n">get_magnitudes</span><span class="p">(),</span>
+                                                                           <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">,</span>
+                                                                           <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">bbox_mask</span><span class="p">,</span>
+                                                                           <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">idx_map</span><span class="p">,</span>
+                                                                           <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">xs</span><span class="p">,</span>
+                                                                           <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">ys</span><span class="p">,</span>
+                                                                           <span class="n">mag_bins</span><span class="p">,</span>
+                                                                           <span class="n">tol</span><span class="o">=</span><span class="n">tol</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ret_skipped</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="n">skipped</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">output</span>
+
+    <span class="k">def</span> <span class="nf">length_in_seconds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns catalog length in seconds assuming that the catalog is sorted by time. &quot;&quot;&quot;</span>
+        <span class="n">dts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_datetimes</span><span class="p">()</span>
+        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">dts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">elapsed_time</span>
+
+    <span class="k">def</span> <span class="nf">get_bvalue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mag_bins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_error</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Estimates the b-value of a catalog from Marzocchi and Sandri (2003). First, tries to use the magnitude bins</span>
+<span class="sd">        provided to the function. If those are not provided, tries the magnitude bins associated with the region.</span>
+<span class="sd">        If that fails, uses the default magnitude bins provided in constants.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            reterr (bool): returns errors</span>
+<span class="sd">            mag_bins (list or array_like): monotonically increasing set of magnitude bin edges</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bval (float): b-value</span>
+<span class="sd">            err (float): std. err</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_number_of_events</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="c1"># this might fail if magnitudes are not aligned</span>
+        <span class="k">if</span> <span class="n">mag_bins</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">mag_bins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">magnitudes</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="n">mag_bins</span> <span class="o">=</span> <span class="n">CSEP_MW_BINS</span>
+        <span class="n">mws</span> <span class="o">=</span> <span class="n">discretize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_magnitudes</span><span class="p">(),</span> <span class="n">mag_bins</span><span class="p">)</span>
+        <span class="n">dmw</span> <span class="o">=</span> <span class="n">mag_bins</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">mag_bins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># compute the p term from eq 3.10 in marzocchi and sandri [2003]</span>
+        <span class="k">def</span> <span class="nf">p</span><span class="p">():</span>
+            <span class="n">top</span> <span class="o">=</span> <span class="n">dmw</span>
+            <span class="n">bottom</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">mws</span><span class="p">)</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">mws</span><span class="p">)</span>
+            <span class="c1"># this might happen if all mags are the same, or 1 event in catalog</span>
+            <span class="k">if</span> <span class="n">bottom</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">top</span> <span class="o">/</span> <span class="n">bottom</span>
+
+        <span class="n">bottom</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">dmw</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">bval</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">bottom</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">return_error</span><span class="p">:</span>
+            <span class="n">err</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">dmw</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">event_count</span> <span class="o">*</span> <span class="n">p</span><span class="p">))</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">bval</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">bval</span>
+
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">set_global</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot_args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Plot catalog according to plate-carree projection</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ax (`matplotlib.pyplot.axes`): Previous axes onto which catalog can be drawn</span>
+<span class="sd">            show (bool): if true, show the figure. this call is blocking.</span>
+<span class="sd">            extent (list): Force an extent [lon_min, lon_max, lat_min, lat_max]</span>
+<span class="sd">            plot_args (optional/dict): dictionary containing plotting arguments for making figures</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            axes: matplotlib.Axes.axes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># no mutable function arguments</span>
+
+
+        <span class="n">plot_args</span> <span class="o">=</span> <span class="n">plot_args</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="n">plot_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;figsize&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+        <span class="n">plot_args</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="c1"># this call requires internet connection and basemap</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span>
+                          <span class="n">set_global</span><span class="o">=</span><span class="n">set_global</span><span class="p">,</span> <span class="n">plot_args</span><span class="o">=</span><span class="n">plot_args</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ax</span></div>
+
+<div class="viewcode-block" id="CSEPCatalog"><a class="viewcode-back" href="../../../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog">[docs]</a><span class="k">class</span> <span class="nc">CSEPCatalog</span><span class="p">(</span><span class="n">AbstractBaseCatalog</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Standard catalog class for PyCSEP catalog operations.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dtype</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dtype</span><span class="p">([(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;S256&#39;</span><span class="p">),</span>
+                         <span class="p">(</span><span class="s1">&#39;origin_time&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;i8&#39;</span><span class="p">),</span>
+                         <span class="p">(</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;f8&#39;</span><span class="p">),</span>
+                         <span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;f8&#39;</span><span class="p">),</span>
+                         <span class="p">(</span><span class="s1">&#39;depth&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;f8&#39;</span><span class="p">),</span>
+                         <span class="p">(</span><span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;f8&#39;</span><span class="p">)])</span>
+
+<div class="viewcode-block" id="CSEPCatalog.__init__"><a class="viewcode-back" href="../../../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot; Standard catalog format for CSEP catalogs. Primary event data are stored in structured numpy array. Additional</span>
+<span class="sd">            metadata are available by the event_id in the catalog metadata information.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filename: location of catalog</span>
+<span class="sd">            catalog (numpy.ndarray or eventlist): catalog data</span>
+<span class="sd">            catalog_id: catalog id number (used for stochastic event set forecasts)</span>
+<span class="sd">            format: identification used for serialization</span>
+<span class="sd">            name: human readable name of catalog</span>
+<span class="sd">            region: spatial and magnitude region</span>
+<span class="sd">            compute_stats: whether statistics should be computed for the catalog</span>
+<span class="sd">            filters (str or list): filtering operations to apply to the catalog</span>
+<span class="sd">            metadata (dict): additional information for events</span>
+<span class="sd">            date_accessed (str): time string when catalog was accessed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CSEPCatalog.load_ascii_catalogs"><a class="viewcode-back" href="../../../reference/generated/csep.core.catalogs.CSEPCatalog.load_ascii_catalogs.html#csep.core.catalogs.CSEPCatalog.load_ascii_catalogs">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_ascii_catalogs</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Loads multiple CSEP catalogs in ASCII format.</span>
+
+<span class="sd">        This function can load multiple catalogs stored in a single file or directories. This typically called to</span>
+<span class="sd">        load a catalog-based forecast.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filename (str): filepath or directory of catalog files</span>
+<span class="sd">            **kwargs (dict): passed to class constructor</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            yields CSEPCatalog class</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">parse_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+            <span class="c1"># this works for unix</span>
+            <span class="n">basename</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">split_fname</span> <span class="o">=</span> <span class="n">basename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">split_fname</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">strptime_to_utc_datetime</span><span class="p">(</span><span class="n">split_fname</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">T%H-%M-%S-</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">start_time</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">is_header_line</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;lon&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="n">name_from_file</span><span class="p">,</span> <span class="n">start_time</span> <span class="o">=</span> <span class="n">parse_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="c1"># overwrite filename, if user specifies</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">name_from_file</span><span class="p">)</span>
+        <span class="c1"># handle all catalogs in single file</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">input_file</span><span class="p">:</span>
+                <span class="n">catalog_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+                <span class="c1"># csv treats everything as a string convert to correct types</span>
+                <span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="c1"># all catalogs should start at zero</span>
+                <span class="n">prev_id</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">catalog_reader</span><span class="p">:</span>
+                    <span class="c1"># skip header line on first read if included in file</span>
+                    <span class="k">if</span> <span class="n">prev_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">is_header_line</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+                            <span class="k">continue</span>
+                    <span class="c1"># convert to correct types</span>
+                    <span class="n">lon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">lat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="n">magnitude</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+                    <span class="c1"># maybe fractional seconds are not included</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">origin_time</span> <span class="o">=</span> <span class="n">strptime_to_utc_epoch</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">&#39;</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="n">origin_time</span> <span class="o">=</span> <span class="n">strptime_to_utc_epoch</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S&#39;</span><span class="p">)</span>
+                    <span class="n">depth</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+                    <span class="n">catalog_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+                    <span class="n">event_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+                    <span class="c1"># first event is when prev_id is none, catalog_id should always start at zero</span>
+                    <span class="k">if</span> <span class="n">prev_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">prev_id</span> <span class="o">=</span> <span class="mi">0</span>
+                        <span class="c1"># if the first catalog doesn&#39;t start at zero</span>
+                        <span class="k">if</span> <span class="n">catalog_id</span> <span class="o">!=</span> <span class="n">prev_id</span><span class="p">:</span>
+                            <span class="n">prev_id</span> <span class="o">=</span> <span class="n">catalog_id</span>
+                            <span class="c1"># store this event for next time</span>
+                            <span class="n">events</span> <span class="o">=</span> <span class="p">[(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">origin_time</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">magnitude</span><span class="p">)]</span>
+                            <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">catalog_id</span><span class="p">):</span>
+                                <span class="k">yield</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[],</span> <span class="n">catalog_id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                    <span class="c1"># deal with cases of events</span>
+                    <span class="k">if</span> <span class="n">catalog_id</span> <span class="o">==</span> <span class="n">prev_id</span><span class="p">:</span>
+                        <span class="n">prev_id</span> <span class="o">=</span> <span class="n">catalog_id</span>
+                        <span class="n">events</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">event_id</span><span class="p">,</span> <span class="n">origin_time</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">magnitude</span><span class="p">))</span>
+                    <span class="c1"># create and yield class if the events are from different catalogs</span>
+                    <span class="k">elif</span> <span class="n">catalog_id</span> <span class="o">==</span> <span class="n">prev_id</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">catalog</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">events</span><span class="p">,</span> <span class="n">catalog_id</span><span class="o">=</span><span class="n">prev_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                        <span class="n">prev_id</span> <span class="o">=</span> <span class="n">catalog_id</span>
+                        <span class="c1"># add first event to new event list</span>
+                        <span class="n">events</span> <span class="o">=</span> <span class="p">[(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">origin_time</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">magnitude</span><span class="p">)]</span>
+                        <span class="k">yield</span> <span class="n">catalog</span>
+                    <span class="c1"># this implies there are empty catalogs, because they are not listed in the ascii file</span>
+                    <span class="k">elif</span> <span class="n">catalog_id</span> <span class="o">&gt;</span> <span class="n">prev_id</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">catalog</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">events</span><span class="p">,</span> <span class="n">catalog_id</span><span class="o">=</span><span class="n">prev_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                        <span class="c1"># add event to new event list</span>
+                        <span class="n">events</span> <span class="o">=</span> <span class="p">[(</span><span class="n">event_id</span><span class="p">,</span> <span class="n">origin_time</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">magnitude</span><span class="p">)]</span>
+                        <span class="c1"># if prev_id = 0 and catalog_id = 2, then we skipped one catalog. thus, we skip catalog_id - prev_id - 1 catalogs</span>
+                        <span class="n">num_empty_catalogs</span> <span class="o">=</span> <span class="n">catalog_id</span> <span class="o">-</span> <span class="n">prev_id</span> <span class="o">-</span> <span class="mi">1</span>
+                        <span class="c1"># create empty catalog classes</span>
+                        <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_empty_catalogs</span><span class="p">):</span>
+                            <span class="k">yield</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[],</span> <span class="n">catalog_id</span><span class="o">=</span><span class="n">catalog_id</span> <span class="o">-</span> <span class="n">num_empty_catalogs</span> <span class="o">+</span> <span class="nb">id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                        <span class="c1"># finally we want to yield the buffered catalog to preserve order</span>
+                        <span class="n">prev_id</span> <span class="o">=</span> <span class="n">catalog_id</span>
+                        <span class="k">yield</span> <span class="n">catalog</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="s2">&quot;catalog_id should be monotonically increasing and events should be ordered by catalog_id&quot;</span><span class="p">)</span>
+                <span class="c1"># yield final catalog, note: since this is just loading catalogs, it has no idea how many should be there</span>
+                <span class="k">yield</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">events</span><span class="p">,</span> <span class="n">catalog_id</span><span class="o">=</span><span class="n">prev_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;reading from directory or batched files not implemented yet!&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CSEPCatalog.load_catalog"><a class="viewcode-back" href="../../../reference/generated/csep.core.catalogs.CSEPCatalog.load_catalog.html#csep.core.catalogs.CSEPCatalog.load_catalog">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_catalog</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">loader</span><span class="o">=</span><span class="n">csep_ascii</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Loads catalog stored in CSEP1 ascii format &quot;&quot;&quot;</span>
+        <span class="n">catalog_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">event_list</span><span class="p">,</span> <span class="n">catalog_id</span> <span class="o">=</span> <span class="n">loader</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">return_catalog_id</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="n">event_list</span> <span class="o">=</span> <span class="n">loader</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">new_class</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">event_list</span><span class="p">,</span> <span class="n">catalog_id</span><span class="o">=</span><span class="n">catalog_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">new_class</span></div>
+
+<div class="viewcode-block" id="CSEPCatalog.get_csep_format"><a class="viewcode-back" href="../../../reference/generated/csep.core.catalogs.CSEPCatalog.get_csep_format.html#csep.core.catalogs.CSEPCatalog.get_csep_format">[docs]</a>    <span class="k">def</span> <span class="nf">get_csep_format</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns CSEP format for a catalog</span>
+
+<span class="sd">        This catalog is already in CSEP format so it will return self.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span></div></div>
+
+
+<div class="viewcode-block" id="UCERF3Catalog"><a class="viewcode-back" href="../../../reference/generated/csep.core.catalogs.UCERF3Catalog.html#csep.core.catalogs.UCERF3Catalog">[docs]</a><span class="k">class</span> <span class="nc">UCERF3Catalog</span><span class="p">(</span><span class="n">AbstractBaseCatalog</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Catalog written from UCERF3-ETAS binary format</span>
+
+<span class="sd">    :var header_dtype: numpy.dtype description of synthetic catalog header.</span>
+<span class="sd">    :var event_dtype: numpy.dtype description of ucerf3 catalog format</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># binary format of UCERF3 catalog</span>
+    <span class="n">header_dtype</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dtype</span><span class="p">([(</span><span class="s2">&quot;file_version&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i2&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;catalog_size&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">)])</span>
+
+<div class="viewcode-block" id="UCERF3Catalog.__init__"><a class="viewcode-back" href="../../../reference/generated/csep.core.catalogs.UCERF3Catalog.html#csep.core.catalogs.UCERF3Catalog.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># initialize parent constructor</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_catalogs</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Loads catalogs based on the merged binary file format of UCERF3. File format is described at</span>
+<span class="sd">        https://scec.usc.edu/scecpedia/CSEP2_Storing_Stochastic_Event_Sets#Introduction.</span>
+
+<span class="sd">        There is also the load_catalog method that will work on the individual binary output of the UCERF3-ETAS</span>
+<span class="sd">        model.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filename (str): filename of binary stochastic event set</span>
+<span class="sd">            kwargs (dict): keyword arguments to pass to class constructor</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            list of catalogs of type UCERF3Catalog</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># handle uncompressed binary file</span>
+        <span class="k">if</span> <span class="n">get_file_extension</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;bin&#39;</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">catalog_file</span><span class="p">:</span>
+                <span class="c1"># parse 4byte header from merged file</span>
+                <span class="n">number_simulations_in_set</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">catalog_file</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;&gt;i4&#39;</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="c1"># load all catalogs from merged file</span>
+                <span class="k">for</span> <span class="n">catalog_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_simulations_in_set</span><span class="p">):</span>
+                    <span class="n">version</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">catalog_file</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;&gt;i2&quot;</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">dtype</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_header_dtype</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+                    <span class="n">header</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">catalog_file</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">catalog_size</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;catalog_size&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="c1"># read catalog</span>
+                    <span class="n">catalog</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">catalog_file</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">_get_catalog_dtype</span><span class="p">(</span><span class="n">version</span><span class="p">),</span> <span class="n">count</span><span class="o">=</span><span class="n">catalog_size</span><span class="p">)</span>
+                    <span class="c1"># add column that stores catalog_id in case we want to store in database</span>
+                    <span class="n">u3_catalog</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">catalog</span><span class="p">,</span> <span class="n">catalog_id</span><span class="o">=</span><span class="n">catalog_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                    <span class="n">u3_catalog</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span>
+                    <span class="k">yield</span> <span class="n">u3_catalog</span>
+
+        <span class="c1"># handle compressed file by decompressing inline</span>
+        <span class="k">elif</span> <span class="n">get_file_extension</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;gz&#39;</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">catalog_file</span><span class="p">:</span>
+                <span class="n">number_simulations_in_set</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">catalog_file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;&gt;i4&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">catalog_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_simulations_in_set</span><span class="p">):</span>
+                    <span class="n">version</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">catalog_file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;&gt;i2&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">dtype</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_header_dtype</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+                    <span class="n">header_bytes</span> <span class="o">=</span> <span class="n">dtype</span><span class="o">.</span><span class="n">itemsize</span>
+                    <span class="n">header</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">catalog_file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">header_bytes</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+                    <span class="n">catalog_size</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;catalog_size&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">catalog_dtype</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_catalog_dtype</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+                    <span class="n">event_bytes</span> <span class="o">=</span> <span class="n">catalog_dtype</span><span class="o">.</span><span class="n">itemsize</span>
+                    <span class="n">catalog</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span>
+                        <span class="n">catalog_file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">event_bytes</span><span class="o">*</span><span class="n">catalog_size</span><span class="p">),</span>
+                        <span class="n">dtype</span><span class="o">=</span><span class="n">catalog_dtype</span><span class="p">,</span>
+                        <span class="n">count</span><span class="o">=</span><span class="n">catalog_size</span>
+                    <span class="p">)</span>
+                    <span class="n">u3_catalog</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">catalog</span><span class="p">,</span> <span class="n">catalog_id</span><span class="o">=</span><span class="n">catalog_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                    <span class="n">u3_catalog</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span>
+                    <span class="k">yield</span> <span class="n">u3_catalog</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_catalog</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">loader</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;&gt;i2&quot;</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">_get_header_dtype</span><span class="p">(</span><span class="n">version</span><span class="p">),</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">catalog_size</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="s1">&#39;catalog_size&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># assign dtype to make sure that its bound to the instance of the class</span>
+        <span class="n">dtype</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_catalog_dtype</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+        <span class="n">event_list</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">_get_catalog_dtype</span><span class="p">(</span><span class="n">version</span><span class="p">),</span> <span class="n">count</span><span class="o">=</span><span class="n">catalog_size</span><span class="p">)</span>
+        <span class="n">new_class</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">event_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">new_class</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span>
+        <span class="k">return</span> <span class="n">new_class</span>
+
+    <span class="k">def</span> <span class="nf">get_csep_format</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">)</span>
+        <span class="c1"># allocate array for csep catalog</span>
+        <span class="n">csep_catalog</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">CSEPCatalog</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">event</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog</span><span class="p">):</span>
+            <span class="n">csep_catalog</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span>
+                               <span class="n">event</span><span class="p">[</span><span class="s1">&#39;origin_time&#39;</span><span class="p">],</span>
+                               <span class="n">event</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span>
+                               <span class="n">event</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">],</span>
+                               <span class="n">event</span><span class="p">[</span><span class="s1">&#39;depth&#39;</span><span class="p">],</span>
+                               <span class="n">event</span><span class="p">[</span><span class="s1">&#39;magnitude&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">CSEPCatalog</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">csep_catalog</span><span class="p">,</span> <span class="n">catalog_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">catalog_id</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csep&#39;</span><span class="p">,</span>
+                           <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="p">,</span> <span class="n">compute_stats</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_stats</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">,</span>
+                           <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="n">date_accessed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">date_accessed</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_catalog_dtype</span><span class="p">(</span><span class="n">version</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get catalog dtype from version number</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            version:</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dtype</span><span class="p">([(</span><span class="s2">&quot;rupture_id&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;parent_id&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;generation&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i2&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;origin_time&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;f8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;f8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;depth&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;f8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;magnitude&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;f8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;dist_to_parent&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;f8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;erf_index&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;fss_index&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;grid_node_index&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">)])</span>
+
+        <span class="k">elif</span> <span class="n">version</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dtype</span><span class="p">([(</span><span class="s2">&quot;rupture_id&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;parent_id&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;generation&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i2&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;origin_time&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;f8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;f8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;depth&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;f8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;magnitude&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;f8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;dist_to_parent&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;f8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;erf_index&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;fss_index&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;grid_node_index&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;etas_k&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;f8&quot;</span><span class="p">)])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown catalog version, cannot read catalog.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dtype</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_header_dtype</span><span class="p">(</span><span class="n">version</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">version</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dtype</span><span class="p">([(</span><span class="s2">&quot;catalog_size&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">)])</span>
+
+        <span class="k">elif</span> <span class="n">version</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dtype</span><span class="p">([(</span><span class="s2">&quot;num_orignal_ruptures&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;seed&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;hist_rupt_start_id&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;hist_rupt_end_id&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;trig_rupt_start_id&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;trig_rupt_end_id&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;sim_start_epoch&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;sim_end_epoch&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;num_spont&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;num_supraseis&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;min_mag&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;f8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;max_mag&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;f8&quot;</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="s2">&quot;catalog_size&quot;</span><span class="p">,</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">)])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown catalog version, cannot parse catalog header.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dtype</span></div>
+
+<span class="c1"># helps to parse time-strings</span>
+<span class="k">def</span> <span class="nf">_none_or_datetime</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">format</span> <span class="o">=</span> <span class="n">parse_string_format</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">strptime_to_utc_datetime</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+ 
+&#169; 2020, University of Southern California.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

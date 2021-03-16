@@ -1,0 +1,680 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Catalogs &mdash; PyCSEP v0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Forecasts" href="forecasts.html" />
+    <link rel="prev" title="Plot customizations" href="../tutorials/plot_customizations.html" />
+    <!-- Google Analytics -->
+    <!-- added options to anonymize ip and disable cookies using {'storage': 'none'} 
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-495056-15', 'auto', {'storage': 'none'});
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+    </script> -->
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PyCSEP
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installing.html">Installing PyCSEP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/core_concepts.html">Core Concepts for Beginners</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials and Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/catalog_filtering.html">Catalogs operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/plot_gridded_forecast.html">Plotting gridded forecast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gridded_forecast_evaluation.html">Grid-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/working_with_catalog_forecasts.html">Working with catalog-based forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/catalog_forecast_evaluation.html">Catalog-based Forecast Evaluation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/plot_customizations.html">Plot customizations</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Catalogs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pycsep-catalog-basics">PyCSEP catalog basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#catalog-as-pandas-dataframes">Catalog as Pandas dataframes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#loading-catalogs">Loading catalogs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#load-catalogs-from-files">Load catalogs from files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-catalogs-from-comcat">Load catalogs from ComCat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-custom-loader-functions">Writing custom loader functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#including-custom-event-metadata">Including custom event metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-event-information">Accessing Event Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filtering-events">Filtering events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#filtering-events-by-attribute">Filtering events by attribute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filtering-events-in-space">Filtering events in space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#time-dependent-magnitude-of-completeness">Time-dependent magnitude of completeness</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#binning-events">Binning Events</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="forecasts.html">Forecasts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluations.html">Evaluations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="regions.html">Regions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Help &amp; Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/glossary.html">Terms and Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/publications.html">Referenced Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/roadmap.html">Development Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/developer_notes.html">Developer Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/api_reference.html">API Reference</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">Source code and contributing</span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CONTRIBUTING.md">Contributing</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/blob/dev/LICENSE">License</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2/issues">Getting help</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/SCECCode/csep2">Source Code</a></li>
+            
+        </ul>
+    
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyCSEP</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Catalogs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/concepts/catalogs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="catalogs">
+<span id="catalogs-reference"></span><h1>Catalogs<a class="headerlink" href="#catalogs" title="Permalink to this headline">¶</a></h1>
+<p>PyCSEP provides routines for working with and manipulating earthquake catalogs for the purposes of evaluating earthquake
+forecasting models.</p>
+<p>If you are able to make use of these tools for other reasons, please let us know. We are especially interested in
+including basic catalog statistics into this package. If you are interested in helping implement routines like
+b-value estimation and catalog completeness that would be much appreciated.</p>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id3">Introduction</a></p>
+<ul>
+<li><p><a class="reference internal" href="#pycsep-catalog-basics" id="id4">PyCSEP catalog basics</a></p></li>
+<li><p><a class="reference internal" href="#catalog-as-pandas-dataframes" id="id5">Catalog as Pandas dataframes</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#loading-catalogs" id="id6">Loading catalogs</a></p>
+<ul>
+<li><p><a class="reference internal" href="#load-catalogs-from-files" id="id7">Load catalogs from files</a></p></li>
+<li><p><a class="reference internal" href="#load-catalogs-from-comcat" id="id8">Load catalogs from ComCat</a></p></li>
+<li><p><a class="reference internal" href="#writing-custom-loader-functions" id="id9">Writing custom loader functions</a></p></li>
+<li><p><a class="reference internal" href="#including-custom-event-metadata" id="id10">Including custom event metadata</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#accessing-event-information" id="id11">Accessing Event Information</a></p></li>
+<li><p><a class="reference internal" href="#filtering-events" id="id12">Filtering events</a></p>
+<ul>
+<li><p><a class="reference internal" href="#filtering-events-by-attribute" id="id13">Filtering events by attribute</a></p></li>
+<li><p><a class="reference internal" href="#filtering-events-in-space" id="id14">Filtering events in space</a></p></li>
+<li><p><a class="reference internal" href="#time-dependent-magnitude-of-completeness" id="id15">Time-dependent magnitude of completeness</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#binning-events" id="id16">Binning Events</a></p></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pycsep-catalog-basics">
+<h3><a class="toc-backref" href="#id4">PyCSEP catalog basics</a><a class="headerlink" href="#pycsep-catalog-basics" title="Permalink to this headline">¶</a></h3>
+<p>An earthquake catalog contains a collection of seismic events each defined by a set of attributes. PyCSEP implements
+a simple event description that is suitable for evaluating earthquake forecasts. In this format, every seismic event is
+defined by its location in space (longitude, latitude, and depth), magnitude, and origin time. In addition, each event
+can have an optional <code class="docutils literal notranslate"><span class="pre">event_id</span></code> as a unique identifier.</p>
+<p>PyCSEP provides <a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">csep.core.catalogs.CSEPCatalog</span></code></a> to represent an earthquake catalog. The essential event data are stored in a
+<a class="reference external" href="https://numpy.org/doc/stable/user/basics.rec.html">structured NumPy array</a> with the following data type.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dtype</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dtype</span><span class="p">([(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;S256&#39;</span><span class="p">),</span>
+                     <span class="p">(</span><span class="s1">&#39;origin_time&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;i8&#39;</span><span class="p">),</span>
+                     <span class="p">(</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;f4&#39;</span><span class="p">),</span>
+                     <span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;f4&#39;</span><span class="p">),</span>
+                     <span class="p">(</span><span class="s1">&#39;depth&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;f4&#39;</span><span class="p">),</span>
+                     <span class="p">(</span><span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;f4&#39;</span><span class="p">)])</span>
+</pre></div>
+</div>
+<p>Additional information can be associated with an event using the <code class="docutils literal notranslate"><span class="pre">id</span></code> field in the structured array in a class member called
+<code class="docutils literal notranslate"><span class="pre">metadata</span></code>. The essential event data must be complete meaning that each event should have these attributes defined. The metadata
+is more freeform and PyCSEP does not impose any restrictions on the way that event metadata is stored. Only that the metadata
+for an event should be accessible using the event <code class="docutils literal notranslate"><span class="pre">id</span></code>. An example of this could be</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catalog</span> <span class="o">=</span> <span class="n">csep</span><span class="o">.</span><span class="n">load_catalog</span><span class="p">(</span><span class="s1">&#39;catalog_file.csv&#39;</span><span class="p">)</span>
+<span class="n">event_metadata</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="n">event_id</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This would load a catalog stored in the PyCSEP .csv format. PyCSEP contains catalog readers for the following formats
+(We are also looking to support other catalog formats. Please suggest some or better yet help us write the readers!):</p>
+<ol class="arabic simple">
+<li><p>CSEP ascii format</p></li>
+<li><p>NDK format (used by the gCMT catalog)</p></li>
+<li><p>INGV gCMT catalog</p></li>
+<li><p>ZMAP format</p></li>
+<li><p>pre-processed JMA format</p></li>
+</ol>
+<p>PyCSEP supports the ability to easily define a custom reader function for a catalog format type that we don’t currently support.
+If you happen to implement a reader for a new catalog format please check out the
+<a class="reference external" href="https://github.com/SCECCode/csep2/blob/dev/CONTRIBUTING.md">contribution guidelines</a> and make a pull request so
+we can include this in the next release.</p>
+</div>
+<div class="section" id="catalog-as-pandas-dataframes">
+<h3><a class="toc-backref" href="#id5">Catalog as Pandas dataframes</a><a class="headerlink" href="#catalog-as-pandas-dataframes" title="Permalink to this headline">¶</a></h3>
+<p>You might be comfortable using Pandas dataframes to manipulate tabular data. PyCSEP provides some routines for accessing
+catalogs as a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>. You can use <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">catalog.to_dataframe(with_datetimes=True)</span></code> to return the
+DataFrame representation of the catalog. Using the <code class="docutils literal notranslate"><span class="pre">catalog</span> <span class="pre">=</span> <span class="pre">CSEPCatalog.from_dataframe(df)</span></code> you can return back to the
+PyCSEP data model.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Going between a DataFrame and CSEPCatalog is a lossy transformation. It essentially only retains the essential event
+attributes that are defined by the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> of the class.</p>
+</div>
+</div>
+</div>
+<div class="section" id="loading-catalogs">
+<h2><a class="toc-backref" href="#id6">Loading catalogs</a><a class="headerlink" href="#loading-catalogs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="load-catalogs-from-files">
+<h3><a class="toc-backref" href="#id7">Load catalogs from files</a><a class="headerlink" href="#load-catalogs-from-files" title="Permalink to this headline">¶</a></h3>
+<p>You can easily load catalogs in the supported format above using <a class="reference internal" href="../reference/generated/csep.load_catalog.html#csep.load_catalog" title="csep.load_catalog"><code class="xref py py-func docutils literal notranslate"><span class="pre">csep.load_catalog()</span></code></a>. This function provides a
+top-level function to load catalogs that are currently supported by PyCSEP. You must specify the type of the catalog and
+the format you want it to be loaded. The type of the catalog can be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catalog_type</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;ucerf3&#39;</span><span class="p">,</span> <span class="s1">&#39;csep-csv&#39;</span><span class="p">,</span> <span class="s1">&#39;zmap&#39;</span><span class="p">,</span> <span class="s1">&#39;jma-csv&#39;</span><span class="p">,</span> <span class="s1">&#39;ndk&#39;</span><span class="p">)</span>
+<span class="n">catalog_format</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;csep&#39;</span><span class="p">,</span> <span class="s1">&#39;native&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The catalog type determines which reader <code class="xref py py-mod docutils literal notranslate"><span class="pre">csep.utils.readers</span></code> will be used to load in the file. The default is the
+<code class="docutils literal notranslate"><span class="pre">csep-csv</span></code> type and the <code class="docutils literal notranslate"><span class="pre">native</span></code> format. The <code class="docutils literal notranslate"><span class="pre">jma-csv</span></code> format can be created using the <code class="docutils literal notranslate"><span class="pre">./bin/deck2csv.pl</span></code>
+Perl script.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The format is important for <code class="docutils literal notranslate"><span class="pre">ucerf3</span></code> catalogs, because those are stored as big endian binary numbers by default.
+If you are working with <code class="docutils literal notranslate"><span class="pre">ucerf3-etas</span></code> catalogs and would like to convert them into the CSEPCatalog format you can
+use the <code class="docutils literal notranslate"><span class="pre">format='csep'</span></code> option when loading in a catalog or catalogs.</p>
+</div>
+</div>
+<div class="section" id="load-catalogs-from-comcat">
+<h3><a class="toc-backref" href="#id8">Load catalogs from ComCat</a><a class="headerlink" href="#load-catalogs-from-comcat" title="Permalink to this headline">¶</a></h3>
+<p>PyCSEP provides top-level functions to load catalogs using ComCat. We incorporated the work done by Mike Hearne and
+others from the U.S. Geological Survey into PyCSEP in an effort to reduce the dependencies of this project. The top-level
+access to ComCat catalogs can be accessed from <a class="reference internal" href="../reference/generated/csep.query_comcat.html#csep.query_comcat" title="csep.query_comcat"><code class="xref py py-func docutils literal notranslate"><span class="pre">csep.query_comcat()</span></code></a>. Some lower level functionality can be accessed
+through the <a class="reference internal" href="../reference/api_reference.html#module-csep.utils.comcat" title="csep.utils.comcat"><code class="xref py py-mod docutils literal notranslate"><span class="pre">csep.utils.comcat</span></code></a> module. All credit for this code goes to the U.S. Geological Survey.</p>
+<p><span class="xref std std-ref">Here</span> is complete example of accessing the ComCat catalog.</p>
+</div>
+<div class="section" id="writing-custom-loader-functions">
+<h3><a class="toc-backref" href="#id9">Writing custom loader functions</a><a class="headerlink" href="#writing-custom-loader-functions" title="Permalink to this headline">¶</a></h3>
+<p>You can easily add custom loader functions to import data formats that are not currently included with the PyCSEP tools.
+Both <a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.load_catalog.html#csep.core.catalogs.CSEPCatalog.load_catalog" title="csep.core.catalogs.CSEPCatalog.load_catalog"><code class="xref py py-meth docutils literal notranslate"><span class="pre">csep.core.catalogs.CSEPCatalog.load_catalog()</span></code></a> and <a class="reference internal" href="../reference/generated/csep.load_catalog.html#csep.load_catalog" title="csep.load_catalog"><code class="xref py py-func docutils literal notranslate"><span class="pre">csep.load_catalog()</span></code></a> support an optional argument
+called <code class="docutils literal notranslate"><span class="pre">loader</span></code> to support these custom data formats.</p>
+<p>In the simplest form the function should have the following stub:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_custom_loader_function</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Custom loader function for catalog data.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filename (str): path to the file containing the path to the forecast</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        eventlist: iterable of event data with the order:</span>
+<span class="sd">                (event_id, origin_time, latitude, longitude, depth, magnitude)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># imagine there is some logic to read in data from filename</span>
+
+    <span class="k">return</span> <span class="n">eventlist</span>
+</pre></div>
+</div>
+<p>This function can then be passed to <a class="reference internal" href="../reference/generated/csep.load_catalog.html#csep.load_catalog" title="csep.load_catalog"><code class="xref py py-func docutils literal notranslate"><span class="pre">csep.load_catalog()</span></code></a> or <a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.load_catalog.html#csep.core.catalogs.CSEPCatalog.load_catalog" title="csep.core.catalogs.CSEPCatalog.load_catalog"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CSEPCatalog.load_catalog</span></code></a>
+with the <code class="docutils literal notranslate"><span class="pre">loader</span></code> keyword argument. The function should be passed as a first-class object like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csep</span>
+<span class="n">my_custom_catalog</span> <span class="o">=</span> <span class="n">csep</span><span class="o">.</span><span class="n">load_catalog</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">loader</span><span class="o">=</span><span class="n">my_custom_loader_function</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The origin_time is actually an integer time. We recommend to parse the timing information as a
+<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a> object and use the <a class="reference internal" href="../reference/generated/csep.utils.time_utils.datetime_to_utc_epoch.html#csep.utils.time_utils.datetime_to_utc_epoch" title="csep.utils.time_utils.datetime_to_utc_epoch"><code class="xref py py-func docutils literal notranslate"><span class="pre">datetime_to_utc_epoch</span></code></a>
+function to convert this to an integer time.</p>
+</div>
+<p>Notice, we did not actually call the function but we just passed it as a reference. These functions can also access
+web-based catalogs like we implement with the <a class="reference internal" href="../reference/generated/csep.query_comcat.html#csep.query_comcat" title="csep.query_comcat"><code class="xref py py-func docutils literal notranslate"><span class="pre">csep.query_comcat()</span></code></a> function. This function doesn’t work with either
+<a class="reference internal" href="../reference/generated/csep.load_catalog.html#csep.load_catalog" title="csep.load_catalog"><code class="xref py py-func docutils literal notranslate"><span class="pre">csep.load_catalog()</span></code></a> or <a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.load_catalog.html#csep.core.catalogs.CSEPCatalog.load_catalog" title="csep.core.catalogs.CSEPCatalog.load_catalog"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CSEPCatalog.load_catalog</span></code></a>,
+because these are intended for file-based catalogs. Instead, we can create the catalog object directly.
+We would do that like this</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_custom_web_loader</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Accesses catalog from online data source.</span>
+
+<span class="sd">    There are no requirements on the arguments if you are creating the catalog directly from the class.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        eventlist: iterable of event data with the order:</span>
+<span class="sd">            (event_id, origin_time, latitude, longitude, depth, magnitude)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># custom logic to access online catalog repository</span>
+
+    <span class="k">return</span> <span class="n">eventlist</span>
+</pre></div>
+</div>
+<p>As you might notice, all loader functions are required to return an event-list. This event-list must be iterable and
+contain the required event data.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The events in the eventlist should follow the form</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">eventlist</span> <span class="o">=</span> <span class="n">my_custom_loader_function</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="n">event</span> <span class="o">=</span> <span class="n">eventlist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">event</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">event_id</span>
+<span class="c1"># see note above about using integer times</span>
+<span class="n">event</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">origin_time</span>
+<span class="n">event</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">latitude</span>
+<span class="n">event</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">longitude</span>
+<span class="n">event</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">depth</span>
+<span class="n">event</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">magnitude</span>
+</pre></div>
+</div>
+</div>
+<p>Once you have a function that returns an eventlist, you can create the catalog object directly. This uses the
+<a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">csep.core.catalogs.CSEPCatalog</span></code></a> as an example.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csep</span>
+
+<span class="n">eventlist</span> <span class="o">=</span> <span class="n">my_custom_web_loader</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">csep</span><span class="o">.</span><span class="n">catalogs</span><span class="o">.</span><span class="n">CSEPCatalog</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">eventlist</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs represents any other keyword argument that can be passed to
+<a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">CSEPCatalog</span></code></a>. This could be the <code class="docutils literal notranslate"><span class="pre">catalog_id</span></code> or the
+<a class="reference internal" href="../reference/generated/csep.core.regions.CartesianGrid2D.html#csep.core.regions.CartesianGrid2D" title="csep.core.regions.CartesianGrid2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">CartesianGrid2D</span></code></a>.</p>
+</div>
+<div class="section" id="including-custom-event-metadata">
+<h3><a class="toc-backref" href="#id10">Including custom event metadata</a><a class="headerlink" href="#including-custom-event-metadata" title="Permalink to this headline">¶</a></h3>
+<p>Catalogs can include additional metadata associated with each event. Right now, there are no direct applications for
+event metadata. Nonetheless, it can be included with a catalog object.</p>
+<p>The event metadata should be a dictionary where the keys are the <code class="docutils literal notranslate"><span class="pre">event_id</span></code> of the individual events. For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">event_id</span> <span class="o">=</span> <span class="s1">&#39;my_dummy_id&#39;</span>
+<span class="n">metadata_dict</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="n">event_id</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Each event meta_data should be a JSON-serializable dictionary or a class that implements the to_dict() and from_dict() methods. This is
+required to properly save the catalog files into JSON format and verify whether two catalogs are the same. You can see
+the <a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_dict</span></code></a> and <a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_dict</span></code></a> methods for an
+example of how these would work.</p>
+</div>
+</div>
+<div class="section" id="accessing-event-information">
+<h2><a class="toc-backref" href="#id11">Accessing Event Information</a><a class="headerlink" href="#accessing-event-information" title="Permalink to this headline">¶</a></h2>
+<p>In order to utilize the low-level acceleration from Numpy, most catalog operations are vectorized. The catalog classes
+provide some getter methods to access the essential catalog data. These return arrays of <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> with the
+<code class="docutils literal notranslate"><span class="pre">dtype</span></code> defined by the class.</p>
+<span class="target" id="module-csep.core.catalogs"></span><p>The following functions return <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarrays</span></code></a> of the catalog information.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.event_count.html#csep.core.catalogs.CSEPCatalog.event_count" title="csep.core.catalogs.CSEPCatalog.event_count"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.event_count</span></code></a></p></td>
+<td><p>Number of events in catalog</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.get_magnitudes.html#csep.core.catalogs.CSEPCatalog.get_magnitudes" title="csep.core.catalogs.CSEPCatalog.get_magnitudes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_magnitudes</span></code></a>()</p></td>
+<td><p>Returns magnitudes of all events in catalog</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.get_longitudes.html#csep.core.catalogs.CSEPCatalog.get_longitudes" title="csep.core.catalogs.CSEPCatalog.get_longitudes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_longitudes</span></code></a>()</p></td>
+<td><p>Returns longitudes of all events in catalog</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.get_latitudes.html#csep.core.catalogs.CSEPCatalog.get_latitudes" title="csep.core.catalogs.CSEPCatalog.get_latitudes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_latitudes</span></code></a>()</p></td>
+<td><p>Returns latitudes of all events in catalog</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.get_depths.html#csep.core.catalogs.CSEPCatalog.get_depths" title="csep.core.catalogs.CSEPCatalog.get_depths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_depths</span></code></a>()</p></td>
+<td><p>Returns depths of all events in catalog</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.get_epoch_times.html#csep.core.catalogs.CSEPCatalog.get_epoch_times" title="csep.core.catalogs.CSEPCatalog.get_epoch_times"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_epoch_times</span></code></a>()</p></td>
+<td><p>Returns the datetime of the event as the UTC epoch time (aka unix timestamp)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.get_datetimes.html#csep.core.catalogs.CSEPCatalog.get_datetimes" title="csep.core.catalogs.CSEPCatalog.get_datetimes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_datetimes</span></code></a>()</p></td>
+<td><p>Returns datetime object from timestamp representation in catalog</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.get_cumulative_number_of_events.html#csep.core.catalogs.CSEPCatalog.get_cumulative_number_of_events" title="csep.core.catalogs.CSEPCatalog.get_cumulative_number_of_events"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.get_cumulative_number_of_events</span></code></a>()</p></td>
+<td><p>Returns the cumulative number of events in the catalog.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The catalog data can be iterated through event-by-event using a standard for-loop. For example, we can do something
+like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">catalog</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="n">event</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
+        <span class="n">event</span><span class="p">[</span><span class="s1">&#39;origin_time&#39;</span><span class="p">],</span>
+        <span class="n">event</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span>
+        <span class="n">event</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">],</span>
+        <span class="n">event</span><span class="p">[</span><span class="s1">&#39;depth&#39;</span><span class="p">],</span>
+        <span class="n">event</span><span class="p">[</span><span class="s1">&#39;magnitude&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>The keyword for the event tuple are defined by the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> of the class. The keywords for
+<a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog"><code class="xref py py-class docutils literal notranslate"><span class="pre">CSEPCatalog</span></code></a> are shown in the snippet directly above. For example, a quick and
+dirty plot of the cumulative events over time can be made using the <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot" title="(in Matplotlib v3.3.4)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code></a> interface</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csep</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># lets assume we already loaded in some catalog</span>
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">csep</span><span class="o">.</span><span class="n">load_catalog</span><span class="p">(</span><span class="s2">&quot;my_catalog_path.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># quick and dirty plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">catalog</span><span class="o">.</span><span class="n">get_epoch_times</span><span class="p">(),</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get_cumulative_number_of_events</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="filtering-events">
+<h2><a class="toc-backref" href="#id12">Filtering events</a><a class="headerlink" href="#filtering-events" title="Permalink to this headline">¶</a></h2>
+<p>Most of the catalog files (or catalogs accessed via the web) contain more events that are desired for a given use case.
+PyCSEP provides a few routines to help filter events out of the catalog. The following methods help to filter out
+unwanted events from the catalog.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.filter.html#csep.core.catalogs.CSEPCatalog.filter" title="csep.core.catalogs.CSEPCatalog.filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.filter</span></code></a>([statements, in_place])</p></td>
+<td><p>Filters the catalog based on statements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.filter_spatial.html#csep.core.catalogs.CSEPCatalog.filter_spatial" title="csep.core.catalogs.CSEPCatalog.filter_spatial"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.filter_spatial</span></code></a>([region, …])</p></td>
+<td><p>Removes events outside of the region.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.apply_mct.html#csep.core.catalogs.CSEPCatalog.apply_mct" title="csep.core.catalogs.CSEPCatalog.apply_mct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.apply_mct</span></code></a>(m_main, event_epoch[, mc])</p></td>
+<td><p>Applies time-dependent magnitude of completeness following a mainshock.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="filtering-events-by-attribute">
+<h3><a class="toc-backref" href="#id13">Filtering events by attribute</a><a class="headerlink" href="#filtering-events-by-attribute" title="Permalink to this headline">¶</a></h3>
+<p>The function <a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.filter.html#csep.core.catalogs.CSEPCatalog.filter" title="csep.core.catalogs.CSEPCatalog.filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CSEPCatalog.filter</span></code></a> provides the ability to filter events
+based on their essential attributes. This function works by parsing filtering strings and applying them using a logical
+<cite>and</cite> operation. The catalog strings have the following format <code class="docutils literal notranslate"><span class="pre">filter_string</span> <span class="pre">=</span> <span class="pre">f&quot;{attribute}</span> <span class="pre">{operator}</span> <span class="pre">{value}&quot;</span></code>. The
+filter strings represent a statement that would evaluate as <cite>True</cite> after they are applied. For example, the statement
+<code class="docutils literal notranslate"><span class="pre">catalog.filter('magnitude</span> <span class="pre">&gt;=</span> <span class="pre">2.5')</span></code> would retain all events in the catalog greater-than-or-equal to magnitude 2.5.</p>
+<p>The attributes are determined by the dtype of the catalog, therefore you can filter based on the <code class="docutils literal notranslate"><span class="pre">(origin_time,</span> <span class="pre">latitude,</span>
+<span class="pre">longitude,</span> <span class="pre">depth,</span> <span class="pre">and</span> <span class="pre">magnitude).</span></code> Additionally, you can use the attribute <code class="docutils literal notranslate"><span class="pre">datetime</span></code> and provide a <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a>
+object to filter events using the data type.</p>
+<p>The filter function can accept a string or a list of filter statements. If the function is called without any arguments
+the function looks to use the <code class="docutils literal notranslate"><span class="pre">catalog.filters</span></code> member. This can be provided during class instantiation or bound
+to the class afterward. <span class="xref std std-ref">Here</span> is complete example of how to filter a catalog
+using the filtering strings.</p>
+</div>
+<div class="section" id="filtering-events-in-space">
+<h3><a class="toc-backref" href="#id14">Filtering events in space</a><a class="headerlink" href="#filtering-events-in-space" title="Permalink to this headline">¶</a></h3>
+<p>You might want to supply a non-rectangular polygon that can be used to filter events in space. This is commonly done
+to prepare an observed catalog for forecast evaluation. Right now, this can be accomplished by supplying a
+<a class="reference internal" href="../reference/generated/csep.core.regions.CartesianGrid2D.html#csep.core.regions.CartesianGrid2D" title="csep.core.regions.CartesianGrid2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">region</span></code></a> to the catalog or
+<a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.filter_spatial.html#csep.core.catalogs.CSEPCatalog.filter_spatial" title="csep.core.catalogs.CSEPCatalog.filter_spatial"><code class="xref py py-meth docutils literal notranslate"><span class="pre">filter_spatial</span></code></a>. There will be more information about using regions
+in the <span class="xref std std-ref">user-guide page</span> page. The <span class="xref std std-ref">catalog filtering</span> contains
+a complete example of how to filter a catalog using a user defined aftershock region based on the M7.1 Ridgecrest
+mainshock.</p>
+</div>
+<div class="section" id="time-dependent-magnitude-of-completeness">
+<h3><a class="toc-backref" href="#id15">Time-dependent magnitude of completeness</a><a class="headerlink" href="#time-dependent-magnitude-of-completeness" title="Permalink to this headline">¶</a></h3>
+<p>Seismic networks have difficulty recording events immediately after a large event occurs, because the passing seismic waves
+from the larger event become mixed with any potential smaller events. Usually when we evaluate an aftershock forecast, we should
+account for this time-dependent magnitude of completeness. PyCSEP provides the
+<a class="reference internal" href="../reference/publications.html#helmstetter-2006"><span class="std std-ref">Helmstetter et al., [2006]</span></a> implementation of the time-dependent magnitude completeness model.</p>
+<p>This requires information about an event which can be supplied directly to <a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.html#csep.core.catalogs.CSEPCatalog" title="csep.core.catalogs.CSEPCatalog"><code class="xref py py-meth docutils literal notranslate"><span class="pre">apply_mct</span></code></a>.
+Additionally, PyCSEP provides access to the ComCat API using <a class="reference internal" href="../reference/generated/csep.utils.comcat.get_event_by_id.html#csep.utils.comcat.get_event_by_id" title="csep.utils.comcat.get_event_by_id"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_event_by_id</span></code></a>.
+An exmaple of this can be seen in the <span class="xref std std-ref">filtering catalog tutorial</span>.</p>
+</div>
+</div>
+<div class="section" id="binning-events">
+<h2><a class="toc-backref" href="#id16">Binning Events</a><a class="headerlink" href="#binning-events" title="Permalink to this headline">¶</a></h2>
+<p>Another common task requires binning earthquakes by their spatial locations and magnitudes. This is routinely done when
+evaluating earthquake forecasts. Like filtering a catalog in space, you need to provide some information about the region
+that will be used for the binning. Please see the <span class="xref std std-ref">user-guide page</span> for more information about
+regions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We would like to make this functionality more user friendly. If you have suggestions or struggles, please open an issue
+on the GitHub page and we’d be happy to incorporate these ideas into the toolkit.</p>
+</div>
+<p>The following functions allow binning of catalogs using space-magnitude regions.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.spatial_counts.html#csep.core.catalogs.CSEPCatalog.spatial_counts" title="csep.core.catalogs.CSEPCatalog.spatial_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.spatial_counts</span></code></a>()</p></td>
+<td><p>Returns counts of events within discrete spatial region</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.magnitude_counts.html#csep.core.catalogs.CSEPCatalog.magnitude_counts" title="csep.core.catalogs.CSEPCatalog.magnitude_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.magnitude_counts</span></code></a>([mag_bins, …])</p></td>
+<td><p>Computes the count of events within mag_bins</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/csep.core.catalogs.CSEPCatalog.spatial_magnitude_counts.html#csep.core.catalogs.CSEPCatalog.spatial_magnitude_counts" title="csep.core.catalogs.CSEPCatalog.spatial_magnitude_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSEPCatalog.spatial_magnitude_counts</span></code></a>([…])</p></td>
+<td><p>Return counts of events in space-magnitude region.</p></td>
+</tr>
+</tbody>
+</table>
+<p>These functions return <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarrays</span></code></a> containing the count of the events determined from the
+catalogs. This example shows how to obtain magnitude counts from a catalog.
+The index of the ndarray corresponds to the index of the associated space-magnitude region. For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csep</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">csep</span><span class="o">.</span><span class="n">load_catalog</span><span class="p">(</span><span class="s2">&quot;my_catalog_file&quot;</span><span class="p">)</span>
+
+<span class="c1"># returns bin edges [2.5, 2.6, ... , 7.5]</span>
+<span class="n">bin_edges</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">7.55</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">magnitude_counts</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">magnitude_counts</span><span class="p">(</span><span class="n">mag_bins</span><span class="o">=</span><span class="n">bin_edges</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this example, <code class="docutils literal notranslate"><span class="pre">magnitude_counts[0]</span></code> is the number of events with 2.5 ≤ M &lt; 2.6. All of the magnitude binning assumes
+that the final bin extends to infinity, therefore <code class="docutils literal notranslate"><span class="pre">magnitude_counts[-1]</span></code> contains the number of events with
+7.5 ≤ M &lt; ∞.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="forecasts.html" class="btn btn-neutral float-right" title="Forecasts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../tutorials/plot_customizations.html" class="btn btn-neutral float-left" title="Plot customizations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+ 
+&#169; 2020, University of Southern California.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
